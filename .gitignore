@@ -57,6 +57,7 @@ local.properties
 
 # Eclipse Core
 .project
+.recommenders
 
 # External tool builders
 .externalToolBuilders/
@@ -237,4 +238,3 @@ Temporary Items
 ### NotepadPP template
 # Notepad++ backups #�
 *.bak�
-
