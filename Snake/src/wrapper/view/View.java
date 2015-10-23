@@ -10,7 +10,7 @@ public class View {
 	
 	private Scene scene;
 	private final Pane root = new Pane();
-	private final Circle circle = new Circle(20, 20, 10);
+	private final Circle circle = new Circle(20, 20, 10); //javaFX defined circle
 	
 	public View(){
 		root.getChildren().add(circle);
