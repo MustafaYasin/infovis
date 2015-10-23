@@ -5,7 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import wrapper.model.Circle;
+import wrapper.model.Property;
 import wrapper.model.Model;
 
 
@@ -14,14 +14,14 @@ public class Presenter {
 	private View view;
 	private Model model;
 	private Stage stage;
-	private Circle circle;
+	private Property circle; ///our defined circle
 
 	public Presenter(Stage primaryStage) {
 		this.stage=primaryStage;
 		this.view = new View();
 		this.model = new Model();
 
-		circle = new Circle(150,20,10);
+		circle = new Property(150,20,10);
 		doBindings();
 		
 		//Presenter haegt die szene an dem stage

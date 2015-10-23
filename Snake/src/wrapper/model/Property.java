@@ -2,7 +2,7 @@ package wrapper.model;
 
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class Circle {
+public class Property {
 	
 	private SimpleIntegerProperty xCoord = new SimpleIntegerProperty();
 	private SimpleIntegerProperty yCoord= new SimpleIntegerProperty();
@@ -10,7 +10,7 @@ public class Circle {
 	
 	
 	
-	public Circle(int xCoord, int yCoord, int radius) {
+	public Property(int xCoord, int yCoord, int radius) {
 
 		this.xCoord.set(xCoord);
 		this.yCoord.set(yCoord);
