@@ -4,7 +4,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 /**
- * Created by Yasna on 10/23/2015.
+ * @author Yasna
+ * @date 23.10.2015
  */
 public class Node {
 

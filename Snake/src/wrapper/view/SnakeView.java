@@ -9,7 +9,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 /**
- * Created by Yasna on 10/23/2015.
+ *@author Yasna
+ *@date 23.10.2015
  */
 public class SnakeView extends BorderPane implements SnakeInterface {
 

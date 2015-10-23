@@ -11,7 +11,7 @@ package wrapper.model;
 public interface SnakeInterface {
 	
 	    double snakeSpeed = 2;
-	    double radius = 8;
+	    double radius = 13;
 
 	    int GAME_WIDTH = 800;
 

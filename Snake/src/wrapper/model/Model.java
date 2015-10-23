@@ -123,9 +123,12 @@ public class Model implements SnakeInterface{
     public void setGoingLeft(boolean goingLeft) {
         this.goingLeft = goingLeft;
     }
-
+    
+    
+    //this must ge impelmented too 
     public void addNode(){
         if(foodEaten){
+        	body.add(new Node(snakeHead.getxCoo()-14, snakeHead.getyCoo()));
         	
         }
         	

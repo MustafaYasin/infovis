@@ -14,7 +14,8 @@ import javafx.util.Duration;
 import wrapper.model.*;
 
 /**
- * Created by Arber on 10/23/2015.
+ * @authorYasna
+ * @date 23.10.2015
  */
 public class Presenter implements SnakeInterface {
 
