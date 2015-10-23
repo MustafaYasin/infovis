@@ -23,6 +23,10 @@ public class Node {
     public IntegerProperty xCooProperty() {
         return xCoo;
     }
+    
+    public IntegerProperty yCooProperty() {
+        return yCoo;
+    }
 
     public void setxCoo(int xCoo) {
         this.xCoo.set(xCoo);
@@ -32,9 +36,6 @@ public class Node {
         return yCoo.get();
     }
 
-    public IntegerProperty yCooProperty() {
-        return yCoo;
-    }
 
     public void setyCoo(int yCoo) {
         this.yCoo.set(yCoo);
