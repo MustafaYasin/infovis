@@ -5,12 +5,13 @@ import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
+import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import wrapper.model.*;
 
 /**
@@ -21,17 +22,78 @@ public class Presenter implements SnakeInterface {
 
     private Model model;
     private SnakeView view;
-
     private KeyFrame middleFrame;
     private Timeline timeline;
+	private Stage primaryStage;
+	private Scene scene;
 
-
-    public Presenter(Model model, SnakeView view) {
-        this.model = model;
-        this.view = view;
+/**Constructor
+ * 
+ * Presenter receives only stage as an argument,
+ * creates a model, view and starts the method gameLoop()
+ * so that the snake can move.
+ * It also calls the method doBindings() which
+ * binds a View object to a property(object) in Model, 
+ * such that a change in either is reflected in the other.
+ * 
+ * @param stage
+ */
+    public Presenter(Stage stage) {
+        this.primaryStage=stage;
+        model = new Model();
+        view = new SnakeView();
+        model.gameLoop();
+        show();
+        doBindings();
         play();
+        
     }
+    
+    
+ /** The attribute scene of the Presenter 
+  *  gets the view as a scene so that it can be showed
+  */
+    private void show(){
+    	view.setMaxSize(GAME_WIDTH, GAME_HEIGHT);
 
+        scene = new Scene(view);
+
+        primaryStage.setWidth(GAME_WIDTH);
+        primaryStage.setHeight(GAME_HEIGHT);
+
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.show();
+    }
+    
+  /**when doBindings() gets called
+   * the binded properties in View 
+   * change so that they match these in Model
+   * (the binding is NOT bidirectional)
+   */
+    
+    public void doBindings(){
+    	view.getSnake().bind(model.getHead());
+    	view.getLength().bind(model.getLength());
+    }
+    
+ /**play() keeps the game running
+  * e.g frame duration can be changed here
+  * 
+  */
+    public void play() {
+
+
+        timeline = new Timeline();
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        middleFrame = new KeyFrame(Duration.millis(300), e -> model.gameLoop());
+        timeline.getKeyFrames().add(middleFrame);
+        timeline.play();
+        
+        //
+        scene.addEventHandler(KeyEvent.KEY_PRESSED, event -> model.setDirection(event));
+
+    }
     public Model getModel() {
         return model;
     }
@@ -64,38 +126,18 @@ public class Presenter implements SnakeInterface {
         this.timeline = timeline;
     }
 
-    public void play() {
 
 
-            timeline = new Timeline();
-            timeline.setCycleCount(Timeline.INDEFINITE);
-            timeline.setAutoReverse(true);
-            middleFrame = new KeyFrame(Duration.millis(10), e -> moveSnake());
-            timeline.getKeyFrames().add(middleFrame);
-            timeline.play();
-
-            view.getScene().addEventHandler(KeyEvent.KEY_PRESSED, keyHandler);
-            view.getScene().addEventHandler(KeyEvent.KEY_RELEASED, keyHandler);
-
-        }
-
-    public void moveSnake(){
-
-        //basic movements
-        if(getModel().isGoingDown()){
-            getView().getSnakeHead().setCenterY(getView().getSnakeHead().getCenterY() + snakeSpeed);
-        }
-        else if (getModel().isGoingUp()){
-            getView().getSnakeHead().setCenterY(getView().getSnakeHead().getCenterY() - snakeSpeed);
-        }
-        else if(getModel().isGoingRight()){
-            getView().getSnakeHead().setCenterX(getView().getSnakeHead().getCenterX() + snakeSpeed);
-        }
-        else if(getModel().isGoingLeft()){
-            getView().getSnakeHead().setCenterX(getView().getSnakeHead().getCenterX() - snakeSpeed);
-        }
-
-
+     /** how the move method should work
+      * 
+      * 1. is the cell free or with food
+      * 2. if free we move the last element to the front (change coordinates)
+      * 3. keep in mind the direction for the coordinates
+      * 
+      * 
+      * 
+      */
+  /*      
         //methods so that the snake can go "through" the walls
         if (getView().getSnakeHead().getCenterX()> GAME_WIDTH){
             getView().getSnakeHead().setCenterX(0);
@@ -177,5 +219,7 @@ public class Presenter implements SnakeInterface {
             }
 
         };
+        
+        */
 
 }

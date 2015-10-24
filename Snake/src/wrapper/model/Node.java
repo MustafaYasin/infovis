@@ -7,38 +7,28 @@ import javafx.beans.property.SimpleIntegerProperty;
  * @author Yasna
  * @date 23.10.2015
  */
-public class Node {
+public class Node implements SnakeInterface {
 
-    private IntegerProperty xCoo = new SimpleIntegerProperty();
-    private IntegerProperty yCoo = new SimpleIntegerProperty();
+    private int xCoo;
+    private int yCoo;
 
     public Node(int xCoo, int yCoo) {
-        this.setxCoo(xCoo);
-        this.setyCoo(yCoo);
+        this.xCoo=xCoo;
+        this.yCoo=yCoo;
+       
     }
 
-    public int getxCoo() {
-        return xCoo.get();
-    }
+	public int getxCoo() {
+		return xCoo;
+	}
 
-    public IntegerProperty xCooProperty() {
-        return xCoo;
-    }
+	public int getyCoo() {
+		return yCoo;
+	}
     
-    public IntegerProperty yCooProperty() {
-        return yCoo;
+    public void move(int direction){
+    	
+  
     }
 
-    public void setxCoo(int xCoo) {
-        this.xCoo.set(xCoo);
-    }
-
-    public int getyCoo() {
-        return yCoo.get();
-    }
-
-
-    public void setyCoo(int yCoo) {
-        this.yCoo.set(yCoo);
-    }
 }

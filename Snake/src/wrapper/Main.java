@@ -27,30 +27,12 @@ import java.io.IOException;
 public class Main extends Application implements SnakeInterface {
 
     /**
-     * called when starting the application
-     * creates a new game with playersNr of players, new gameView and sets it in a scene on the given stage
-     * creates a new gamePresenter, sets the game modes
-     * @param primaryStage Stage on which the gameView should be
+     * called to start the application
+     * 
      */
     @Override
     public void start(Stage primaryStage) {
-
-        Model model = new Model();
-
-        SnakeView snakeView = new SnakeView(model);
-
-        snakeView.setMaxSize(GAME_WIDTH, GAME_HEIGHT);
-
-        Scene scene = new Scene(snakeView);
-
-        primaryStage.setWidth(GAME_WIDTH);
-        primaryStage.setHeight(GAME_HEIGHT);
-
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.show();
-
-        Presenter snakePresenter = new Presenter(model, snakeView);
+        new Presenter(primaryStage);
     }
 
     public static void main(String[] args) {

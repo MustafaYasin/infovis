@@ -2,8 +2,11 @@ package wrapper.model;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.scene.input.KeyEvent;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -12,48 +15,84 @@ import java.util.Random;
  * @date 23.10.2015
  */
 public class Model implements SnakeInterface{
-
+	
+	
     private Node snakeHead = new Node(GAME_WIDTH/2, GAME_HEIGHT/2);
-
-    private List<Node> body = new ArrayList<>();
-
-    private IntegerProperty points = new SimpleIntegerProperty(0);
-
-    int x = (int)(Math.random()*GAME_WIDTH);
-    int y = (int)(Math.random()*GAME_HEIGHT);
     
-    private Node food = new Node(x,y);
+	private SimpleObjectProperty <Node> head = new SimpleObjectProperty<Node>();
+
+   // private IntegerProperty points = new SimpleIntegerProperty(0);	
+	
+	//random generator for the food 
+	private int x = (int)(Math.random()*GAME_WIDTH);
+    private int y = (int)(Math.random()*GAME_HEIGHT);
+	private Node food = new Node(x,y);
+    
     
     private boolean foodEaten = false;
-
-    private boolean goingUp;
-    private boolean goingDown;
-    private boolean goingRight = true;
-    private boolean goingLeft;
-
+    
+    /**the direction in which the snake should move
+     * 0 for UP
+     * 1 for DOWN
+     * 2 for RIGHT
+     * 3 for LEFT
+     */
+    private int direction = 3;
+    
+    /**IntegerProperty bound to the View which has the current length of the snake.
+     * View has the same Property attribute.
+     */
+    private SimpleIntegerProperty length = new SimpleIntegerProperty();
+    
+    /**Constructor that creates a snake*/
     public Model() {
-        addHead();
-        placeFood();
+        head.set(snakeHead);
+        length.set(1);
     }
-
-    public List<Node> getBody() {
-        return body;
+    
+    /**Game Loop is called my the Presenter
+     * so that the snake can move
+     * collision() TO DO !!!!
+     */
+    public void gameLoop(){
+    	snakeMove();
+    	collision();
     }
+    
 
-    public void setBody(List<Node> body) {
-        this.body = body;
-    }
-
-    public int getPoints() {
-        return points.get();
-    }
-
-    public IntegerProperty pointsProperty() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points.set(points);
+	private void snakeMove() {
+			switch (direction){
+    	
+    	case 0: 
+    		head.set(new Node(head.get().getxCoo(), head.get().getyCoo() - radius*2));
+    		break;
+    		
+    	case 1: 
+    		head.set(new Node(head.get().getxCoo(), head.get().getyCoo() + radius*2));
+    		break;
+    	
+    	case 2:
+    		head.set(new Node(head.get().getxCoo() - radius*2, head.get().getyCoo()));
+    		break;
+    		
+    	case 3:
+    		System.out.println(head);
+    		Node n = new Node(head.get().getxCoo() + radius*2, head.get().getyCoo());
+    		head.set(n);
+    		break;
+    	} 	
+		
+		
+	}
+    
+    
+    private void collision() {
+		// TODO Auto-generated method stub
+		
+	}
+    
+    private void addBodyPart(){
+    	length.add(1);
     }
 
     public Node getFood() {
@@ -81,8 +120,50 @@ public class Model implements SnakeInterface{
         this.snakeHead = snakeHead;
     }
 
-    private void addHead() {
-        getBody().add(getSnakeHead());
+
+
+	public SimpleObjectProperty<Node> getHead() {
+		return head;
+	}
+	
+	
+
+
+	public SimpleIntegerProperty getLength() {
+		return length;
+	}
+
+
+
+	public void setDirection(KeyEvent event) {
+		
+		switch (event.getCode()){
+			
+		case UP: 
+			if(direction!=1) direction=0;
+			break;
+				
+		case DOWN:
+			if(direction!=0) direction=1;
+			break;
+		
+		case RIGHT:
+			if(direction!=3) direction=2;
+			break;
+			
+		case LEFT:
+			if(direction!=2) direction=3;
+			break;
+		}
+		
+		
+	}
+    
+    
+}
+
+  /*  private void addHead() {
+        getBody().addFirst(getSnakeHead());
     }
 
     public void placeFood() {
@@ -126,13 +207,13 @@ public class Model implements SnakeInterface{
     
     
     //this must ge impelmented too 
-    public void addNode(){
-        if(foodEaten){
-        	body.add(new Node(snakeHead.getxCoo()-14, snakeHead.getyCoo()));
+    public void snakeGrow(){
+        if(!foodEaten){
+        	body.addFirst(new Node(snakeHead.getxCoo()-14, snakeHead.getyCoo()));
         	
         }
         	
         }
 
 
-}
+}*/
