@@ -137,7 +137,6 @@ public class Presenter implements SnakeInterface {
       * 
       * 
       */
-  /*      
         //methods so that the snake can go "through" the walls
         if (getView().getSnakeHead().getCenterX()> GAME_WIDTH){
             getView().getSnakeHead().setCenterX(0);
@@ -220,6 +219,5 @@ public class Presenter implements SnakeInterface {
 
         };
         
-        */
 
 }

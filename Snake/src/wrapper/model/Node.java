@@ -26,9 +26,8 @@ public class Node implements SnakeInterface {
 		return yCoo;
 	}
     
-    public void move(int direction){
-    	
+
   
-    }
+
 
 }

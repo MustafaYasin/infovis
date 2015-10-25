@@ -18,7 +18,8 @@ public class Model implements SnakeInterface{
 	
 	
     private Node snakeHead = new Node(GAME_WIDTH/2, GAME_HEIGHT/2);
-    
+    private ArrayList<Node> snakebody = new ArrayList<>();
+    private int snakelength = snakebody.size();
 	private SimpleObjectProperty <Node> head = new SimpleObjectProperty<Node>();
 
    // private IntegerProperty points = new SimpleIntegerProperty(0);	
@@ -58,13 +59,21 @@ public class Model implements SnakeInterface{
     	snakeMove();
     	collision();
     }
-    
 
+    /**the direction in which the snake should move
+     * 0 for UP
+     * 1 for DOWN
+     * 2 for RIGHT
+     * 3 for LEFT
+     */
 	private void snakeMove() {
-			switch (direction){
-    	
-    	case 0: 
-    		head.set(new Node(head.get().getxCoo(), head.get().getyCoo() - radius*2));
+        for (int i=snakelength-2;i==0;i--){
+            snakebody.set(i + 1,new Node)=snakebody.get(i);}
+        Node neuerSchlangenkopf=snakebody.get(snakelength-1);
+        switch (direction){
+
+    	case 0:
+            head.set(new Node(head.get().getxCoo(), head.get().getyCoo() - radius*2));
     		break;
     		
     	case 1: 
@@ -87,7 +96,10 @@ public class Model implements SnakeInterface{
     
     
     private void collision() {
-		// TODO Auto-generated method stub
+		Node schlangenkopf =snakebody.get(0);
+        if(schlangenkopf.getxCoo()==food.getxCoo()&& schlangenkopf.getyCoo()==food.getyCoo()){
+            this.foodEaten=true;
+        }
 		
 	}
     
@@ -162,7 +174,7 @@ public class Model implements SnakeInterface{
     
 }
 
-  /*  private void addHead() {
+    private void addHead() {
         getBody().addFirst(getSnakeHead());
     }
 
@@ -209,11 +221,25 @@ public class Model implements SnakeInterface{
     //this must ge impelmented too 
     public void snakeGrow(){
         if(!foodEaten){
-        	body.addFirst(new Node(snakeHead.getxCoo()-14, snakeHead.getyCoo()));
-        	
-        }
-        	
-        }
+
+            Node schlangenkopf = snakebody.get(0);
+            this.snakebody.add(snakelength,new Node);
+            for (int i = snakebody.size()-2;i==0 ;i--){
+                this.snakebody.set(i+1,new Node) = snakebody.get(i);
+            }
 
 
-}*/
+            if (isGoingLeft()){
+        	    this.snakebody.set(0,new Node(schlangenkopf.getxCoo()-14, schlangenkopf.getyCoo()));
+                }
+            if(isGoingRight()){
+                this.snakebody.set(0,new Node(schlangenkopf.getxCoo()+14, schlangenkopf.getyCoo()));
+                }
+            if(isGoingUp()) {
+                this.snakebody.set(0,new Node(schlangenkopf.getxCoo(), schlangenkopf.getyCoo()+14));
+                }
+            if(isGoingDown()) {
+                this.snakebody.set(0,new Node(schlangenkopf.getxCoo(), schlangenkopf.getyCoo()-14));
+                }
+
+}
