@@ -1,62 +1,56 @@
 [
   {
-    "Coronavirus SARS-CoV-2: Chronik der bisherigen Maßnahmen": "Startdatum",
-    "": "Enddatum",
-    "__1": "Maßnahmen",
-    "__2": "Titel"
+    "Startdatum": "3/12/2020",
+    "Enddatum": "5/16/2020",
+    "Maßnahmen": "Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein. Die Fußball-Bundesliga pausiert",
+    "Titel": ""
   },
   {
-    "Coronavirus SARS-CoV-2: Chronik der bisherigen Maßnahmen": "3/12/2020",
-    "": "5/16/2020",
-    "__1": "Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein. Die Fußball-Bundesliga pausiert",
-    "__2": ""
+    "Startdatum": "3/16/2020",
+    "Enddatum": "5/16/2020",
+    "Maßnahmen": "Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und der Schweiz gibt es Kontrollen und Einreiseverbote. In den meisten Bundesländern sind Schulen und Kitas geschlossen",
+    "Titel": "Reiseeinschränkung"
   },
   {
-    "Coronavirus SARS-CoV-2: Chronik der bisherigen Maßnahmen": "3/16/2020",
-    "": "5/16/2020",
-    "__1": "Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und der Schweiz gibt es Kontrollen und Einreiseverbote. In den meisten Bundesländern sind Schulen und Kitas geschlossen",
-    "__2": "Reiseeinschränkung"
+    "Startdatum": "3/22/2020",
+    "Enddatum": "5/11/2020",
+    "Maßnahmen": "Verbot von Ansammlungen von mehr als zwei Menschen. Ausgenommen sind Angehörige, die im eigenen Haushalt leben. Cafés, Kneipen, Restaurants, aber auch Friseure zum Beispiel schließen",
+    "Titel": "1. Lockdown"
   },
   {
-    "Coronavirus SARS-CoV-2: Chronik der bisherigen Maßnahmen": "3/22/2020",
-    "": "5/11/2020",
-    "__1": "Verbot von Ansammlungen von mehr als zwei Menschen. Ausgenommen sind Angehörige, die im eigenen Haushalt leben. Cafés, Kneipen, Restaurants, aber auch Friseure zum Beispiel schließen",
-    "__2": "1. Lockdown"
+    "Startdatum": "3/22/2020",
+    "Enddatum": "4/15/2020",
+    "Maßnahmen": "Schule schließt",
+    "Titel": "Schule schließt"
   },
   {
-    "Coronavirus SARS-CoV-2: Chronik der bisherigen Maßnahmen": "3/22/2020",
-    "": "4/15/2020",
-    "__1": "Schule schließt",
-    "__2": "Schule schließt"
+    "Startdatum": "4/22/2020",
+    "Enddatum": "12/31/2020",
+    "Maßnahmen": "Maskenpflicht für alle Bundesländer",
+    "Titel": "Maskenpflicht"
   },
   {
-    "Coronavirus SARS-CoV-2: Chronik der bisherigen Maßnahmen": "4/22/2020",
-    "": "12/31/2020",
-    "__1": "Maskenpflicht für alle Bundesländer",
-    "__2": "Maskenpflicht"
+    "Startdatum": "8/8/2020",
+    "Enddatum": "12/31/2020",
+    "Maßnahmen": "Inreisende aus internationalen Risikogebieten müssen sich bei der Rückkehr nach Deutschland testen lassen",
+    "Titel": "Reiseeinschränkung"
   },
   {
-    "Coronavirus SARS-CoV-2: Chronik der bisherigen Maßnahmen": "8/8/2020",
-    "": "12/31/2020",
-    "__1": "Inreisende aus internationalen Risikogebieten müssen sich bei der Rückkehr nach Deutschland testen lassen",
-    "__2": "Reiseeinschränkung"
+    "Startdatum": "7/10/2020",
+    "Enddatum": "12/31/2020",
+    "Maßnahmen": "Die Bundesländer beschließen ein Beherbergungsverbot für Urlauber aus inländischen Risikogebieten. Die Zahl der Neuinfektionen ist auf mehr als 4000 binnen eines Tages gestiegen",
+    "Titel": "Beherbergungsverbot"
   },
   {
-    "Coronavirus SARS-CoV-2: Chronik der bisherigen Maßnahmen": "7/10/2020",
-    "": "12/31/2020",
-    "__1": "Die Bundesländer beschließen ein Beherbergungsverbot für Urlauber aus inländischen Risikogebieten. Die Zahl der Neuinfektionen ist auf mehr als 4000 binnen eines Tages gestiegen",
-    "__2": "Beherbergungsverbot"
+    "Startdatum": "10/14/2020",
+    "Enddatum": "12/31/2020",
+    "Maßnahmen": "Beherbergungsverbot bei Inzididenz > 50",
+    "Titel": "Beherbergungsverbot"
   },
   {
-    "Coronavirus SARS-CoV-2: Chronik der bisherigen Maßnahmen": "10/14/2020",
-    "": "12/31/2020",
-    "__1": "Beherbergungsverbot bei Inzididenz > 50",
-    "__2": "Beherbergungsverbot"
-  },
-  {
-    "Coronavirus SARS-CoV-2: Chronik der bisherigen Maßnahmen": "11/2/2020",
-    "": "12/31/2020",
-    "__1": "Lockdown light, Gastronomie schließt",
-    "__2": "Lockdown \"light"
+    "Startdatum": "11/2/2020",
+    "Enddatum": "12/31/2020",
+    "Maßnahmen": "Lockdown light, Gastronomie schließt",
+    "Titel": "Lockdown \"light"
   }
 ]
