@@ -35,18 +35,11 @@ function filterData(data){
 const beherbergungen = data.filter(
 item => item.Sparte === 'Beherbergung'
 );
-visualiseChart(beherbergungen);
+const gastro = data.filter(item => item.Sparte === 'Gastronomie');
+visualiseChart(beherbergungen,gastro);
 }
 
-function filterDatanachGastro(data){
-const gastro = data.filter(
-item => item.Sparte === 'Gastronomie'
-);
-visualiseChart(gastro);
-}
-
-
-function visualiseChart(data){
+function visualiseChart(data,data2){
 console.log("test");
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
     width = 900 - margin.left - margin.right,
@@ -85,6 +78,18 @@ var curve = svg.append("path")
                .y(function (d) {var value = (+(d.VeraederungenzumVorjahr.replace(",",".")));
                   return yAxis(value);})
           );
+
+			   var curve2 = svg.append("path")
+					               .datum(data2)
+					               .attr("fill", "none")
+					               .attr("stroke", "turquoise")
+					               .attr("stroke-width", 2)
+												 .attr('d',d3
+					               .line()
+					               .x(function (d) {return xAxis(d.Monat);})
+					               .y(function (d) {var value = (+(d.VeraederungenzumVorjahr.replace(",",".")));
+					                  return yAxis(value);})
+					          );
 
 
 }
