@@ -49,9 +49,15 @@ body{
     top:100vh;
     height: 100vh;
     width: 100vw;
-    background-color: #121212;
+    background-color: #ffff;
+
 }
 
+#visualisationContainer{
+    z-index: 3;
+    width: 100vw;
+    height: 50vh;
+}
 #gantt_chart{
     position: absolute;
     top: 50vh;
