@@ -17,17 +17,20 @@ $(document).ready(function($)  { // wait for document ready
         opacity: 0
     });
     // build scene for header1Container disappers
-    var scene = new ScrollMagic.Scene({ duration: h/2, triggerHook: 0, reverse:true})
+    var scene = new ScrollMagic.Scene({ duration: h/4, triggerHook: 0, reverse:true})
         .setTween(h1Disappears)
+        .addIndicators() // add indicators (requires plugin)
         .addTo(controller);
 
-    // contentContainer appears
-    var contentAppears = TweenLite.to("#contentContainer", 1, {
+    // gantt-chart appears
+    var ganttAppears = TweenLite.to("#gantt_chart", 1, {
         opacity: 1
     });
-    // build scene for header1Container disappers
+    
+    // build scene for gantt-chart appears
     var scene = new ScrollMagic.Scene({ duration: h, triggerHook: 0, reverse:true})
-        .setTween(contentAppears)
+        .setTween(ganttAppears)
+        .addIndicators() // add indicators (requires plugin)
         .addTo(controller);
 });
 
@@ -101,4 +104,3 @@ function drawChart() {
 google.charts.load('current', {'packages':['gantt']});
 // call drawChart function with loaded chart
 google.charts.setOnLoadCallback(drawChart);
-
