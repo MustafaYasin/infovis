@@ -10,28 +10,30 @@ var w = $(window).innerWidth();
 
 $(document).ready(function($)  { // wait for document ready
     // init ScrollMagic
-    var controller = new ScrollMagic.Controller({container: "#scrollcontainer"});
+    var controller = new ScrollMagic.Controller();
 
     // header1Container disapears
     var h1Disappears = TweenLite.to("#h1Container", 1, {
         opacity: 0
     });
     // build scene for header1Container disappers
-    var scene = new ScrollMagic.Scene({ duration: h/4, triggerHook: 0, reverse:true})
+    var scene = new ScrollMagic.Scene({ duration: h, triggerHook: 0, reverse:true})
         .setTween(h1Disappears)
         .addIndicators() // add indicators (requires plugin)
         .addTo(controller);
 
-    // gantt-chart appears
+    /*// gantt-chart appears
     var ganttAppears = TweenLite.to("#gantt_chart", 1, {
         opacity: 1
     });
-    
+
+
     // build scene for gantt-chart appears
     var scene = new ScrollMagic.Scene({ duration: h, triggerHook: 0, reverse:true})
         .setTween(ganttAppears)
         .addIndicators() // add indicators (requires plugin)
         .addTo(controller);
+        */
 });
 
 
