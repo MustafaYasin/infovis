@@ -41,7 +41,7 @@ function drawChart() {
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Task ID');
     data.addColumn('string', 'Task Name');
-    data.addColumn('string', 'Resource');
+    data.addColumn('string', 'Maßnahme');
     data.addColumn('date', 'Start Date');
     data.addColumn('date', 'End Date');
     data.addColumn('number', 'Duration');
@@ -77,7 +77,16 @@ function drawChart() {
     var options = {
         height: 400,
         gantt: {
-            trackHeight: 30
+            trackHeight: 30,
+            defaultStartDate: new Date(2020,1,1),
+            // color palette of the gantt chart
+            palette: [
+                {
+                    "color": "#5e97f6",
+                    "dark": "#2a56c6",
+                    "light": "#c6dafc"
+                }
+            ]
         }
     };
 
