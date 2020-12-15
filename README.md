@@ -23,6 +23,8 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#Project Plan">Project Plan</a></li>
+    <li><a href="#Time Plan">Time Plan</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -36,11 +38,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<<<<<<< HEAD
-[![Project Name Screen Shot][product-screenshot]](images/aboutproject.jpeg)
-=======
-![Project Name Screen Shot](./images/aboutproject.jpeg)
->>>>>>> 294b8af9c6b6812e1f186667ac5d3da988ce4130
+![Project Name Screen Shot](images/aboutproject.jpeg)
 
 
 ### All required tools
@@ -82,7 +80,14 @@ This is an example of how to list things you need to use the software and how to
 ## Usage
 A more detailed usage of this project will be updated soon.
 
+<!-- Project Plan -->
+## Project Plan
+This Gantt Chart gives a great overview the steps we are planning to take, to accomplish the project.
+![Gantt Chart](images/ganttchart.png)
 
+<!-- Time Plan -->
+## Time Plan
+![Time Plan](images/projectplan.png)
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -116,7 +121,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Mustafa Yasin - [mustafa.yasin@campus.lmu.de](mustafa.yasin@campus.lmu.de) - Email
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/MustafaYasin/infovis/issues](https://github.com/MustafaYasin/infovis/issues)
 
 
 
