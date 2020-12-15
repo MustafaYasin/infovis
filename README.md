@@ -83,6 +83,10 @@ A more detailed usage of this project will be updated soon.
 This Gantt Chart gives a great overview the steps we are planning to take, to accomplish the project.
 ![Gantt Chart](images/ganttchart.png)
 
+<!-- Time Plan -->
+## Project Plan
+![Time Plan](images/projectplan)
+
 <!-- ROADMAP -->
 ## Roadmap
 
