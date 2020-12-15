@@ -115,7 +115,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Mustafa Yasin - [mustafa.yasin@campus.lmu.de](mustafa.yasin@campus.lmu.de) - Email
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/MustafaYasin/infovis/issues](https://github.com/MustafaYasin/infovis/issues)
 
 
 
