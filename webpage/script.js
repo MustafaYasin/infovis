@@ -32,67 +32,12 @@ $(document).ready(function($)  { // wait for document ready
 });
 
 
-var data = [
-    {
-        actualStart: Date.UTC(2020,3,12),
-        actualEnd: Date.UTC(2020,5,16),
-        massnahmen: "Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein. Die Fußball-Bundesliga pausiert",
-        name: "Stop von Konzerten und Sportveranstaltungen"
-    },
-    {
-        actualStart: Date.UTC(2020, 3, 16),
-        actualEnd: Date.UTC(2020, 5, 16),
-        massnahmen: "Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und der Schweiz gibt es Kontrollen und Einreiseverbote. In den meisten Bundesländern sind Schulen und Kitas geschlossen",
-        name: "Reiseeinschränkung"
-    },
-    {
-        actualStart: Date.UTC(2020, 3, 22),
-        actualEnd: Date.UTC(2020, 5, 11),
-        massnahmen: "Verbot von Ansammlungen von mehr als zwei Menschen. Ausgenommen sind Angehörige, die im eigenen Haushalt leben. Cafés, Kneipen, Restaurants, aber auch Friseure zum Beispiel schließen",
-        name: "1. Lockdown"
-    },
-    {
-        actualStart: Date.UTC(2020, 3, 22),
-        actualEnd: Date.UTC(2020, 4, 15),
-        massnahmen: "Schule schließt",
-        name: "Schule schließt"
-    },
-    {
-        actualStart: Date.UTC(2020, 4, 22),
-        actualEnd: Date.UTC(2020, 12, 31),
-        massnahmen: "Maskenpflicht für alle Bundesländer",
-        name: "Maskenpflicht"
-    },
-    {
-        actualStart: Date.UTC(2020, 8, 8),
-        actualEnd: Date.UTC(2020, 12, 31),
-        massnahmen: "Einreisende aus internationalen Risikogebieten müssen sich bei der Rückkehr nach Deutschland testen lassen",
-        name: "Reiseeinschränkung"
-    },
-    {
-        actualStart: Date.UTC(2020, 10, 7),
-        actualEnd: Date.UTC(2020, 12, 31),
-        massnahmen: "Die Bundesländer beschließen ein Beherbergungsverbot für Urlauber aus inländischen Risikogebieten. Die Zahl der Neuinfektionen ist auf mehr als 4000 binnen eines Tages gestiegen",
-        name: "Beherbergungsverbot"
-    },
-    {
-        actualStart: Date.UTC(2020, 10, 14),
-        actualEnd: Date.UTC(2020, 12, 31),
-        massnahmen: "Beherbergungsverbot bei Inzididenz > 50",
-        name: "Beherbergungsverbot"
-    },
-    {
-        actualStart: Date.UTC(2020, 11, 2),
-        actualEnd: Date.UTC(2020, 12, 31),
-        massnahmen: "Lockdown light, Gastronomie schließt",
-        name: "Lockdown \"light"
-    }];
 
-google.charts.load('current', {'packages':['gantt']});
-google.charts.setOnLoadCallback(drawChart);
-
+// define what chart to draw
 function drawChart() {
 
+    // fill the data table
+    // columns TODO: get data from json
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Task ID');
     data.addColumn('string', 'Task Name');
@@ -103,8 +48,10 @@ function drawChart() {
     data.addColumn('number', 'Percent Complete');
     data.addColumn('string', 'Dependencies');
 
+    // rows TODO: get data from json
     data.addRows([
-
+        ['', '2020 Zeitstrahl', '',
+            new Date(2020, 1, 1), new Date(2020, 12, 31), null, 100, null],
         ['maßnahme 1', 'Stop von Konzerten und Sportveranstaltungen', 'Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein. Die Fußball-Bundesliga pausiert',
             new Date(2020, 3, 12), new Date(2020, 5, 16), null, 100, null],
         ['maßnahme 2', 'Reiseeinschränkung', 'Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und der Schweiz gibt es Kontrollen und Einreiseverbote. In den meisten Bundesländern sind Schulen und Kitas geschlossen',
@@ -126,6 +73,7 @@ function drawChart() {
 
     ]);
 
+    // gantt chart options
     var options = {
         height: 400,
         gantt: {
@@ -133,7 +81,15 @@ function drawChart() {
         }
     };
 
+    // define the chart
     var chart = new google.visualization.Gantt(document.getElementById('gantt_chart'));
 
+    // draw the chart
     chart.draw(data, options);
 }
+
+// load google gantt chart
+google.charts.load('current', {'packages':['gantt']});
+// call drawChart function with loaded chart
+google.charts.setOnLoadCallback(drawChart);
+
