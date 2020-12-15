@@ -36,7 +36,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://github.com/MustafaYasin/infovis/images/aboutproject.jpeg)
+[![Project Name Screen Shot][product-screenshot]](images/aboutproject.jpeg)
 
 
 ### All required tools
