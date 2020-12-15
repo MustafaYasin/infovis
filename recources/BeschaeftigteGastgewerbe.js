@@ -1,87 +1,87 @@
-[
+filterData([
   {
     "Sparte": "Beherbergung",
     "Jahr": 2020,
     "Monat": "Januar",
     "Beschaeftigte": "100,3",
-    "Veraederungen zum Vorjahr": "0,3"
+    "VeraederungenzumVorjahr": "0,3"
   },
   {
     "Sparte": "Beherbergung",
     "Jahr": 2020,
     "Monat": "Februar",
     "Beschaeftigte": "99,7",
-    "Veraederungen zum Vorjahr": "0,2"
+    "VeraederungenzumVorjahr": "0,2"
   },
   {
     "Sparte": "Beherbergung",
     "Jahr": 2020,
     "Monat": "Maerz",
     "Beschaeftigte": "96,3",
-    "Veraederungen zum Vorjahr": "-5,0"
+    "VeraederungenzumVorjahr": "-5,0"
   },
   {
     "Sparte": "Beherbergung",
     "Jahr": 2020,
     "Monat": "April",
     "Beschaeftigte": "80,3",
-    "Veraederungen zum Vorjahr": "-22,3"
+    "VeraederungenzumVorjahr": "-22,3"
   },
   {
     "Sparte": "Beherbergung",
     "Jahr": 2020,
     "Monat": "Mai",
     "Beschaeftigte": "81,7",
-    "Veraederungen zum Vorjahr": "-22,0"
+    "VeraederungenzumVorjahr": "-22,0"
   },
   {
     "Sparte": "Beherbergung",
     "Jahr": 2020,
     "Monat": "Juni",
     "Beschaeftigte": "86,8",
-    "Veraederungen zum Vorjahr": "-17,2"
+    "VeraederungenzumVorjahr": "-17,2"
   },
   {
     "Sparte": "Beherbergung",
     "Jahr": 2020,
     "Monat": "Juli",
     "Beschaeftigte": "90,4",
-    "Veraederungen zum Vorjahr": "-14,6"
+    "VeraederungenzumVorjahr": "-14,6"
   },
   {
     "Sparte": "Beherbergung",
     "Jahr": 2020,
     "Monat": "August",
     "Beschaeftigte": "92,5",
-    "Veraederungen zum Vorjahr": "-13,3"
+    "VeraederungenzumVorjahr": "-13,3"
   },
   {
     "Sparte": "Beherbergung",
     "Jahr": 2020,
     "Monat": "September",
     "Beschaeftigte": "92,7",
-    "Veraederungen zum Vorjahr": "-12,8"
+    "VeraederungenzumVorjahr": "-12,8"
   },
   {
     "Sparte": "Beherbergung",
     "Jahr": 2020,
     "Monat": "Oktober",
     "Beschaeftigte": "...",
-    "Veraederungen zum Vorjahr": "..."
+    "VeraederungenzumVorjahr": "..."
   },
   {
     "Sparte": "Beherbergung",
     "Jahr": 2020,
     "Monat": "November",
     "Beschaeftigte": "...",
-    "Veraederungen zum Vorjahr": "..."
+    "VeraederungenzumVorjahr": "..."
   },
   {
     "Sparte": "Beherbergung",
     "Jahr": 2020,
     "Monat": "Dezember",
     "Beschaeftigte": "...",
-    "Veraederungen zum Vorjahr": "..."
+    "VeraederungenzumVorjahr": "..."
   },
   {
     "Sparte": "Hotels, Gasthoefe und Pensionen",
@@ -340,84 +340,84 @@
     "Jahr": 2020,
     "Monat": "Januar",
     "Beschaeftigte": "100,7",
-    "Veraederungen zum Vorjahr": "1,9"
+    "VeraederungenzumVorjahr": "1,9"
   },
   {
     "Sparte": "Gastronomie",
     "Jahr": 2020,
     "Monat": "Februar",
     "Beschaeftigte": "101,5",
-    "Veraederungen zum Vorjahr": "1,7"
+    "VeraederungenzumVorjahr": "1,7"
   },
   {
     "Sparte": "Gastronomie",
     "Jahr": 2020,
     "Monat": "Maerz",
     "Beschaeftigte": "95,8",
-    "Veraederungen zum Vorjahr": "-5,8"
+    "VeraederungenzumVorjahr": "-5,8"
   },
   {
     "Sparte": "Gastronomie",
     "Jahr": 2020,
     "Monat": "April",
     "Beschaeftigte": "78,5",
-    "Veraederungen zum Vorjahr": "-24,9"
+    "VeraederungenzumVorjahr": "-24,9"
   },
   {
     "Sparte": "Gastronomie",
     "Jahr": 2020,
     "Monat": "Mai",
     "Beschaeftigte": "82,7",
-    "Veraederungen zum Vorjahr": "-22,2"
+    "VeraederungenzumVorjahr": "-22,2"
   },
   {
     "Sparte": "Gastronomie",
     "Jahr": 2020,
     "Monat": "Juni",
     "Beschaeftigte": "86,9",
-    "Veraederungen zum Vorjahr": "-19,3"
+    "VeraederungenzumVorjahr": "-19,3"
   },
   {
     "Sparte": "Gastronomie",
     "Jahr": 2020,
     "Monat": "Juli",
     "Beschaeftigte": "90,4",
-    "Veraederungen zum Vorjahr": "-16,3"
+    "VeraederungenzumVorjahr": "-16,3"
   },
   {
     "Sparte": "Gastronomie",
     "Jahr": 2020,
     "Monat": "August",
     "Beschaeftigte": "92,1",
-    "Veraederungen zum Vorjahr": "-15,3"
+    "VeraederungenzumVorjahr": "-15,3"
   },
   {
     "Sparte": "Gastronomie",
     "Jahr": 2020,
     "Monat": "September",
     "Beschaeftigte": "92,8",
-    "Veraederungen zum Vorjahr": "-14,5"
+    "VeraederungenzumVorjahr": "-14,5"
   },
   {
     "Sparte": "Gastronomie",
     "Jahr": 2020,
     "Monat": "Oktober",
     "Beschaeftigte": "...",
-    "Veraederungen zum Vorjahr": "..."
+    "VeraederungenzumVorjahr": "..."
   },
   {
     "Sparte": "Gastronomie",
     "Jahr": 2020,
     "Monat": "November",
     "Beschaeftigte": "...",
-    "Veraederungen zum Vorjahr": "..."
+    "VeraederungenzumVorjahr": "..."
   },
   {
     "Sparte": "Gastronomie",
     "Jahr": 2020,
     "Monat": "Dezember",
     "Beschaeftigte": "...",
-    "Veraederungen zum Vorjahr": "..."
+    "VeraederungenzumVorjahr": "..."
   },
   {
     "Sparte": "Caterer und sonstige Verpflegungsdienstleistungen",
@@ -587,4 +587,4 @@
     "Beschaeftigte": "...",
     "Veraederungen zum Vorjahr": "..."
   }
-]
+]);
