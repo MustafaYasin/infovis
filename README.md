@@ -1,8 +1,8 @@
-[![Contributors][contributors-shield]][contributors-url]
+<!-- [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+[![MIT License][license-shield]][license-url] -->
 
 
 <!-- TABLE OF CONTENTS -->
@@ -37,10 +37,6 @@
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://github.com/MustafaYasin/infovis/images/aboutproject.jpeg)
-
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description`
 
 
 ### All required tools
@@ -123,6 +119,6 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
+<!-- * []()
 * []()
-* []()
-* []()
+* []() -->
