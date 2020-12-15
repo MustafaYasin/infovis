@@ -23,6 +23,8 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#Project Plan">Usage</a></li>
+    <li><a href="#Time Plan">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -84,7 +86,7 @@ This Gantt Chart gives a great overview the steps we are planning to take, to ac
 ![Gantt Chart](images/ganttchart.png)
 
 <!-- Time Plan -->
-## Project Plan
+## Time Plan
 ![Time Plan](images/projectplan.png)
 
 <!-- ROADMAP -->
