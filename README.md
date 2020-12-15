@@ -85,7 +85,7 @@ This Gantt Chart gives a great overview the steps we are planning to take, to ac
 
 <!-- Time Plan -->
 ## Project Plan
-![Time Plan](images/projectplan)
+![Time Plan](images/projectplan.png)
 
 <!-- ROADMAP -->
 ## Roadmap
