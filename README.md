@@ -36,7 +36,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Project Name Screen Shot][project-screenshot]](./images/aboutproject.jpeg)
+![Project Name Screen Shot](./images/aboutproject.jpeg)
 
 
 ### All required tools
