@@ -36,11 +36,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<<<<<<< HEAD
-[![Project Name Screen Shot][product-screenshot]](images/aboutproject.jpeg)
-=======
-![Project Name Screen Shot](./images/aboutproject.jpeg)
->>>>>>> 294b8af9c6b6812e1f186667ac5d3da988ce4130
+![Project Name Screen Shot](images/aboutproject.jpeg)
 
 
 ### All required tools
@@ -82,7 +78,10 @@ This is an example of how to list things you need to use the software and how to
 ## Usage
 A more detailed usage of this project will be updated soon.
 
-
+<!-- Project Plan -->
+## Project Plan
+This Gantt Chart gives a great overview the steps we are planning to take, to accomplish the project.
+![Gantt Chart](images/ganttchart.png)
 
 <!-- ROADMAP -->
 ## Roadmap
