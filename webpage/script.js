@@ -1,9 +1,9 @@
-//set variables for window height and width
+//JL: set variables for window height and width
 var h = $(window).innerHeight();
 var w = $(window).innerWidth();
 
 
-/*scrollmagic:
+/*JL: scrollmagic:
  - makes headline disappear on scroll
  - makes content appear on scroll
  */
@@ -133,7 +133,7 @@ function drawChart() {
         }
     };
 
-    var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+    var chart = new google.visualization.Gantt(document.getElementById('gantt_chart'));
 
     chart.draw(data, options);
 }
