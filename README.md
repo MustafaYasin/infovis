@@ -36,7 +36,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+<<<<<<< HEAD
 [![Project Name Screen Shot][product-screenshot]](images/aboutproject.jpeg)
+=======
+![Project Name Screen Shot](./images/aboutproject.jpeg)
+>>>>>>> 294b8af9c6b6812e1f186667ac5d3da988ce4130
 
 
 ### All required tools
