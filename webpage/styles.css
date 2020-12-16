@@ -85,23 +85,9 @@ Positioning from Top: 1 Position = 18px*/
     left:0;
     background-color: transparent;
 }
-
-/* JL: Text for GanttLine */
-.ganttText{
-    position: absolute;
-    top:-2px;
-    left: 0;
-    font-family: 'Open Sans', sans-serif;
-    color: #7D7D7D;
-    font-size: 10px;
+.Line1{
+    top:calc(18px*0);
 }
-
-/* JL: Change Text Color on Hover */
-.ganttLine:hover .ganttText{
-    color: #70F0DE;
-}
-
-/* JL: Positioning of GanttLines */
 .Line2{
     top:calc(18px*1);
 }
@@ -127,6 +113,21 @@ Positioning from Top: 1 Position = 18px*/
     top:calc(18px*8);
 }
 
+
+/* JL: Text for GanttLine */
+.ganttText{
+    position: absolute;
+    top:-2px;
+    font-family: 'Open Sans', sans-serif;
+    color: #7D7D7D;
+    font-size: 10px;
+}
+
+/* JL: Change Text Color on Hover */
+.ganttLine:hover .ganttText{
+    color: #70F0DE;
+}
+
 /* JL: color and height of every barElement in the Gantt-Chart */
 .barElement{
     position: absolute;
@@ -134,9 +135,8 @@ Positioning from Top: 1 Position = 18px*/
     background-color: #FFFF;
     opacity: 0.15;
     border-radius: 2px;
-    z-index: 10;
 }
-/* JL: change barElement color on Hover */
+/* JL: change barElement color on Hovser */
 .ganttLine:hover .barElement{
     background-color: #70F0DE;
     opacity: 0.8;
@@ -153,6 +153,11 @@ Description: 'Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein
 .bar1{
     width: calc(0.234vw * 34);          /* 34 Days */
     left: calc(2*7vw + 12*0.234vw);     /* 2 Month + 12 Days */
+}
+/* JL: Positioning of the specific GanttText to match the Bar
+left: bar (left + width) +/-  8px*/
+.gtext1{
+    left: calc(2*7vw + 12*0.234vw + 0.234vw*34 + 8px);
 }
 
 /* JL: Restriction:
