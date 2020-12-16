@@ -80,12 +80,31 @@ This is an example of how to list things you need to use the software and how to
 A more detailed usage of this project will be updated soon.
 
 <!-- Time Plan -->
-## Milestone
+## Milestones
 ![Time Plan](images/projectplan.png)
 
 <!-- ROADMAP -->
 ## Roadmap
-This Gantt Chart gives a great overview the steps we are planning to take, to accomplish the project.
+
+The following requirements are already implemented. 
+
+- [x] Forschungsfrage 1: Auswirkung von Corona auf Kriminalität
+- [x] Datenrecherche: Auswirkungen von Corona auf Kriminalität
+- [x] Mockup der ersten Visualisierungsidee erstellen
+- [x] Hello World: Forschungsanfrage und erste Ansichten
+- [x] Neue Forschungsanfrage: Auswirkung von Corona auf Gastgewerbe
+- [x] Clickdummy der neuen Visualisierungsidee erstellen
+- [x] Detallierte Fragestellung, Mockups und Projektplanung
+- [x] Zusammentragen von Bundesweiten Covid-19 Beschränkungen im Jahr
+- [x] Ausetzen des Projektes (Github etc.)
+- [x] Überarbeiten des Mockups
+- [x] Daten in das Projekt integrieren
+- [x] Implementierung des Navigationsgerüstes
+- [x] Implementierungbeginn von Line Chart
+- [x] Fertiges Visualisierungskonzept, erste Implementierung
+
+This Gantt Chart (below) gives a great overview the next steps we are planning to take, to accomplish the final MVP.
+
 ![Gantt Chart](images/ganttchart.png)
 See the [open issues](https://github.com/MustafaYasin/infovis/issues) for a list of proposed features (and known issues).
 
