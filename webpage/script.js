@@ -21,19 +21,6 @@ $(document).ready(function($)  { // wait for document ready
         .setTween(h1Disappears)
         .addIndicators() // add indicators (requires plugin)
         .addTo(controller);
-
-    /*// gantt-chart appears
-    var ganttAppears = TweenLite.to("#gantt_chart", 1, {
-        opacity: 1
-    });
-
-
-    // build scene for gantt-chart appears
-    var scene = new ScrollMagic.Scene({ duration: h, triggerHook: 0, reverse:true})
-        .setTween(ganttAppears)
-        .addIndicators() // add indicators (requires plugin)
-        .addTo(controller);
-        */
 });
 
 
@@ -63,7 +50,7 @@ function drawChart() {
             new Date(2020, 3, 16), new Date(2020, 5, 16), null, 100, null],
         ['maßnahme 3', '1. Lockdown', 'Verbot von Ansammlungen von mehr als zwei Menschen. Ausgenommen sind Angehörige, die im eigenen Haushalt leben. Cafés, Kneipen, Restaurants, aber auch Friseure zum Beispiel schließen',
             new Date(2020, 3, 22), new Date(2020, 5, 11), null, 100, null],
-        ['maßnahme 4', 'Schule schließt', 'Schule schließt',
+        ['maßnahme 4', 'Schulen schließen', 'Schulen schließen',
             new Date(2020, 3, 22), new Date(2020, 4, 15), null, 100, null],
         ['maßnahme 5', 'Maskenpflicht für alle Bundesländer', 'Maskenpflicht für alle Bundesländer',
             new Date(2020, 4, 22), new Date(2020, 12, 31), null, 100, null],

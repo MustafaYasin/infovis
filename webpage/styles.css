@@ -44,20 +44,247 @@ body{
     letter-spacing: 0.2em;
 }
 
+/* JL: Container: holds the rest of the content: Gantt & Multiline Chart  */
 .contentContainer{
     position:absolute;
     top:100vh;
     height: 100vh;
     width: 100vw;
-    background-color: #ffff;
+    background-color: #121212;
 
 }
 
+/* JL: timeline for gantt chart */
+.timeline{
+    position: absolute;
+    top:73vh;
+    height: 0.5vh;
+    width: 84vw;
+    left:10vw;
+    background-color: red;
+}
+
+
+/* JL: Container of the gantt chart */
+.ganttContainer{
+    position: absolute;
+    top:75vh;
+    height: 20vh;
+    width: 84vw;
+    left:10vw;
+    background-color: transparent;
+
+}
+
+/* JL: Single Line in Gantt Chart
+Positioning from Top: 1 Position = 18px*/
+.ganttLine{
+    position: absolute;
+    height: 12px;
+    width: 84vw;
+    left:0;
+    background-color: transparent;
+}
+
+/* JL: Text for GanttLine */
+.ganttText{
+    position: absolute;
+    top:-2px;
+    left: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: #7D7D7D;
+    font-size: 10px;
+}
+
+.ganttLine:hover .ganttText{
+    color: #70F0DE;
+}
+
+.Line2{
+    top:calc(18px*1);
+}
+
+.Line3{
+    top:calc(18px*2);
+}
+
+.Line4{
+    top:calc(18px*3);
+}
+
+.Line5{
+    top:calc(18px*4);
+}
+
+.Line6{
+    top:calc(18px*5);
+}
+
+.Line7{
+    top:calc(18px*6);
+}
+
+.Line8{
+    top:calc(18px*7);
+}
+
+.Line9{
+    top:calc(18px*8);
+}
+
+/* JL: color and height of every Element in the Gantt-Chart */
+.barElement{
+    position: absolute;
+    height: 12px;
+    background-color: #FFFF;
+    opacity: 0.15;
+    border-radius: 2px;
+    z-index: 10;
+}
+
+.ganttLine:hover .barElement{
+    background-color: #70F0DE;
+    opacity: 0.8;
+}
+
+/* JL: Restriction:
+Size: 1 Month = 7vw; 1 Day = 0.234vw (30 days per month)
+Start Date: new Date(2020, 3, 12)
+End Date: new Date(2020, 5, 16)
+Duration: 34 Days
+Title: 'Stop von Konzerten und Sportveranstaltungen'
+Description: 'Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein. Die Fußball-Bundesliga pausiert'
+*/
+.bar1{
+    width: calc(0.234vw * 34);          /* 34 Days */
+    left: calc(2*7vw + 12*0.234vw);     /* 2 Month + 12 Days */
+}
+
+/* JL: Restriction:
+Size: 1 Month = 7vw; 1 Day = 0.234vw (30 days per month)
+Start Date: new Date(2020, 3, 16)
+End Date: new Date(2020, 5, 16)
+Duration: 60 Days
+Title: 'Reiseeinschränkung'
+Description: 'Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und der Schweiz gibt es Kontrollen und Einreiseverbote. In den meisten Bundesländern sind Schulen und Kitas geschlossen'
+*/
+.bar2{
+    width: calc(0.234vw * 60);          /* 60 Days */
+    left: calc(2*7vw + 16*0.234vw);     /* 2 Month + 16 Days */
+}
+
+/* JL: Restriction:
+Size: 1 Month = 7vw; 1 Day = 0.234vw (30 days per month)
+Start Date: new Date(2020, 3, 22)
+End Date: new Date(2020, 5, 11)
+Duration: 49 Days
+Title: '1. Lockdown'
+Description: 'Verbot von Ansammlungen von mehr als zwei Menschen. Ausgenommen sind Angehörige, die im eigenen Haushalt leben. Cafés, Kneipen, Restaurants, aber auch Friseure zum Beispiel schließen''
+*/
+.bar3{
+    width: calc(0.234vw * 49);          /* 49 Days */
+    left: calc(2*7vw + 22*0.234vw);     /* 2 Month + 22 Days */
+}
+
+/* JL: Restriction:
+Size: 1 Month = 7vw; 1 Day = 0.234vw (30 days per month)
+Start Date: new Date(2020, 3, 22)
+End Date:new Date(2020, 4, 15)
+Duration: 23 Days
+Title: 'Schulen schließen
+Description: 'Schulen schließen'
+*/
+.bar4{
+    width: calc(0.234vw * 23);          /* 49 Days */
+    left: calc(2*7vw + 22*0.234vw);     /* 2 Month + 22 Days */
+}
+
+/* JL: Restriction:
+Size: 1 Month = 7vw; 1 Day = 0.234vw (30 days per month)
+Start Date: new Date(2020, 4, 22)
+End Date: new Date(2020, 12, 31)
+Duration: 8 Month + 8 Days
+Title: Maskenpflicht für alle Bundesländer'
+Description: 'Maskenpflicht für alle Bundesländer'
+*/
+.bar5{
+    width: calc(8*7vw + 0.234vw * 8);     /* 8 Month + 8 Days */
+    left: calc(3*7vw + 22*0.234vw);       /* 3 Month + 22 Days */
+}
+
+/* JL: Restriction:
+Size: 1 Month = 7vw; 1 Day = 0.234vw (30 days per month)
+Start Date: new Date(2020, 8, 8)
+End Date: new Date(2020, 12, 31)
+Duration: 3 Month + 22 Days Days
+Title: 'Reiseeinschränkung'
+Description:'Einreisende aus internationalen Risikogebieten müssen sich bei der Rückkehr nach Deutschland testen lassen'
+*/
+.bar6{
+    width: calc(3*7vw + 0.234vw * 22);    /* 3 Month + 22 Days */
+    left: calc(7*7vw + 8*0.234vw);        /* 7 Month + 8 Days */
+}
+
+/* JL: Restriction:
+Size: 1 Month = 7vw; 1 Day = 0.234vw (30 days per month)
+Start Date: new Date(2020, 10, 7)
+End Date: new Date(2020, 12, 31)
+Duration: 2 Month + 23 Days
+Title: 'Beherbergungsverbot'
+Description: 'Die Bundesländer beschließen ein Beherbergungsverbot für Urlauber aus inländischen Risikogebieten. Die Zahl der Neuinfektionen ist auf mehr als 4000 binnen eines Tages gestiegen'
+*/
+.bar7{
+    width: calc(2*7vw + 0.234vw * 23); /* 2 Month + 23 Days */
+    left: calc(9*7vw + 7*0.234vw);     /* 9 Month + 7 Days */
+}
+
+/* JL: Restriction:
+Size: 1 Month = 7vw; 1 Day = 0.234vw (30 days per month)
+Start Date: new Date(2020, 10, 14)
+End Date: new Date(2020, 12, 31)
+Duration: 2 Month + 16 Days
+Title: ''Beherbergungsverbot'
+Description: 'Beherbergungsverbot bei Inzididenz > 50'
+*/
+.bar8{
+    width: calc(2*7vw + 0.234vw * 16);  /* 2 Month + 16 Days */
+    left: calc(9*7vw + 14*0.234vw);     /* 9 Month + 14 Days */
+}
+
+/* JL: Restriction:
+Size: 1 Month = 7vw; 1 Day = 0.234vw (30 days per month)
+Start Date: new Date(2020, 11, 2)
+End Date: new Date(2020, 12, 31)
+Duration: 1 Month + 28 Days
+Title: 'Lockdown light'
+Description: 'Lockdown light, Gastronomie schließt'
+*/
+.bar9{
+    width: calc(1*7vw + 0.234vw * 28);  /* 1 Month + 28 Days */
+    left: calc(10*7vw + 2*0.234vw);     /* 10 Month + 2 Days */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* JL: Container of the Multiline chart  */
 #visualisationContainer{
     z-index: 3;
     width: 100vw;
     height: 50vh;
 }
+
 #gantt_chart{
     position: absolute;
     top: 50vh;
