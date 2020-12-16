@@ -23,8 +23,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#Project Plan">Project Plan</a></li>
-    <li><a href="#Time Plan">Time Plan</a></li>
+    <li><a href="#Milestone">Milestone</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -80,18 +79,14 @@ This is an example of how to list things you need to use the software and how to
 ## Usage
 A more detailed usage of this project will be updated soon.
 
-<!-- Project Plan -->
-## Project Plan
-This Gantt Chart gives a great overview the steps we are planning to take, to accomplish the project.
-![Gantt Chart](images/ganttchart.png)
-
 <!-- Time Plan -->
-## Time Plan
+## Milestone
 ![Time Plan](images/projectplan.png)
 
 <!-- ROADMAP -->
 ## Roadmap
-
+This Gantt Chart gives a great overview the steps we are planning to take, to accomplish the project.
+![Gantt Chart](images/ganttchart.png)
 See the [open issues](https://github.com/MustafaYasin/infovis/issues) for a list of proposed features (and known issues).
 
 
