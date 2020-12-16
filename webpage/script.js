@@ -19,7 +19,7 @@ $(document).ready(function($)  { // wait for document ready
     // build scene for header1Container disappers
     var scene = new ScrollMagic.Scene({ duration: h, triggerHook: 0, reverse:true})
         .setTween(h1Disappears)
-        .addIndicators() // add indicators (requires plugin)
+        //.addIndicators() // add indicators (requires plugin)
         .addTo(controller);
 });
 
