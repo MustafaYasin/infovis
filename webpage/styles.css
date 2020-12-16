@@ -1,3 +1,7 @@
+/* JL: Variables used */
+:root{
+    --ganttChart-width: 84vw;
+}
 /* JL: Use full window size without any margin */
 * {
   margin: 0;
@@ -57,20 +61,19 @@ body{
 /* JL: timeline for gantt chart */
 .timeline{
     position: absolute;
-    top:73vh;
+    top:68vh;
     height: 0.5vh;
-    width: 84vw;
+    width: var(--ganttChart-width);
     left:10vw;
     background-color: red;
 }
 
-
 /* JL: Container of the gantt chart */
 .ganttContainer{
     position: absolute;
-    top:75vh;
+    top:70vh;
     height: 20vh;
-    width: 84vw;
+    width: var(--ganttChart-width);
     left:10vw;
     background-color: transparent;
 
@@ -81,9 +84,8 @@ Positioning from Top: 1 Position = 18px*/
 .ganttLine{
     position: absolute;
     height: 12px;
-    width: 84vw;
+    width: var(--ganttChart-width);
     left:0;
-    background-color: transparent;
 }
 .Line1{
     top:calc(18px*0);
@@ -115,7 +117,7 @@ Positioning from Top: 1 Position = 18px*/
 
 
 /* JL: Text for GanttLine */
-.ganttText{
+.ganttTitle{
     position: absolute;
     top:-2px;
     font-family: 'Open Sans', sans-serif;
@@ -154,10 +156,9 @@ Description: 'Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein
     width: calc(0.234vw * 34);          /* 34 Days */
     left: calc(2*7vw + 12*0.234vw);     /* 2 Month + 12 Days */
 }
-/* JL: Positioning of the specific GanttText to match the Bar
-left: bar (left + width) +/-  8px*/
-.gtext1{
-    left: calc(2*7vw + 12*0.234vw + 0.234vw*34 + 8px);
+/* JL: Positioning of the specific GanttTitle to match the Bar position*/
+.gTitle1{
+    left: calc((2*7vw + 12*0.234vw) + (0.234vw*34) + 8px);
 }
 
 /* JL: Restriction:
@@ -172,6 +173,10 @@ Description: 'Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und d
     width: calc(0.234vw * 60);          /* 60 Days */
     left: calc(2*7vw + 16*0.234vw);     /* 2 Month + 16 Days */
 }
+/* JL: Positioning of the specific GanttTitle to match the Bar position*/
+.gTitle2{
+    right: calc(var(--ganttChart-width) - (2*7vw + 16*0.234vw) + 8px);
+}
 
 /* JL: Restriction:
 Size: 1 Month = 7vw; 1 Day = 0.234vw (30 days per month)
@@ -184,6 +189,9 @@ Description: 'Verbot von Ansammlungen von mehr als zwei Menschen. Ausgenommen si
 .bar3{
     width: calc(0.234vw * 49);          /* 49 Days */
     left: calc(2*7vw + 22*0.234vw);     /* 2 Month + 22 Days */
+}
+.gTitle3{
+    right: calc(var(--ganttChart-width) - (2*7vw + 22*0.234vw) + 8px);
 }
 
 /* JL: Restriction:
@@ -198,6 +206,9 @@ Description: 'Schulen schließen'
     width: calc(0.234vw * 23);          /* 49 Days */
     left: calc(2*7vw + 22*0.234vw);     /* 2 Month + 22 Days */
 }
+.gTitle4{
+    right: calc(var(--ganttChart-width) - (2*7vw + 22*0.234vw) + 8px);
+}
 
 /* JL: Restriction:
 Size: 1 Month = 7vw; 1 Day = 0.234vw (30 days per month)
@@ -211,6 +222,11 @@ Description: 'Maskenpflicht für alle Bundesländer'
     width: calc(8*7vw + 0.234vw * 8);     /* 8 Month + 8 Days */
     left: calc(3*7vw + 22*0.234vw);       /* 3 Month + 22 Days */
 }
+.gTitle5{
+    right: calc(var(--ganttChart-width) - (3*7vw + 22*0.234vw) + 8px);
+}
+
+
 
 /* JL: Restriction:
 Size: 1 Month = 7vw; 1 Day = 0.234vw (30 days per month)
@@ -223,6 +239,9 @@ Description:'Einreisende aus internationalen Risikogebieten müssen sich bei der
 .bar6{
     width: calc(3*7vw + 0.234vw * 22);    /* 3 Month + 22 Days */
     left: calc(7*7vw + 8*0.234vw);        /* 7 Month + 8 Days */
+}
+.gTitle6{
+    right: calc(var(--ganttChart-width) - (7*7vw + 8*0.234vw) + 8px);
 }
 
 /* JL: Restriction:
@@ -237,6 +256,10 @@ Description: 'Die Bundesländer beschließen ein Beherbergungsverbot für Urlaub
     width: calc(2*7vw + 0.234vw * 23); /* 2 Month + 23 Days */
     left: calc(9*7vw + 7*0.234vw);     /* 9 Month + 7 Days */
 }
+.gTitle7{
+    right: calc(var(--ganttChart-width) - (9*7vw + 7*0.234vw) + 8px);
+}
+
 
 /* JL: Restriction:
 Size: 1 Month = 7vw; 1 Day = 0.234vw (30 days per month)
@@ -250,6 +273,9 @@ Description: 'Beherbergungsverbot bei Inzididenz > 50'
     width: calc(2*7vw + 0.234vw * 16);  /* 2 Month + 16 Days */
     left: calc(9*7vw + 14*0.234vw);     /* 9 Month + 14 Days */
 }
+.gTitle8{
+    right: calc(var(--ganttChart-width) - (9*7vw + 14*0.234vw) + 8px);
+}
 
 /* JL: Restriction:
 Size: 1 Month = 7vw; 1 Day = 0.234vw (30 days per month)
@@ -262,6 +288,9 @@ Description: 'Lockdown light, Gastronomie schließt'
 .bar9{
     width: calc(1*7vw + 0.234vw * 28);  /* 1 Month + 28 Days */
     left: calc(10*7vw + 2*0.234vw);     /* 10 Month + 2 Days */
+}
+.gTitle9{
+    right: calc(var(--ganttChart-width) - (10*7vw + 2*0.234vw) + 8px);
 }
 
 
