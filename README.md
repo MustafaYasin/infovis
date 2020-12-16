@@ -104,7 +104,7 @@ The following requirements are already implemented.
 - [x] Fertiges Visualisierungskonzept, erste Implementierung
 
 This Gantt Chart (below) gives a great overview the next steps we are planning to take, to accomplish the final MVP.
-
+  
 ![Gantt Chart](images/ganttchart.png)
 See the [open issues](https://github.com/MustafaYasin/infovis/issues) for a list of proposed features (and known issues).
 
