@@ -107,16 +107,22 @@ google.charts.load('current', {'packages':['gantt']});
 // call drawChart function with loaded chart
 google.charts.setOnLoadCallback(drawChart);
 
-function filterData(data){
+
+function filterData(data,umsatz){
 const beherbergungen = data.filter(
 item => item.Sparte === 'Beherbergung'
 );
+const umsatzbeherbergungen = umsatz.filter(
+item => item.Sparte === 'Beherbergung'
+);
+console.log(umsatz.filter(item => item.Sparte === 'Beherbergung'));
 const gastro = data.filter(item => item.Sparte === 'Gastronomie');
-visualiseChart(beherbergungen,gastro);
+const umsatzgastro = umsatz.filter(item => item.Sparte === 'Gastronomie');
+visualiseChart(beherbergungen,gastro,umsatzbeherbergungen,umsatzgastro);
 }
 
-function visualiseChart(data,data2){
-console.log("test");
+function visualiseChart(data,data2,data3,data4){
+
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
     width = 900 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
@@ -158,7 +164,7 @@ var curve = svg.append("path")
 			   var curve2 = svg.append("path")
 					               .datum(data2)
 					               .attr("fill", "none")
-					               .attr("stroke", "turquoise")
+					               .attr("stroke", "black")
 					               .attr("stroke-width", 2)
 												 .attr('d',d3
 					               .line()
@@ -167,5 +173,28 @@ var curve = svg.append("path")
 					                  return yAxis(value);})
 					          );
 
+										var curve3 = svg.append("path")
+																		.datum(data3)
+																		.attr("fill", "none")
+																		.attr("stroke", "blue")
+																		.attr("stroke-width", 2)
+																		.attr('d',d3
+																		.line()
+																		.x(function (d) {return xAxis(d.Monat);})
+																		.y(function (d) {var value = (+(d.VeraederungzumVorjahr.replace(",",".")));
+																			 return yAxis(value);})
+															 );
+
+															var curve4 = svg.append("path")
+																							.datum(data4)
+																							.attr("fill", "none")
+																							.attr("stroke", "green")
+																							.attr("stroke-width", 2)
+																							.attr('d',d3
+																							.line()
+																							.x(function (d) {return xAxis(d.Monat);})
+																							.y(function (d) {var value = (+(d.VeraederungzumVorjahr.replace(",",".")));
+																								 return yAxis(value);})
+																				 );
 
 }
