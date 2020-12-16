@@ -96,43 +96,38 @@ Positioning from Top: 1 Position = 18px*/
     font-size: 10px;
 }
 
+/* JL: Change Text Color on Hover */
 .ganttLine:hover .ganttText{
     color: #70F0DE;
 }
 
+/* JL: Positioning of GanttLines */
 .Line2{
     top:calc(18px*1);
 }
-
 .Line3{
     top:calc(18px*2);
 }
-
 .Line4{
     top:calc(18px*3);
 }
-
 .Line5{
     top:calc(18px*4);
 }
-
 .Line6{
     top:calc(18px*5);
 }
-
 .Line7{
     top:calc(18px*6);
 }
-
 .Line8{
     top:calc(18px*7);
 }
-
 .Line9{
     top:calc(18px*8);
 }
 
-/* JL: color and height of every Element in the Gantt-Chart */
+/* JL: color and height of every barElement in the Gantt-Chart */
 .barElement{
     position: absolute;
     height: 12px;
@@ -141,13 +136,13 @@ Positioning from Top: 1 Position = 18px*/
     border-radius: 2px;
     z-index: 10;
 }
-
+/* JL: change barElement color on Hover */
 .ganttLine:hover .barElement{
     background-color: #70F0DE;
     opacity: 0.8;
 }
 
-/* JL: Restriction:
+/* JL:Restriction:
 Size: 1 Month = 7vw; 1 Day = 0.234vw (30 days per month)
 Start Date: new Date(2020, 3, 12)
 End Date: new Date(2020, 5, 16)
