@@ -24,135 +24,170 @@ $(document).ready(function($)  { // wait for document ready
 });
 
 
+//JL:Multiline Chart
+d3.csv("data2.csv").then(d => chart(d))
 
-// define what chart to draw
-function drawChart() {
+function chart(data) {
 
-    // fill the data table
-    // columns TODO: get data from json
-    var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Task ID');
-    data.addColumn('string', 'Task Name');
-    data.addColumn('string', 'Maßnahme');
-    data.addColumn('date', 'Start Date');
-    data.addColumn('date', 'End Date');
-    data.addColumn('number', 'Duration');
-    data.addColumn('number', 'Percent Complete');
-    data.addColumn('string', 'Dependencies');
+	var keys = data.columns.slice(1);
 
-    // rows TODO: get data from json
-    data.addRows([
-        ['', '2020 Zeitstrahl', '',
-            new Date(2020, 1, 1), new Date(2020, 12, 31), null, 100, null],
-        ['maßnahme 1', 'Stop von Konzerten und Sportveranstaltungen', 'Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein. Die Fußball-Bundesliga pausiert',
-            new Date(2020, 3, 12), new Date(2020, 5, 16), null, 100, null],
-        ['maßnahme 2', 'Reiseeinschränkung', 'Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und der Schweiz gibt es Kontrollen und Einreiseverbote. In den meisten Bundesländern sind Schulen und Kitas geschlossen',
-            new Date(2020, 3, 16), new Date(2020, 5, 16), null, 100, null],
-        ['maßnahme 3', '1. Lockdown', 'Verbot von Ansammlungen von mehr als zwei Menschen. Ausgenommen sind Angehörige, die im eigenen Haushalt leben. Cafés, Kneipen, Restaurants, aber auch Friseure zum Beispiel schließen',
-            new Date(2020, 3, 22), new Date(2020, 5, 11), null, 100, null],
-        ['maßnahme 4', 'Schulen schließen', 'Schulen schließen',
-            new Date(2020, 3, 22), new Date(2020, 4, 15), null, 100, null],
-        ['maßnahme 5', 'Maskenpflicht für alle Bundesländer', 'Maskenpflicht für alle Bundesländer',
-            new Date(2020, 4, 22), new Date(2020, 12, 31), null, 100, null],
-        ['maßnahme 6', 'Reiseeinschränkung', 'Einreisende aus internationalen Risikogebieten müssen sich bei der Rückkehr nach Deutschland testen lassen',
-            new Date(2020, 8, 8), new Date(2020, 12, 31), null, 100, null],
-        ['maßnahme 7', 'Beherbergungsverbot', 'Die Bundesländer beschließen ein Beherbergungsverbot für Urlauber aus inländischen Risikogebieten. Die Zahl der Neuinfektionen ist auf mehr als 4000 binnen eines Tages gestiegen',
-            new Date(2020, 10, 7), new Date(2020, 12, 31), null, 100, null],
-        ['maßnahme 8', 'Beherbergungsverbot', 'Beherbergungsverbot bei Inzididenz > 50',
-            new Date(2020, 10, 14), new Date(2020, 12, 31), null, 100, null],
-        ['maßnahme 9', 'Lockdown light', 'Lockdown light, Gastronomie schließt',
-            new Date(2020, 11, 2), new Date(2020, 12, 31), null, 100, null],
+	var parseTime = d3.timeParse("%Y%m%d"),
+		formatDate = d3.timeFormat("%Y-%m-%d"),
+		bisectDate = d3.bisector(d => d.date).left,
+		formatValue = d3.format(",.0f");
 
-    ]);
+	data.forEach(function(d) {
+		d.date = parseTime(d.date);
+		return d;
+	})
 
-    // gantt chart options
-    var options = {
-        height: 400,
-        gantt: {
-            trackHeight: 30,
-            defaultStartDate: new Date(2020,1,1),
-            // color palette of the gantt chart
-            palette: [
-                {
-                    "color": "#5e97f6",
-                    "dark": "#2a56c6",
-                    "light": "#c6dafc"
-                }
-            ]
-        }
-    };
+	var svg = d3.select("#chart"),
+		margin = {top: 15, right: 35, bottom: 15, left: 35},
+		width = +svg.attr("width") - margin.left - margin.right,
+		height = +svg.attr("height") - margin.top - margin.bottom;
 
-    // define the chart
-    var chart = new google.visualization.Gantt(document.getElementById('gantt_chart'));
+	var x = d3.scaleTime()
+		.rangeRound([margin.left, width - margin.right])
+		.domain(d3.extent(data, d => d.date))
 
-    // draw the chart
-    chart.draw(data, options);
-}
+	var y = d3.scaleLinear()
+		.rangeRound([height - margin.bottom, margin.top]);
 
-// load google gantt chart
-google.charts.load('current', {'packages':['gantt']});
-// call drawChart function with loaded chart
-google.charts.setOnLoadCallback(drawChart);
+	var z = d3.scaleOrdinal(d3.schemeCategory10);
 
-function filterData(data){
-const beherbergungen = data.filter(
-item => item.Sparte === 'Beherbergung'
-);
-const gastro = data.filter(item => item.Sparte === 'Gastronomie');
-visualiseChart(beherbergungen,gastro);
-}
+	var line = d3.line()
+		.curve(d3.curveCardinal)
+		.x(d => x(d.date))
+		.y(d => y(d.degrees));
 
-function visualiseChart(data,data2){
-console.log("test");
-var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 900 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+	svg.append("g")
+		.attr("class","x-axis")
+		.attr("transform", "translate(0," + (height - margin.bottom) + ")")
+		.call(d3.axisBottom(x).tickFormat(d3.timeFormat("%b")));
 
-    // append the svg object to the body of the page
-var svg = d3.select("#visualisationContainer")
-            .append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-            .attr("transform",`translate(${margin.left},${margin.top})`);
+	svg.append("g")
+		.attr("class", "y-axis")
+		.attr("transform", "translate(" + margin.left + ",0)");
 
-var xAxis = d3.scaleBand()
-              .domain(data.map(function(d) { return d.Monat; }))
-              .range([0, width]);
+	var focus = svg.append("g")
+		.attr("class", "focus")
+		.style("display", "none");
 
-svg.append("g")
-   .attr("transform", `translate(0, ${height})`)
-   .call(d3.axisBottom(xAxis));
-var yAxis = d3.scaleLinear()
-							.domain([-50,50])
-              //.domain([d3.min(data.map(function(d) {return d.VeraederungenzumVorjahr;})),d3.max(data.map(function(d) { return d.VeraederungenzumVorjahr; }))])
-              .range([height, 0]);
-svg.append("g")
-   .call(d3.axisLeft(yAxis));
-//curve
-var curve = svg.append("path")
-               .datum(data)
-               .attr("fill", "none")
-               .attr("stroke", "turquoise")
-               .attr("stroke-width", 2)
-							 .attr('d',d3
-               .line()
-               .x(function (d) {return xAxis(d.Monat);})
-               .y(function (d) {var value = (+(d.VeraederungenzumVorjahr.replace(",",".")));
-                  return yAxis(value);})
-          );
+	focus.append("line").attr("class", "lineHover")
+		.style("stroke", "#999")
+		.attr("stroke-width", 1)
+		.style("shape-rendering", "crispEdges")
+		.style("opacity", 0.5)
+		.attr("y1", -height)
+		.attr("y2",0);
 
-			   var curve2 = svg.append("path")
-					               .datum(data2)
-					               .attr("fill", "none")
-					               .attr("stroke", "turquoise")
-					               .attr("stroke-width", 2)
-												 .attr('d',d3
-					               .line()
-					               .x(function (d) {return xAxis(d.Monat);})
-					               .y(function (d) {var value = (+(d.VeraederungenzumVorjahr.replace(",",".")));
-					                  return yAxis(value);})
-					          );
+	focus.append("text").attr("class", "lineHoverDate")
+		.attr("text-anchor", "middle")
+		.attr("font-size", 12);
 
+	var overlay = svg.append("rect")
+		.attr("class", "overlay")
+		.attr("x", margin.left)
+		.attr("width", width - margin.right - margin.left)
+		.attr("height", height)
+
+	update(1, 0);
+
+	function update(speed) {
+
+		var copy = keys.filter(f => f.includes(1))
+
+		var cities = copy.map(function(id) {
+			return {
+				id: id,
+				values: data.map(d => {return {date: d.date, degrees: +d[id]}})
+			};
+		});
+
+		y.domain([
+			d3.min(cities, d => d3.min(d.values, c => c.degrees)),
+			d3.max(cities, d => d3.max(d.values, c => c.degrees))
+		]).nice();
+
+		svg.selectAll(".y-axis").transition()
+			.duration(speed)
+			.call(d3.axisLeft(y).tickSize(-width + margin.right + margin.left))
+
+		var city = svg.selectAll(".cities")
+			.data(cities);
+
+		city.exit().remove();
+
+		city.enter().insert("g", ".focus").append("path")
+			.attr("class", "line cities")
+			.style("stroke", d => z(d.id))
+			.merge(city)
+		.transition().duration(speed)
+			.attr("d", d => line(d.values))
+
+		tooltip(copy);
+	}
+
+	function tooltip(copy) {
+
+		var labels = focus.selectAll(".lineHoverText")
+			.data(copy)
+
+		labels.enter().append("text")
+			.attr("class", "lineHoverText")
+			.style("fill", d => z(d))
+			.attr("text-anchor", "start")
+			.attr("font-size",12)
+			.attr("dy", (_, i) => 1 + i * 2 + "em")
+			.merge(labels);
+
+		var circles = focus.selectAll(".hoverCircle")
+			.data(copy)
+
+		circles.enter().append("circle")
+			.attr("class", "hoverCircle")
+			.style("fill", d => z(d))
+			.attr("r", 2.5)
+			.merge(circles);
+
+		svg.selectAll(".overlay")
+			.on("mouseover", function() { focus.style("display", null); })
+			.on("mouseout", function() { focus.style("display", "none"); })
+			.on("mousemove", mousemove);
+
+		function mousemove() {
+
+			var x0 = x.invert(d3.mouse(this)[0]),
+				i = bisectDate(data, x0, 1),
+				d0 = data[i - 1],
+				d1 = data[i],
+				d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+
+			focus.select(".lineHover")
+				.attr("transform", "translate(" + x(d.date) + "," + height + ")");
+
+			focus.select(".lineHoverDate")
+				.attr("transform",
+					"translate(" + x(d.date) + "," + (height + margin.bottom) + ")")
+				.text(formatDate(d.date));
+
+			focus.selectAll(".hoverCircle")
+				.attr("cy", e => y(d[e]))
+				.attr("cx", x(d.date));
+
+			focus.selectAll(".lineHoverText")
+				.attr("transform",
+					"translate(" + (x(d.date)) + "," + height / 2.5 + ")")
+				.text(e => e + " " + "º" + formatValue(d[e]));
+
+			x(d.date) > (width - width / 4)
+				? focus.selectAll("text.lineHoverText")
+					.attr("text-anchor", "end")
+					.attr("dx", -10)
+				: focus.selectAll("text.lineHoverText")
+					.attr("text-anchor", "start")
+					.attr("dx", 10)
+		}
+	}
 
 }

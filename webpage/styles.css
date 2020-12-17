@@ -23,8 +23,54 @@
 
 /* JL: set the background color */
 body{
-
     background-color: #121212;
+    font: 10px sans-serif; /*for multiline chart*/
+    padding: 25px;
+}
+
+/* JL: styling for multiline chart */
+.y-axis line {
+	opacity:.2;
+}
+.y-axis path {
+	display:none;
+     stroke: #E0E0E0;
+}
+.y-axis line{
+  stroke: #E0E0E0;
+}
+.y-axis text{
+  fill: #E0E0E0;
+}
+.x-axis path {
+    display:none;
+    stroke: #E0E0E0;
+}
+.x-axis line{
+    display:none;
+    stroke: #E0E0E0;
+}
+.x-axis text{
+    fill: #E0E0E0;
+}
+.line {
+	fill: none;
+	stroke-width: 1.5px;
+	opacity:.75;
+}
+.overlay {
+	fill: none;
+	pointer-events: all;
+}
+.lineHoverText {
+	text-shadow:
+	-2px -2px 0 #121212,
+	2px -2px 0 #121212,
+	-2px 2px 0 #121212,
+	2px 2px 0 #121212;
+}
+.hoverCircle {
+	opacity: .75;
 }
 
 
@@ -119,14 +165,14 @@ Positioning from Top: 1 Position = 18px*/
 /* JL: Text for GanttLine */
 .ganttTitle{
     position: absolute;
-    top:-2px;
+    top:-1px;
     font-family: 'Open Sans', sans-serif;
     color: #7D7D7D;
-    font-size: 10px;
+    font-size: 9px;
 }
 
 /* JL: Change Text Color on Hover */
-.ganttLine:hover .ganttText{
+.ganttLine:hover .ganttTitle{
     color: #70F0DE;
 }
 
@@ -291,34 +337,4 @@ Description: 'Lockdown light, Gastronomie schließt'
 }
 .gTitle9{
     right: calc(var(--ganttChart-width) - (10*7vw + 2*0.234vw) + 8px);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* JL: Container of the Multiline chart  */
-#visualisationContainer{
-    z-index: 3;
-    width: 100vw;
-    height: 50vh;
-}
-
-#gantt_chart{
-    position: absolute;
-    top: 50vh;
-    width: 100vw;
-    height: 50vh;
-    z-index: 3;
-
 }
