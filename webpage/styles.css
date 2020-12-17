@@ -1,6 +1,6 @@
 /* JL: Variables used */
 :root{
-    --ganttChart-width: 84vw;
+    --ganttChart-width: 60.5vw;
 }
 /* JL: Use full window size without any margin */
 * {
@@ -94,12 +94,14 @@ body{
     letter-spacing: 0.2em;
 }
 
-/* JL: Container: holds the rest of the content: Gantt & Multiline Chart  */
+/* JL: Container: holds the rest of the content: Gantt & Multiline Chart  */    
 .contentContainer{
     position:absolute;
     top:100vh;
     height: 100vh;
     width: 100vw;
+    left: 2vw;
+    right: 8vw;
     background-color: #121212;
 
 }
@@ -107,20 +109,20 @@ body{
 /* JL: timeline for gantt chart */
 .timeline{
     position: absolute;
-    top:68vh;
-    height: 0.5vh;
-    width: var(--ganttChart-width);
-    left:10vw;
+    top:50vh;
+    height: 0.7vh;
+    width: 84.5vw;
+    left:0vw;
     background-color: red;
 }
 
 /* JL: Container of the gantt chart */
 .ganttContainer{
     position: absolute;
-    top:70vh;
+    top:52vh;
     height: 20vh;
     width: var(--ganttChart-width);
-    left:10vw;
+    left:0vw;
     background-color: transparent;
 
 }

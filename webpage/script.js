@@ -42,7 +42,7 @@ function chart(data) {
 	})
 
 	var svg = d3.select("#chart"),
-		margin = {top: 15, right: 35, bottom: 15, left: 35},
+		margin = {top: 15, right: 35, bottom: 15, left: 15},
 		width = +svg.attr("width") - margin.left - margin.right,
 		height = +svg.attr("height") - margin.top - margin.bottom;
 
