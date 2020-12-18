@@ -29,6 +29,18 @@ body{
 }
 
 /* JL: styling for multiline chart */
+.multiContainer{
+    position: absolute;
+    top: 10vh;
+    left: 8.5vw;
+    width: 87vw;
+    height: 60vh;
+    background-color: transparent;
+}
+#chart{
+width: 100%;
+height: 100%;
+}
 .y-axis line {
 	opacity:.2;
 }
@@ -37,7 +49,8 @@ body{
      stroke: #E0E0E0;
 }
 .y-axis line{
-  stroke: #E0E0E0;
+    display:none;
+    stroke: #E0E0E0;
 }
 .y-axis text{
   fill: #E0E0E0;

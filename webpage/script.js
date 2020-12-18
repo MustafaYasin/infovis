@@ -42,9 +42,9 @@ function chart(data) {
 	})
 
 	var svg = d3.select("#chart"),
-		margin = {top: 15, right: 35, bottom: 15, left: 35},
-		width = +svg.attr("width") - margin.left - margin.right,
-		height = +svg.attr("height") - margin.top - margin.bottom;
+		margin = {top: 10, right: 0, bottom: 10, left: 20},
+		width = parseInt(d3.select("#chart").style("width")) - margin.left - margin.right,
+		height =parseInt(d3.select("#chart").style("height")) - margin.top - margin.bottom;
 
 	var x = d3.scaleTime()
 		.rangeRound([margin.left, width - margin.right])
