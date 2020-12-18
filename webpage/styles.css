@@ -31,8 +31,8 @@ body{
 /* JL: styling for multiline chart */
 .multiContainer{
     position: absolute;
-    top: 10vh;
-    left: 8.5vw;
+    top: 7vh;
+    left: 5vw;
     width: 87vw;
     height: 60vh;
     background-color: transparent;
@@ -130,10 +130,10 @@ height: 100%;
 /* JL: Container of the gantt chart */
 .ganttContainer{
     position: absolute;
-    top:70vh;
+    top:67vh;
     height: 20vh;
     width: var(--ganttChart-width);
-    left:10vw;
+    left:6.5vw;
     background-color: transparent;
 
 }
