@@ -187,6 +187,8 @@ function chart(data) {
 				: focus.selectAll("text.lineHoverText")
 					.attr("text-anchor", "start")
 					.attr("dx", 10)
+
+			reorderGanttBars(d.date);
 		}
 	}
 
@@ -197,6 +199,35 @@ new jBox('Tooltip', {
 	getTitle: 'data-jbox-title',
 	getContent: 'data-jbox-content'
 });
+
+function reorderGanttBars(month){
+	console.log("in reorder methode" + month);
+	if (month.toString().includes("Mar") ){
+		document.getElementById("bar1").style.backgroundColor = "#70F0DE";
+		document.getElementById("bar2").style.backgroundColor = "#70F0DE";
+		document.getElementById("bar3").style.backgroundColor = "#70F0DE";
+		document.getElementById("bar4").style.backgroundColor = "#70F0DE";
+		document.getElementById("bar5").style.backgroundColor = "#FFFF";
+		document.getElementById("demo-tooltip-mouse4").style.top = "72px";
+		document.getElementById("demo-tooltip-mouse").style.top = "0px";
+	}  else if (month.toString().includes("Apr")){
+		document.getElementById("bar1").style.backgroundColor = "#FFFF";
+		document.getElementById("bar2").style.backgroundColor = "#FFFF";
+		document.getElementById("bar3").style.backgroundColor = "#FFFF";
+		document.getElementById("bar4").style.backgroundColor = "#FFFF";
+		document.getElementById("bar5").style.backgroundColor = "#70F0DE";
+		document.getElementById("demo-tooltip-mouse").style.top = "72px";
+		document.getElementById("demo-tooltip-mouse4").style.top = "0px";
+	}else{
+		document.getElementById("bar1").style.backgroundColor = "#FFFF";
+		document.getElementById("bar2").style.backgroundColor = "#FFFF";
+		document.getElementById("bar3").style.backgroundColor = "#FFFF";
+		document.getElementById("bar4").style.backgroundColor = "#FFFF";
+		document.getElementById("bar5").style.backgroundColor = "#FFFF";
+		document.getElementById("demo-tooltip-mouse4").style.top = "72px";
+		document.getElementById("demo-tooltip-mouse").style.top = "0px";
+	}
+}
 
 $(document).ready(function() {
 $('#demo-tooltip-above').jBox('Tooltip', {
