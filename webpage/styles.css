@@ -1,6 +1,7 @@
 /* JL: Variables used */
 :root{
-    --ganttChart-width: 84vw;
+    --ganttChart-width: 75vw;
+    --offsetLeft: 9vw;
 }
 /* JL: Use full window size without any margin */
 * {
@@ -104,6 +105,13 @@ body{
 
 }
 
+#chart{
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+    align-self: center;
+}
+
 /* JL: timeline for gantt chart */
 .timeline{
     position: absolute;
@@ -200,11 +208,11 @@ Description: 'Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein
 */
 .bar1{
     width: calc(0.234vw * 34);          /* 34 Days */
-    left: calc(2*7vw + 12*0.234vw);     /* 2 Month + 12 Days */
+    left: calc((2*7vw + 12*0.234vw) - var(--offsetLeft));     /* 2 Month + 12 Days */
 }
 /* JL: Positioning of the specific GanttTitle to match the Bar position*/
 .gTitle1{
-    left: calc((2*7vw + 12*0.234vw) + (0.234vw*34) + 8px);
+    left: calc((2*7vw + 12*0.234vw) + (0.234vw*34) + 8px - var(--offsetLeft));
 }
 
 /* JL: Restriction:
@@ -217,11 +225,11 @@ Description: 'Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und d
 */
 .bar2{
     width: calc(0.234vw * 60);          /* 60 Days */
-    left: calc(2*7vw + 16*0.234vw);     /* 2 Month + 16 Days */
+    left: calc(2*7vw + 16*0.234vw - var(--offsetLeft));     /* 2 Month + 16 Days */
 }
 /* JL: Positioning of the specific GanttTitle to match the Bar position*/
 .gTitle2{
-    right: calc(var(--ganttChart-width) - (2*7vw + 16*0.234vw) + 8px);
+    right: calc(var(--ganttChart-width) - (2*7vw + 16*0.234vw) + 8px + var(--offsetLeft));
 }
 
 /* JL: Restriction:
@@ -234,10 +242,10 @@ Description: 'Verbot von Ansammlungen von mehr als zwei Menschen. Ausgenommen si
 */
 .bar3{
     width: calc(0.234vw * 49);          /* 49 Days */
-    left: calc(2*7vw + 22*0.234vw);     /* 2 Month + 22 Days */
+    left: calc(2*7vw + 22*0.234vw - var(--offsetLeft));     /* 2 Month + 22 Days */
 }
 .gTitle3{
-    right: calc(var(--ganttChart-width) - (2*7vw + 22*0.234vw) + 8px);
+    right: calc(var(--ganttChart-width) - (2*7vw + 22*0.234vw) + 8px + var(--offsetLeft));
 }
 
 /* JL: Restriction:
@@ -250,10 +258,10 @@ Description: 'Schulen schließen'
 */
 .bar4{
     width: calc(0.234vw * 23);          /* 49 Days */
-    left: calc(2*7vw + 22*0.234vw);     /* 2 Month + 22 Days */
+    left: calc(2*7vw + 22*0.234vw - var(--offsetLeft));     /* 2 Month + 22 Days */
 }
 .gTitle4{
-    right: calc(var(--ganttChart-width) - (2*7vw + 22*0.234vw) + 8px);
+    right: calc(var(--ganttChart-width) - (2*7vw + 22*0.234vw) + 8px + var(--offsetLeft));
 }
 
 /* JL: Restriction:
@@ -266,10 +274,10 @@ Description: 'Maskenpflicht für alle Bundesländer'
 */
 .bar5{
     width: calc(8*7vw + 0.234vw * 8);     /* 8 Month + 8 Days */
-    left: calc(3*7vw + 22*0.234vw);       /* 3 Month + 22 Days */
+    left: calc(3*7vw + 22*0.234vw - var(--offsetLeft));       /* 3 Month + 22 Days */
 }
 .gTitle5{
-    right: calc(var(--ganttChart-width) - (3*7vw + 22*0.234vw) + 8px);
+    right: calc(var(--ganttChart-width) - (3*7vw + 22*0.234vw) + 8px + var(--offsetLeft));
 }
 
 
@@ -284,10 +292,10 @@ Description:'Einreisende aus internationalen Risikogebieten müssen sich bei der
 */
 .bar6{
     width: calc(3*7vw + 0.234vw * 22);    /* 3 Month + 22 Days */
-    left: calc(7*7vw + 8*0.234vw);        /* 7 Month + 8 Days */
+    left: calc(7*7vw + 8*0.234vw - var(--offsetLeft));        /* 7 Month + 8 Days */
 }
 .gTitle6{
-    right: calc(var(--ganttChart-width) - (7*7vw + 8*0.234vw) + 8px);
+    right: calc(var(--ganttChart-width) - (7*7vw + 8*0.234vw) + 8px + var(--offsetLeft));
 }
 
 /* JL: Restriction:
@@ -300,10 +308,10 @@ Description: 'Die Bundesländer beschließen ein Beherbergungsverbot für Urlaub
 */
 .bar7{
     width: calc(2*7vw + 0.234vw * 23); /* 2 Month + 23 Days */
-    left: calc(9*7vw + 7*0.234vw);     /* 9 Month + 7 Days */
+    left: calc(9*7vw + 7*0.234vw - var(--offsetLeft));     /* 9 Month + 7 Days */
 }
 .gTitle7{
-    right: calc(var(--ganttChart-width) - (9*7vw + 7*0.234vw) + 8px);
+    right: calc(var(--ganttChart-width) - (9*7vw + 7*0.234vw) + 8px + var(--offsetLeft));
 }
 
 
@@ -317,10 +325,10 @@ Description: 'Beherbergungsverbot bei Inzididenz > 50'
 */
 .bar8{
     width: calc(2*7vw + 0.234vw * 16);  /* 2 Month + 16 Days */
-    left: calc(9*7vw + 14*0.234vw);     /* 9 Month + 14 Days */
+    left: calc(9*7vw + 14*0.234vw - var(--offsetLeft));     /* 9 Month + 14 Days */
 }
 .gTitle8{
-    right: calc(var(--ganttChart-width) - (9*7vw + 14*0.234vw) + 8px);
+    right: calc(var(--ganttChart-width) - (9*7vw + 14*0.234vw) + 8px + var(--offsetLeft));
 }
 
 /* JL: Restriction:
@@ -333,10 +341,10 @@ Description: 'Lockdown light, Gastronomie schließt'
 */
 .bar9{
     width: calc(1*7vw + 0.234vw * 28);  /* 1 Month + 28 Days */
-    left: calc(10*7vw + 2*0.234vw);     /* 10 Month + 2 Days */
+    left: calc(10*7vw + 2*0.234vw - var(--offsetLeft));     /* 10 Month + 2 Days */
 }
 .gTitle9{
-    right: calc(var(--ganttChart-width) - (10*7vw + 2*0.234vw) + 8px);
+    right: calc(var(--ganttChart-width) - (10*7vw + 2*0.234vw) + 8px + var(--offsetLeft));
 }
 
 
