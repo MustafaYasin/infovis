@@ -88,7 +88,7 @@ body{
 .h1{
     position: absolute;
     font-family: 'Montserrat', sans-serif;
-    font-weight: black;
+    font-weight: bold;
     color: #E0E0E0;
     font-size: 8vw;
     letter-spacing: 0.2em;
@@ -184,7 +184,7 @@ Positioning from Top: 1 Position = 18px*/
     opacity: 0.15;
     border-radius: 2px;
 }
-/* JL: change barElement color on Hovser */
+/* JL: change barElement color on Hover */
 .ganttLine:hover .barElement{
     background-color: #70F0DE;
     opacity: 0.8;
@@ -337,4 +337,16 @@ Description: 'Lockdown light, Gastronomie schließt'
 }
 .gTitle9{
     right: calc(var(--ganttChart-width) - (10*7vw + 2*0.234vw) + 8px);
+}
+
+
+/* Styles for jBox tooltip */
+#ganttContainer .hover {
+    margin: 5px;
+}
+
+#ganttContainer {
+    padding: 30px 15px;
+    max-width: 550px;
+    width: calc(100% - 40px);
 }

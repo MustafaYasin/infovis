@@ -8,7 +8,7 @@ var w = $(window).innerWidth();
  - makes content appear on scroll
  */
 
-$(document).ready(function($)  { // wait for document ready
+$(document).ready(function()  { // wait for document ready
     // init ScrollMagic
     var controller = new ScrollMagic.Controller();
 
@@ -25,7 +25,7 @@ $(document).ready(function($)  { // wait for document ready
 
 
 //JL:Multiline Chart
-d3.csv("data2.csv").then(d => chart(d))
+d3.csv("https://gist.githubusercontent.com/BilelAyech/aa74eaba3d8f09b49e4c0bac08572858/raw/744830f7016c9fc8e18a265b3169909764f5364a/data2.csv").then(d => chart(d))
 
 function chart(data) {
 
@@ -191,3 +191,53 @@ function chart(data) {
 	}
 
 }
+
+new jBox('Tooltip', {
+	attach: '.tooltip',
+	getTitle: 'data-jbox-title',
+	getContent: 'data-jbox-content'
+});
+
+$(document).ready(function() {
+$('#demo-tooltip-above').jBox('Tooltip', {
+	theme: 'TooltipDark'
+});
+
+	$('#demo-tooltip-mouse').jBox('Mouse', {
+		theme: 'TooltipDark',
+		content: '<b> Zeitraum: 12.03.2020 - 16.05.2020 <br> Massnahmen: Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein. Die Fußball-Bundesliga pausiert! </b>'
+	});
+
+	$('#demo-tooltip-mouse1').jBox('Mouse', {
+		theme: 'TooltipDark',
+		content: '<b> Zeitraum: 16.03.2020 - 16.05.2020 <br> Massnahmen: Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und der Schweiz gibt es Kontrollen und Einreiseverbote. In den meisten Bundesländern sind Schulen und Kitas geschlossen! </b>'
+	});
+	$('#demo-tooltip-mouse2').jBox('Mouse', {
+		theme: 'TooltipDark',
+		content: '<b> Zeitraum: 22.03.2020 - 11.05.2020 <br> Massnahmen: Verbot von Ansammlungen von mehr als zwei Menschen. Ausgenommen sind Angehörige, die im eigenen Haushalt leben. Cafés, Kneipen, Restaurants, aber auch Friseure zum Beispiel schließen! </b>'
+	});
+	$('#demo-tooltip-mouse3').jBox('Mouse', {
+		theme: 'TooltipDark',
+		content: '<b> Zeitraum: 22.03.2020 - 15.04.2020 <br> Massnahmen: Schulen müssen geschlossen werden! </b>'
+	});
+	$('#demo-tooltip-mouse4').jBox('Mouse', {
+		theme: 'TooltipDark',
+		content: '<b> Zeitraum: 22.04.2020 - 31.12.2020 <br> Massnahmen: Maskenpflicht für alle Bundesländer! </b>'
+	});
+	$('#demo-tooltip-mouse5').jBox('Mouse', {
+		theme: 'TooltipDark',
+		content: '<b> Zeitraum: 08.08.2020 - 31.12.2020 <br> Massnahmen: Einreisende aus internationalen Risikogebieten müssen sich bei der Rückkehr nach Deutschland testen lassen! </b>'
+	});
+	$('#demo-tooltip-mouse6').jBox('Mouse', {
+		theme: 'TooltipDark',
+		content: '<b> Zeitraum: 10.07.2020 - 31.12.2020 <br> Massnahmen: Die Bundesländer beschließen ein Beherbergungsverbot für Urlauber aus inländischen Risikogebieten. Die Zahl der Neuinfektionen ist auf mehr als 4000 binnen eines Tages gestiegen! </b>'
+	});
+	$('#demo-tooltip-mouse7').jBox('Mouse', {
+		theme: 'TooltipDark',
+		content: '<b> Zeitraum: 14.10.2020 - 31.12.2020 <br> Massnahmen: Beherbergungsverbot bei Inzididenz > 50! </b>'
+	});
+	$('#demo-tooltip-mouse8').jBox('Mouse', {
+		theme: 'TooltipDark',
+		content: '<b> Zeitraum: 02.11.2020 - 31.12.2020 <br> Massnahmen: Lockdown light, Gastronomie schließt! </b>'
+	});
+});
