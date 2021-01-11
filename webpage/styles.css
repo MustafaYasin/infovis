@@ -27,6 +27,9 @@ body{
     font: 10px sans-serif; /*for multiline chart*/
     padding: 25px;
 }
+.mycheckbox {
+  color: white;
+}
 
 /* JL: styling for multiline chart */
 .y-axis line {

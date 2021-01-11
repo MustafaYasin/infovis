@@ -21,14 +21,55 @@ $(document).ready(function($)  { // wait for document ready
         .setTween(h1Disappears)
         //.addIndicators() // add indicators (requires plugin)
         .addTo(controller);
+
+
+    // checkbox events
+    $('#BeherbergungUmsatz').on('change', (event) => {
+      if(!event.target.checked) {
+        $('.line.cities.Beherbergung.Umsatz.1').css({'display': 'none'});
+      } else {
+        $('.line.cities.Beherbergung.Umsatz.1').css({'display': 'block'});
+      }
+    });
+
+    $('#Beherbergungbeschäftigte').on('change', (event) => {
+      if(!event.target.checked) {
+        $('.line.cities.Beherbergung.Beschäftigte.1').css({'display': 'none'});
+      } else {
+        $('.line.cities.Beherbergung.Beschäftigte.1').css({'display': 'block'});
+      }
+    });
+
+    $('#GastronomieUmsatz').on('change', (event) => {
+      if(!event.target.checked) {
+        $('.line.cities.Gastronomie.Umsatz.1').css({'display': 'none'});
+      } else {
+        $('.line.cities.Gastronomie.Umsatz.1').css({'display': 'block'});
+      }
+    });
+
+    $('#Gastronomiebeschäftigte').on('change', (event) => {
+      if(!event.target.checked) {
+        $('.line.cities.Gastronomie.Beschäftigte.1').css({'display': 'none'});
+      } else {
+        $('.line.cities.Gastronomie.Beschäftigte.1').css({'display': 'block'});
+      }
+    });
+
+
 });
 
 
 //JL:Multiline Chart
-d3.csv("data2.csv").then(d => chart(d))
+d3.csv("https://gist.githubusercontent.com/BilelAyech/aa74eaba3d8f09b49e4c0bac08572858/raw/744830f7016c9fc8e18a265b3169909764f5364a/data2.csv")
+.then(d => {
+  chart(d)
+
+})
 
 function chart(data) {
 
+  console.log('########', data);
 	var keys = data.columns.slice(1);
 
 	var parseTime = d3.timeParse("%Y%m%d"),
@@ -119,7 +160,7 @@ function chart(data) {
 		city.exit().remove();
 
 		city.enter().insert("g", ".focus").append("path")
-			.attr("class", "line cities")
+			.attr("class", d => "line cities " + d.id)
 			.style("stroke", d => z(d.id))
 			.merge(city)
 		.transition().duration(speed)
