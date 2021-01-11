@@ -23,7 +23,7 @@ $(document).ready(function($)  { // wait for document ready
         .addTo(controller);
 
 
-    // checkbox events
+    //B.A checkbox events
     $('#BeherbergungUmsatz').on('change', (event) => {
       if(!event.target.checked) {
         $('.line.cities.Beherbergung.Umsatz.1').css({'display': 'none'});
