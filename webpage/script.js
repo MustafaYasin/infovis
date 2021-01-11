@@ -91,6 +91,9 @@ function chart(data) {
 		.attr("width", width - margin.right - margin.left)
 		.attr("height", height)
 
+	// set width of gantt chart to be equal to line chart
+	// document.getElementById('chart').style.width = document.getElementById('timeline').width;
+
 	update(1, 0);
 
 	function update(speed) {
