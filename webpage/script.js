@@ -74,7 +74,7 @@ function chart(data) {
 	var parseTime = d3.timeParse("%Y%m%d"),
 		formatDate = d3.timeFormat("%Y-%m-%d"),
 		bisectDate = d3.bisector(d => d.date).left,
-		formatValue = d3.format(",.0f");
+		formatValue = d3.format(".1f");
 
 	data.forEach(function(d) {
 		d.date = parseTime(d.date);
@@ -221,7 +221,7 @@ function chart(data) {
 			focus.selectAll(".lineHoverText")
 				.attr("transform",
 					"translate(" + (x(d.date)) + "," + height / 2.5 + ")")
-				.text(e => e + " " + "º" + formatValue(d[e]));
+				.text(e => e + " " + formatValue(d[e]) + "%");
 
 			x(d.date) > (width - width / 4)
 				? focus.selectAll("text.lineHoverText")
