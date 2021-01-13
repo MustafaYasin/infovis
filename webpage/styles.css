@@ -210,14 +210,14 @@ Positioning from Top: 1 Position = 18px*/
 .barElement{
     position: absolute;
     height: 12px;
-    background-color: #FFFF;
-    opacity: 0.5;
+    background-color: #7E7E7E;
+    opacity: 0.8;
     border-radius: 2px;
 }
 /* JL: change barElement color on Hover */
 .ganttLine:hover .barElement{
     background-color: #70F0DE;
-    opacity: 0.8;
+    opacity: 1;
 }
 
 /* JL:Restriction:
