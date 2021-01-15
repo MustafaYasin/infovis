@@ -176,7 +176,7 @@ function chart(data) {
     //draw y axis + horizontal guidelines
 	svg.selectAll(".y-axis").transition()
 		.duration(1,0)
-		.call(d3.axisLeft(y).tickSize(-width + margin.right + margin.left))
+		.call(d3.axisLeft(y))
 
 	var lineObject = svg.selectAll(".lineObjects")
 		.data(lineObjects);
