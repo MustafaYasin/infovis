@@ -65,7 +65,7 @@ $(document).ready(function($)  { // wait for document ready
     });
 
     //get's the csv data and runs the main function with it
-    d3.csv("https://gist.githubusercontent.com/BilelAyech/aa74eaba3d8f09b49e4c0bac08572858/raw/744830f7016c9fc8e18a265b3169909764f5364a/data2.csv")
+    d3.csv("https://gist.githubusercontent.com/BilelAyech/aa74eaba3d8f09b49e4c0bac08572858/raw/fa8d8c9bd598000bb1051dea72592078fd171ffb/data2.csv")
     .then(d => {
       main(d)
     })
