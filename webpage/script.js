@@ -3,10 +3,18 @@ var h = $(window).innerHeight();
 var w = $(window).innerWidth();
 
 
-/*JL: scrollmagic:
+/*
+scrollmagic:
  - makes headline disappear on scroll
  - makes content appear on scroll
  */
+
+/**
+* Runs the whole Javascript  code "on document ready"
+*scrollmagic:
+    * - makes headline disappear on scroll
+    *- makes content appear on scroll
+*/
 
 $(document).ready(function($)  { // wait for document ready
     // init ScrollMagic
@@ -14,7 +22,7 @@ $(document).ready(function($)  { // wait for document ready
 
     // header1Container disapears
     var h1Disappears = TweenLite.to("#h1Container", 1, {
-        opacity: 0
+        opalineObject: 0
     });
     // build scene for header1Container disappers
     var scene = new ScrollMagic.Scene({ duration: h, triggerHook: 0, reverse:true})
@@ -26,50 +34,70 @@ $(document).ready(function($)  { // wait for document ready
     //B.A checkbox events
     $('#BeherbergungUmsatz').on('change', (event) => {
       if(!event.target.checked) {
-        $('.line.cities.Beherbergung.Umsatz.1').css({'display': 'none'});
+        $('.line.lineObjects.Beherbergung.Umsatz.1').css({'display': 'none'});
       } else {
-        $('.line.cities.Beherbergung.Umsatz.1').css({'display': 'block'});
+        $('.line.lineObjects.Beherbergung.Umsatz.1').css({'display': 'block'});
       }
     });
 
     $('#Beherbergungbeschäftigte').on('change', (event) => {
       if(!event.target.checked) {
-        $('.line.cities.Beherbergung.Beschäftigte.1').css({'display': 'none'});
+        $('.line.lineObjects.Beherbergung.Beschäftigte.1').css({'display': 'none'});
       } else {
-        $('.line.cities.Beherbergung.Beschäftigte.1').css({'display': 'block'});
+        $('.line.lineObjects.Beherbergung.Beschäftigte.1').css({'display': 'block'});
       }
     });
 
     $('#GastronomieUmsatz').on('change', (event) => {
       if(!event.target.checked) {
-        $('.line.cities.Gastronomie.Umsatz.1').css({'display': 'none'});
+        $('.line.lineObjects.Gastronomie.Umsatz.1').css({'display': 'none'});
       } else {
-        $('.line.cities.Gastronomie.Umsatz.1').css({'display': 'block'});
+        $('.line.lineObjects.Gastronomie.Umsatz.1').css({'display': 'block'});
       }
     });
 
     $('#Gastronomiebeschäftigte').on('change', (event) => {
       if(!event.target.checked) {
-        $('.line.cities.Gastronomie.Beschäftigte.1').css({'display': 'none'});
+        $('.line.lineObjects.Gastronomie.Beschäftigte.1').css({'display': 'none'});
       } else {
-        $('.line.cities.Gastronomie.Beschäftigte.1').css({'display': 'block'});
+        $('.line.lineObjects.Gastronomie.Beschäftigte.1').css({'display': 'block'});
       }
     });
 
+    //get's the csv data and runs the main function with it
+    d3.csv("https://gist.githubusercontent.com/BilelAyech/aa74eaba3d8f09b49e4c0bac08572858/raw/744830f7016c9fc8e18a265b3169909764f5364a/data2.csv")
+    .then(d => {
+      main(d)
+    })
 
 });
 
+/**
+ * Runs all functions related to the D3 Line Chart
+ */
+function main(data){
+    chart(data);
+}
 
-//JL:Multiline Chart
-d3.csv("https://gist.githubusercontent.com/BilelAyech/aa74eaba3d8f09b49e4c0bac08572858/raw/744830f7016c9fc8e18a265b3169909764f5364a/data2.csv")
-.then(d => {
-  chart(d)
 
-})
-
+/**
+ * Draws the D3 Line Chart, updates the D3 Line Chart and generates a tooltip for the D3 Line Chart
+ * @param {array} keys - The array holding a key for each line in the line chart (Beherbergung Umsatz,Beherbergung Beschäftigte,...)
+ * @param {parseTime} d - Reading out the dates of the csv
+ * @param {d3 chart} svg - holds the scaffold of the chart and draws it's tooltip
+ * @param {d3 scaleTime} x - defines the x points for the chart lineObjects
+ * @param {d3 scaleLinear} y - defines the y points for the chart lineObjects
+ * @param {d3 scaleOrdinal} z - sets the color scheme of the chart lineObjects
+ * @param {d3 line} line - draws the chart lineObjects depending on x,y,z
+ * @param {svg} focus - defines the tooltip
+ * @param {svg} overlay - defines the tooltip scaffold
+ * @param {array} lineObjects - assigns the csv x(dates) and y(degrees) values to the keys
+ * @param {HTMLElement} label - holds the tooltip texts
+ * @param {HTMLElement} circle - holds the tooltip circles
+ */
 function chart(data) {
 
-	var keys = data.columns.slice(1);
+    var keys = data.columns.slice(1);
 
 	var parseTime = d3.timeParse("%Y%m%d"),
 		formatDate = d3.timeFormat("%Y-%m-%d"),
@@ -100,141 +128,134 @@ function chart(data) {
 		.x(d => x(d.date))
 		.y(d => y(d.degrees));
 
+    //draw x axis
 	svg.append("g")
 		.attr("class","x-axis")
 		.attr("transform", "translate(0," + (height - margin.bottom) + ")")
 		.call(d3.axisBottom(x).tickFormat(d3.timeFormat("%b")));
 
+    //draw y axis
 	svg.append("g")
 		.attr("class", "y-axis")
 		.attr("transform", "translate(" + margin.left + ",0)");
 
+    //defining the focus
 	var focus = svg.append("g")
 		.attr("class", "focus")
 		.style("display", "none");
 
+    //focus line
 	focus.append("line").attr("class", "lineHover")
 		.style("stroke", "#999")
 		.attr("stroke-width", 1)
 		.style("shape-rendering", "crispEdges")
-		.style("opacity", 0.5)
+		.style("opalineObject", 0.5)
 		.attr("y1", -height)
 		.attr("y2",0);
 
-	focus.append("text").attr("class", "lineHoverDate")
-		.attr("text-anchor", "middle")
-		.attr("font-size", 12);
-
+    //defining the overlay
 	var overlay = svg.append("rect")
 		.attr("class", "overlay")
 		.attr("x", margin.left)
 		.attr("width", width - margin.right - margin.left)
 		.attr("height", height)
 
-	// set width of gantt chart to be equal to line chart
-	// document.getElementById('chart').style.width = document.getElementById('timeline').width;
+	var lineObjects = keys.map(function(id) {
+		return {
+			id: id,
+			values: data.map(d => {return {date: d.date, degrees: +d[id]}})
+		};
+	});
 
-	update(1, 0);
+    //assigns the y values to the csv data
+	y.domain([
+		d3.min(lineObjects, d => d3.min(d.values, c => c.degrees)),
+		d3.max(lineObjects, d => d3.max(d.values, c => c.degrees))
+	]).nice();
 
-	function update(speed) {
+    //draw y axis + horizontal guidelines
+	svg.selectAll(".y-axis").transition()
+		.duration(1,0)
+		.call(d3.axisLeft(y).tickSize(-width + margin.right + margin.left))
 
-		var copy = keys.filter(f => f.includes(1))
+	var lineObject = svg.selectAll(".lineObjects")
+		.data(lineObjects);
 
-		var cities = copy.map(function(id) {
-			return {
-				id: id,
-				values: data.map(d => {return {date: d.date, degrees: +d[id]}})
-			};
-		});
+	lineObject.exit().remove();
 
-		y.domain([
-			d3.min(cities, d => d3.min(d.values, c => c.degrees)),
-			d3.max(cities, d => d3.max(d.values, c => c.degrees))
-		]).nice();
+    //assign each line to it's lineObject
+	lineObject.enter().insert("g", ".focus").append("path")
+		.attr("class", d => "line lineObjects " + d.id)
+		.style("stroke", d => z(d.id))
+		.merge(lineObject)
+	.transition().duration(1,0)
+		.attr("d", d => line(d.values))
 
-		svg.selectAll(".y-axis").transition()
-			.duration(speed)
-			.call(d3.axisLeft(y).tickSize(-width + margin.right + margin.left))
+	var labels = focus.selectAll(".lineHoverText")
+		.data(keys)
 
-		var city = svg.selectAll(".cities")
-			.data(cities);
+	labels.enter().append("text")
+		.attr("class", "lineHoverText")
+		.style("fill", d => z(d))
+		.attr("text-anchor", "start")
+		.attr("font-size",12)
+		.attr("dy", (_, i) => 1 + i * 2 + "em")
+		.merge(labels);
 
-		city.exit().remove();
+	var circles = focus.selectAll(".hoverCircle")
+		.data(keys)
 
-		city.enter().insert("g", ".focus").append("path")
-			.attr("class", d => "line cities " + d.id)
-			.style("stroke", d => z(d.id))
-			.merge(city)
-		.transition().duration(speed)
-			.attr("d", d => line(d.values))
+	circles.enter().append("circle")
+		.attr("class", "hoverCircle")
+		.style("fill", d => z(d))
+		.attr("r", 2.5)
+		.merge(circles);
 
-		tooltip(copy);
-	}
+    //draws the overlay
+	svg.selectAll(".overlay")
+		.on("mouseover", function() { focus.style("display", null); })
+		.on("mouseout", function() { focus.style("display", "none"); })
+		.on("mousemove", mousemove);
 
-	function tooltip(copy) {
+    /**
+     * Draws the tooltip depending on the mouse position
+     */
+	function mousemove() {
 
-		var labels = focus.selectAll(".lineHoverText")
-			.data(copy)
+		var x0 = x.invert(d3.mouse(this)[0]),
+			i = bisectDate(data, x0, 1),
+			d0 = data[i - 1],
+			d1 = data[i],
+			d = x0 - d0.date > d1.date - x0 ? d1 : d0;
 
-		labels.enter().append("text")
-			.attr("class", "lineHoverText")
-			.style("fill", d => z(d))
-			.attr("text-anchor", "start")
-			.attr("font-size",12)
-			.attr("dy", (_, i) => 1 + i * 2 + "em")
-			.merge(labels);
+		focus.select(".lineHover")
+			.attr("transform", "translate(" + x(d.date) + "," + height + ")");
 
-		var circles = focus.selectAll(".hoverCircle")
-			.data(copy)
+		focus.select(".lineHoverDate")
+			.attr("transform",
+				"translate(" + x(d.date) + "," + (height + margin.bottom) + ")")
+			.text(formatDate(d.date));
 
-		circles.enter().append("circle")
-			.attr("class", "hoverCircle")
-			.style("fill", d => z(d))
-			.attr("r", 2.5)
-			.merge(circles);
+		focus.selectAll(".hoverCircle")
+			.attr("cy", e => y(d[e]))
+			.attr("cx", x(d.date));
 
-		svg.selectAll(".overlay")
-			.on("mouseover", function() { focus.style("display", null); })
-			.on("mouseout", function() { focus.style("display", "none"); })
-			.on("mousemove", mousemove);
+		focus.selectAll(".lineHoverText")
+			.attr("transform",
+				"translate(" + (x(d.date)) + "," + height / 2.5 + ")")
+			.text(e => e + " " + formatValue(d[e]) + "%");
 
-		function mousemove() {
+		x(d.date) > (width - width / 4)
+			? focus.selectAll("text.lineHoverText")
+				.attr("text-anchor", "end")
+				.attr("dx", -10)
+			: focus.selectAll("text.lineHoverText")
+				.attr("text-anchor", "start")
+				.attr("dx", 10)
 
-			var x0 = x.invert(d3.mouse(this)[0]),
-				i = bisectDate(data, x0, 1),
-				d0 = data[i - 1],
-				d1 = data[i],
-				d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-
-			focus.select(".lineHover")
-				.attr("transform", "translate(" + x(d.date) + "," + height + ")");
-
-			focus.select(".lineHoverDate")
-				.attr("transform",
-					"translate(" + x(d.date) + "," + (height + margin.bottom) + ")")
-				.text(formatDate(d.date));
-
-			focus.selectAll(".hoverCircle")
-				.attr("cy", e => y(d[e]))
-				.attr("cx", x(d.date));
-
-			focus.selectAll(".lineHoverText")
-				.attr("transform",
-					"translate(" + (x(d.date)) + "," + height / 2.5 + ")")
-				.text(e => e + " " + formatValue(d[e]) + "%");
-
-			x(d.date) > (width - width / 4)
-				? focus.selectAll("text.lineHoverText")
-					.attr("text-anchor", "end")
-					.attr("dx", -10)
-				: focus.selectAll("text.lineHoverText")
-					.attr("text-anchor", "start")
-					.attr("dx", 10)
-
-			reorderGanttBars(d.date);
-		}
-	}
-
+        //reorders Gantt bars depening on the mouse position
+		reorderGanttBars(d.date);
+    }
 }
 
 new jBox('Tooltip', {
