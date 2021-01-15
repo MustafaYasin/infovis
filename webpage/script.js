@@ -253,7 +253,7 @@ function chart(data) {
 				.attr("text-anchor", "start")
 				.attr("dx", 10)
 
-        //reorders Gantt bars depening on the mouse position
+        //reorders Gantt bars depending on the mouse position
 		reorderGanttBars(d.date);
     }
 }
@@ -264,17 +264,18 @@ new jBox('Tooltip', {
 	getContent: 'data-jbox-content'
 });
 
+// function to calculate the position in px with given position number
+function position(posNumber){
+	let position = "";
+	position = (posNumber-1)*18 +"px";
+	// console.log("position " + position);
+	return position;
+
+}
+
+// function to reorder gantt bars according to which month in the line chart is highlighted
+// TODO: refactor gantt chart to include start and end month & implement method to reposition and assign color depending on month
 function reorderGanttBars(month){
-	var pos1="0px";
-	var pos2="18px";
-	var pos3="36px";
-	var pos4="54px";
-	var pos5="72px";
-	var pos6="90px";
-	var pos7="108px";
-	var pos8="126px";
-	var pos9="144px";
-	console.log("in reorder methode" + month);
 	if (month.toString().includes("Mar") ){
 		document.getElementById("bar1").style.backgroundColor = "#70F0DE";
 		document.getElementById("bar2").style.backgroundColor = "#70F0DE";
@@ -285,15 +286,15 @@ function reorderGanttBars(month){
 		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = pos1;
-		document.getElementById("demo-tooltip-mouse1").style.top = pos2;
-		document.getElementById("demo-tooltip-mouse2").style.top = pos3;
-		document.getElementById("demo-tooltip-mouse3").style.top = pos4;
-		document.getElementById("demo-tooltip-mouse4").style.top = pos5;
-		document.getElementById("demo-tooltip-mouse5").style.top = pos6;
-		document.getElementById("demo-tooltip-mouse6").style.top = pos7;
-		document.getElementById("demo-tooltip-mouse7").style.top = pos8;
-		document.getElementById("demo-tooltip-mouse8").style.top = pos9;
+		document.getElementById("demo-tooltip-mouse").style.top = position(1);
+		document.getElementById("demo-tooltip-mouse1").style.top = position(2);
+		document.getElementById("demo-tooltip-mouse2").style.top = position(3);
+		document.getElementById("demo-tooltip-mouse3").style.top = position(4);
+		document.getElementById("demo-tooltip-mouse4").style.top = position(5);
+		document.getElementById("demo-tooltip-mouse5").style.top = position(6);
+		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
+		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
+		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
 	}  else if (month.toString().includes("Apr")){
 		document.getElementById("bar1").style.backgroundColor = "#70F0DE";
 		document.getElementById("bar2").style.backgroundColor = "#70F0DE";
@@ -304,15 +305,15 @@ function reorderGanttBars(month){
 		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = pos1;
-		document.getElementById("demo-tooltip-mouse1").style.top = pos2;
-		document.getElementById("demo-tooltip-mouse2").style.top = pos3;
-		document.getElementById("demo-tooltip-mouse3").style.top = pos4;
-		document.getElementById("demo-tooltip-mouse4").style.top = pos5;
-		document.getElementById("demo-tooltip-mouse5").style.top = pos6;
-		document.getElementById("demo-tooltip-mouse6").style.top = pos7;
-		document.getElementById("demo-tooltip-mouse7").style.top = pos8;
-		document.getElementById("demo-tooltip-mouse8").style.top = pos9;
+		document.getElementById("demo-tooltip-mouse").style.top = position(1);
+		document.getElementById("demo-tooltip-mouse1").style.top = position(2);
+		document.getElementById("demo-tooltip-mouse2").style.top = position(3)
+		document.getElementById("demo-tooltip-mouse3").style.top = position(4);
+		document.getElementById("demo-tooltip-mouse4").style.top = position(5);
+		document.getElementById("demo-tooltip-mouse5").style.top = position(6);
+		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
+		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
+		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
 	}else if (month.toString().includes("May")){
 		document.getElementById("bar1").style.backgroundColor = "#70F0DE";
 		document.getElementById("bar2").style.backgroundColor = "#70F0DE";
@@ -323,15 +324,15 @@ function reorderGanttBars(month){
 		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = pos1;
-		document.getElementById("demo-tooltip-mouse1").style.top = pos2;
-		document.getElementById("demo-tooltip-mouse2").style.top = pos3;
-		document.getElementById("demo-tooltip-mouse3").style.top = pos5;
-		document.getElementById("demo-tooltip-mouse4").style.top = pos4;
-		document.getElementById("demo-tooltip-mouse5").style.top = pos6;
-		document.getElementById("demo-tooltip-mouse6").style.top = pos7;
-		document.getElementById("demo-tooltip-mouse7").style.top = pos8;
-		document.getElementById("demo-tooltip-mouse8").style.top = pos9;
+		document.getElementById("demo-tooltip-mouse").style.top = position(1);
+		document.getElementById("demo-tooltip-mouse1").style.top = position(2);
+		document.getElementById("demo-tooltip-mouse2").style.top = position(3)
+		document.getElementById("demo-tooltip-mouse3").style.top = position(5);
+		document.getElementById("demo-tooltip-mouse4").style.top = position(4);
+		document.getElementById("demo-tooltip-mouse5").style.top = position(6);
+		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
+		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
+		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
 	}else if (month.toString().includes("Jun")){
 		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
@@ -342,15 +343,15 @@ function reorderGanttBars(month){
 		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = pos2;
-		document.getElementById("demo-tooltip-mouse1").style.top = pos3;
-		document.getElementById("demo-tooltip-mouse2").style.top = pos4;
-		document.getElementById("demo-tooltip-mouse3").style.top = pos5;
-		document.getElementById("demo-tooltip-mouse4").style.top = pos1;
-		document.getElementById("demo-tooltip-mouse5").style.top = pos6;
-		document.getElementById("demo-tooltip-mouse6").style.top = pos7;
-		document.getElementById("demo-tooltip-mouse7").style.top = pos8;
-		document.getElementById("demo-tooltip-mouse8").style.top = pos9;
+		document.getElementById("demo-tooltip-mouse").style.top = position(2);
+		document.getElementById("demo-tooltip-mouse1").style.top = position(3)
+		document.getElementById("demo-tooltip-mouse2").style.top = position(4);
+		document.getElementById("demo-tooltip-mouse3").style.top = position(5);
+		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
+		document.getElementById("demo-tooltip-mouse5").style.top = position(6);
+		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
+		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
+		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
 	}else if (month.toString().includes("Jul")){
 		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
@@ -361,15 +362,15 @@ function reorderGanttBars(month){
 		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = pos2;
-		document.getElementById("demo-tooltip-mouse1").style.top = pos3;
-		document.getElementById("demo-tooltip-mouse2").style.top = pos4;
-		document.getElementById("demo-tooltip-mouse3").style.top = pos5;
-		document.getElementById("demo-tooltip-mouse4").style.top = pos1;
-		document.getElementById("demo-tooltip-mouse5").style.top = pos6;
-		document.getElementById("demo-tooltip-mouse6").style.top = pos7;
-		document.getElementById("demo-tooltip-mouse7").style.top = pos8;
-		document.getElementById("demo-tooltip-mouse8").style.top = pos9;
+		document.getElementById("demo-tooltip-mouse").style.top = position(2);
+		document.getElementById("demo-tooltip-mouse1").style.top = position(3)
+		document.getElementById("demo-tooltip-mouse2").style.top = position(4);
+		document.getElementById("demo-tooltip-mouse3").style.top = position(5);
+		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
+		document.getElementById("demo-tooltip-mouse5").style.top = position(6);
+		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
+		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
+		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
 	}else if (month.toString().includes("Aug")){
 		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
@@ -380,15 +381,15 @@ function reorderGanttBars(month){
 		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = pos3;
-		document.getElementById("demo-tooltip-mouse1").style.top = pos4;
-		document.getElementById("demo-tooltip-mouse2").style.top = pos5;
-		document.getElementById("demo-tooltip-mouse3").style.top = pos6;
-		document.getElementById("demo-tooltip-mouse4").style.top = pos1;
-		document.getElementById("demo-tooltip-mouse5").style.top = pos2;
-		document.getElementById("demo-tooltip-mouse6").style.top = pos7;
-		document.getElementById("demo-tooltip-mouse7").style.top = pos8;
-		document.getElementById("demo-tooltip-mouse8").style.top = pos9;
+		document.getElementById("demo-tooltip-mouse").style.top = position(3)
+		document.getElementById("demo-tooltip-mouse1").style.top = position(4);
+		document.getElementById("demo-tooltip-mouse2").style.top = position(5);
+		document.getElementById("demo-tooltip-mouse3").style.top = position(6);
+		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
+		document.getElementById("demo-tooltip-mouse5").style.top = position(2);
+		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
+		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
+		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
 	}else if (month.toString().includes("Sep")){
 		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
@@ -399,15 +400,15 @@ function reorderGanttBars(month){
 		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = pos3;
-		document.getElementById("demo-tooltip-mouse1").style.top = pos4;
-		document.getElementById("demo-tooltip-mouse2").style.top = pos5;
-		document.getElementById("demo-tooltip-mouse3").style.top = pos6;
-		document.getElementById("demo-tooltip-mouse4").style.top = pos1;
-		document.getElementById("demo-tooltip-mouse5").style.top = pos2;
-		document.getElementById("demo-tooltip-mouse6").style.top = pos7;
-		document.getElementById("demo-tooltip-mouse7").style.top = pos8;
-		document.getElementById("demo-tooltip-mouse8").style.top = pos9;
+		document.getElementById("demo-tooltip-mouse").style.top = position(3)
+		document.getElementById("demo-tooltip-mouse1").style.top = position(4);
+		document.getElementById("demo-tooltip-mouse2").style.top = position(5);
+		document.getElementById("demo-tooltip-mouse3").style.top = position(6);
+		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
+		document.getElementById("demo-tooltip-mouse5").style.top = position(2);
+		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
+		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
+		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
 	}else if (month.toString().includes("Oct")){
 		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
@@ -418,15 +419,15 @@ function reorderGanttBars(month){
 		document.getElementById("bar7").style.backgroundColor = "#70F0DE";
 		document.getElementById("bar8").style.backgroundColor = "#70F0DE";
 		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = pos5;
-		document.getElementById("demo-tooltip-mouse1").style.top = pos6;
-		document.getElementById("demo-tooltip-mouse2").style.top = pos7;
-		document.getElementById("demo-tooltip-mouse3").style.top = pos8;
-		document.getElementById("demo-tooltip-mouse4").style.top = pos1;
-		document.getElementById("demo-tooltip-mouse5").style.top = pos2;
-		document.getElementById("demo-tooltip-mouse6").style.top = pos3;
-		document.getElementById("demo-tooltip-mouse7").style.top = pos4;
-		document.getElementById("demo-tooltip-mouse8").style.top = pos9;
+		document.getElementById("demo-tooltip-mouse").style.top = position(5);
+		document.getElementById("demo-tooltip-mouse1").style.top = position(6);
+		document.getElementById("demo-tooltip-mouse2").style.top = position(7);
+		document.getElementById("demo-tooltip-mouse3").style.top = position(8);
+		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
+		document.getElementById("demo-tooltip-mouse5").style.top = position(2);
+		document.getElementById("demo-tooltip-mouse6").style.top = position(3)
+		document.getElementById("demo-tooltip-mouse7").style.top = position(4);
+		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
 	}else if (month.toString().includes("Nov")){
 		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
@@ -437,15 +438,15 @@ function reorderGanttBars(month){
 		document.getElementById("bar7").style.backgroundColor = "#70F0DE";
 		document.getElementById("bar8").style.backgroundColor = "#70F0DE";
 		document.getElementById("bar9").style.backgroundColor = "#70F0DE";
-		document.getElementById("demo-tooltip-mouse").style.top = pos6;
-		document.getElementById("demo-tooltip-mouse1").style.top = pos7;
-		document.getElementById("demo-tooltip-mouse2").style.top = pos8;
-		document.getElementById("demo-tooltip-mouse3").style.top = pos9;
-		document.getElementById("demo-tooltip-mouse4").style.top = pos1;
-		document.getElementById("demo-tooltip-mouse5").style.top = pos2;
-		document.getElementById("demo-tooltip-mouse6").style.top = pos3;
-		document.getElementById("demo-tooltip-mouse7").style.top = pos4;
-		document.getElementById("demo-tooltip-mouse8").style.top = pos5;
+		document.getElementById("demo-tooltip-mouse").style.top = position(6);
+		document.getElementById("demo-tooltip-mouse1").style.top = position(7);
+		document.getElementById("demo-tooltip-mouse2").style.top = position(8);
+		document.getElementById("demo-tooltip-mouse3").style.top = position(9);
+		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
+		document.getElementById("demo-tooltip-mouse5").style.top = position(2);
+		document.getElementById("demo-tooltip-mouse6").style.top = position(3)
+		document.getElementById("demo-tooltip-mouse7").style.top = position(4);
+		document.getElementById("demo-tooltip-mouse8").style.top = position(5);
 	}else if (month.toString().includes("Dec")){
 		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
@@ -456,15 +457,15 @@ function reorderGanttBars(month){
 		document.getElementById("bar7").style.backgroundColor = "#70F0DE";
 		document.getElementById("bar8").style.backgroundColor = "#70F0DE";
 		document.getElementById("bar9").style.backgroundColor = "#70F0DE";
-		document.getElementById("demo-tooltip-mouse").style.top = pos6;
-		document.getElementById("demo-tooltip-mouse1").style.top = pos7;
-		document.getElementById("demo-tooltip-mouse2").style.top = pos8;
-		document.getElementById("demo-tooltip-mouse3").style.top = pos9;
-		document.getElementById("demo-tooltip-mouse4").style.top = pos1;
-		document.getElementById("demo-tooltip-mouse5").style.top = pos2;
-		document.getElementById("demo-tooltip-mouse6").style.top = pos3;
-		document.getElementById("demo-tooltip-mouse7").style.top = pos4;
-		document.getElementById("demo-tooltip-mouse8").style.top = pos5;
+		document.getElementById("demo-tooltip-mouse").style.top = position(6);
+		document.getElementById("demo-tooltip-mouse1").style.top = position(7);
+		document.getElementById("demo-tooltip-mouse2").style.top = position(8);
+		document.getElementById("demo-tooltip-mouse3").style.top = position(9);
+		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
+		document.getElementById("demo-tooltip-mouse5").style.top = position(2);
+		document.getElementById("demo-tooltip-mouse6").style.top = position(3)
+		document.getElementById("demo-tooltip-mouse7").style.top = position(4);
+		document.getElementById("demo-tooltip-mouse8").style.top = position(5);
 	}else{
 		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
@@ -475,15 +476,15 @@ function reorderGanttBars(month){
 		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
 		document.getElementById("bar8").style.backgroundColor = "#808080";
 		document.getElementById("bar9").style.backgroundColor = "#808080";
-		document.getElementById("demo-tooltip-mouse").style.top = pos1;
-		document.getElementById("demo-tooltip-mouse1").style.top = pos2;
-		document.getElementById("demo-tooltip-mouse2").style.top = pos3;
-		document.getElementById("demo-tooltip-mouse3").style.top = pos4;
-		document.getElementById("demo-tooltip-mouse4").style.top = pos5;
-		document.getElementById("demo-tooltip-mouse5").style.top = pos6;
-		document.getElementById("demo-tooltip-mouse6").style.top = pos7;
-		document.getElementById("demo-tooltip-mouse7").style.top = pos8;
-		document.getElementById("demo-tooltip-mouse8").style.top = pos9;
+		document.getElementById("demo-tooltip-mouse").style.top = position(1);
+		document.getElementById("demo-tooltip-mouse1").style.top = position(2);
+		document.getElementById("demo-tooltip-mouse2").style.top = position(3)
+		document.getElementById("demo-tooltip-mouse3").style.top = position(4);
+		document.getElementById("demo-tooltip-mouse4").style.top = position(5);
+		document.getElementById("demo-tooltip-mouse5").style.top = position(6);
+		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
+		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
+		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
 	}
 }
 
