@@ -46,14 +46,31 @@
         <!--<div id="gantt_chart"></div>-->
         <p class="titleofchartline">Gastronomie und Beherbergung: Umsatz und Anzahl der beschäftigten im Vergleich zum Vorjahr gemessen in Prozent</p>
         <div class="mycheckbox">
-        <input type="checkbox" id="BeherbergungUmsatz" name="BeherbergungUmsatz" value="Bike" checked=true>
-        <label for="BeherbergungUmsatz"> Beherbergung Umsatz</label>
-        <input type="checkbox" id="Beherbergungbeschäftigte" name="Beherbergungbeschäftigte" value="Car" checked=true>
-        <label for="Beherbergungbeschäftigte"> Beherbergung beschäftigte</label>
-        <input type="checkbox" id="GastronomieUmsatz" name="GastronomieUmsatz" value="Bike" checked=true>
-        <label for="GastronomieUmsatz"> Gastronomie Umsatz</label>
-        <input type="checkbox" id="Gastronomiebeschäftigte" name="Gastronomiebeschäftigte" value="Car" checked=true>
-        <label for="Gastronomiebeschäftigte"> Gastronomie beschäftigte</label>
+        <div>
+            <span class="spanspace">
+            <span class="box blue"></span>
+            <label for="BeherbergungUmsatz" class="fixwidth"> Beherbergung Umsatz</label>
+            <input type="checkbox" id="BeherbergungUmsatz" name="BeherbergungUmsatz" value="Bike" checked=true>
+          </span>
+          <span>
+            <span class="box orange"></span>
+            <label for="Beherbergungbeschäftigte" class="fixwidth"> Beherbergung beschäftigte</label>
+            <input type="checkbox" id="Beherbergungbeschäftigte" name="Beherbergungbeschäftigte" value="Car" checked=true>
+          </span>
+        </div>
+        <div>
+          <span class="spanspace">
+            <span class="box green"></span>
+            <label for="GastronomieUmsatz" class="fixwidth"> Gastronomie Umsatz</label>
+            <input type="checkbox" id="GastronomieUmsatz" name="GastronomieUmsatz" value="Bike" checked=true>
+          </span>
+          <span>
+            <span class="box red"></span>
+            <label for="Gastronomiebeschäftigte" class="fixwidth"> Gastronomie beschäftigte</label>
+            <input type="checkbox" id="Gastronomiebeschäftigte" name="Gastronomiebeschäftigte" value="Car" checked=true>
+          </span>
+        </div>
+
         </div>
 
              <svg id="chart"  width="1300" height="500"></svg>

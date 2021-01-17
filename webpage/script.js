@@ -31,36 +31,36 @@ $(document).ready(function($)  { // wait for document ready
         .addTo(controller);
 
 
-    //B.A checkbox events
+    // checkbox events
     $('#BeherbergungUmsatz').on('change', (event) => {
       if(!event.target.checked) {
-        $('.line.lineObjects.Beherbergung.Umsatz.1').css({'display': 'none'});
+        $('.line.lineObjects.Beherbergung.Umsatz').css({'display': 'none'});
       } else {
-        $('.line.lineObjects.Beherbergung.Umsatz.1').css({'display': 'block'});
+        $('.line.lineObjects.Beherbergung.Umsatz').css({'display': 'block'});
       }
     });
 
     $('#Beherbergungbeschäftigte').on('change', (event) => {
       if(!event.target.checked) {
-        $('.line.lineObjects.Beherbergung.Beschäftigte.1').css({'display': 'none'});
+        $('.line.lineObjects.Beherbergung.Beschäftigte').css({'display': 'none'});
       } else {
-        $('.line.lineObjects.Beherbergung.Beschäftigte.1').css({'display': 'block'});
+        $('.line.lineObjects.Beherbergung.Beschäftigte').css({'display': 'block'});
       }
     });
 
     $('#GastronomieUmsatz').on('change', (event) => {
       if(!event.target.checked) {
-        $('.line.lineObjects.Gastronomie.Umsatz.1').css({'display': 'none'});
+        $('.line.lineObjects.Gastronomie.Umsatz').css({'display': 'none'});
       } else {
-        $('.line.lineObjects.Gastronomie.Umsatz.1').css({'display': 'block'});
+        $('.line.lineObjects.Gastronomie.Umsatz').css({'display': 'block'});
       }
     });
 
     $('#Gastronomiebeschäftigte').on('change', (event) => {
       if(!event.target.checked) {
-        $('.line.lineObjects.Gastronomie.Beschäftigte.1').css({'display': 'none'});
+        $('.line.lineObjects.Gastronomie.Beschäftigte').css({'display': 'none'});
       } else {
-        $('.line.lineObjects.Gastronomie.Beschäftigte.1').css({'display': 'block'});
+        $('.line.lineObjects.Gastronomie.Beschäftigte').css({'display': 'block'});
       }
     });
 
