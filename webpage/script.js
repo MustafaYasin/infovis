@@ -77,6 +77,14 @@ $(document).ready(function($)  { // wait for document ready
  */
 function main(data){
     chart(data);
+
+    let massnahmen = [
+		{startDate : "01/01/2020", enddate: "06/05/2020", massnahme:"blablablablab"},
+		{startDate : "01/01/2020", enddate: "04/11/2020", massnahme:"blablablablab"},
+		{startDate : "11/01/2020", enddate: "11/11/2020", massnahme:"blablablablab"}
+	];
+    ganttChart(massnahmen);
+
 }
 
 
@@ -109,9 +117,9 @@ function chart(data) {
 		return d;
 	})
 
-	var svg = d3.select("#chart"),
+	let svg = d3.select("#chart"),
 		margin = {top: 15, right: 35, bottom: 15, left: 35},
-		width = +svg.attr("width") - margin.left - margin.right,
+		width= svg.attr("width") - margin.left - margin.right,
 		height = +svg.attr("height") - margin.top - margin.bottom;
 
 	var x = d3.scaleTime()
@@ -139,12 +147,12 @@ function chart(data) {
 		.attr("class", "y-axis")
 		.attr("transform", "translate(" + margin.left + ",0)");
 
-    //defining the focus
+    //defining the focus to enable hover text & animation in line chart
 	var focus = svg.append("g")
 		.attr("class", "focus")
 		.style("display", "none");
 
-    //focus line
+    //focus line to generate
 	focus.append("line").attr("class", "lineHover")
 		.style("stroke", "#999")
 		.attr("stroke-width", 1)
@@ -257,6 +265,53 @@ function chart(data) {
 		reorderGanttBars(d.date);
     }
 }
+
+function ganttChart(massnahmen){
+	massnahmen.forEach((value, key, map) =>{
+		console.log(value.startDate);
+
+		drawBar(key, value);
+	})
+
+
+
+}
+
+function drawBar(key, value){
+	const canvas = document.querySelector('#canvas');
+
+	if (!canvas.getContext) {
+		return;
+	}
+	const ctx = canvas.getContext('2d');
+
+	// set line stroke and line width
+	ctx.strokeStyle = 'red';
+	ctx.lineWidth = 16;
+	ctx.font = "8px Arial";
+	ctx.fillStyle = "white";
+
+
+	// draw a red line
+	ctx.beginPath();
+
+	let startdate = new Date(value.startDate);
+	let enddate = new Date(value.enddate);
+	ctx.moveTo(positionFromDate(startdate), key*20);
+	ctx.lineTo(positionFromDate(enddate), key*20);
+	ctx.stroke();
+	ctx.fillText(value.massnahme, 0, key*20);
+
+}
+
+function positionFromDate(date){
+	let position = 0;
+	position = (1177/365) * (date.getDate() + ((date.getMonth())*30));
+	console.log("getday " + date.getDate()+"getMonth:"+ date.getMonth() + "position " + position);
+	return position
+}
+
+
 
 new jBox('Tooltip', {
 	attach: '.tooltip',

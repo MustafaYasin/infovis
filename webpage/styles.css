@@ -142,7 +142,7 @@ display: inline-block;
     background-color: #121212;
     text-align:center;
 }
-.chart{
+#chart{
     margin-top: 10px;
     margin-left:auto;
     margin-right:auto;
@@ -168,10 +168,10 @@ Positioning from Top: 1 Position = 18px*/
 .ganttLine{
     position: absolute;
     height: 12px;
+    /* 1177px Breite der Timeline vom Chart */
     width: var(--ganttChart-width);
     left:0;
-}
-.Line1{
+}.Line1{
     top:calc(18px*0);
 }
 .Line2{
