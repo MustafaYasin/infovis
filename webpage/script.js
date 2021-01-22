@@ -2,7 +2,29 @@
 var h = $(window).innerHeight();
 var w = $(window).innerWidth();
 
+let massnahmen = [
+	['maßnahme 1', 'Stop von Konzerten und Sportveranstaltungen', 'Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein. Die Fußball-Bundesliga pausiert',
+		new Date(2020, 2, 12), new Date(2020, 5, 16), null, 100, null],
+	['maßnahme 2', 'Reiseeinschränkung', 'In den meisten Bundesländern sind Schulen und Kitas geschlossen',
+		new Date(2020, 2, 16), new Date(2020, 5, 16), null, 100, null],
+	['maßnahme 3', '1. Lockdown', 'Verbot von Ansammlungen von mehr als zwei Menschen. Ausgenommen sind Angehörige, die im eigenen Haushalt leben. Cafés, Kneipen, Restaurants, aber auch Friseure zum Beispiel schließen',
+		new Date(2020, 2, 22), new Date(2020, 5, 11), null, 100, null],
+	['maßnahme 4', 'Schule schließt', 'Schule schließt',
+		new Date(2020, 2, 22), new Date(2020, 4, 15), null, 100, null],
+	['maßnahme 5', 'Maskenpflicht für alle Bundesländer', 'Maskenpflicht für alle Bundesländer',
+		new Date(2020, 3, 22), new Date(2020, 12, 31), null, 100, null],
+	['maßnahme 6', 'Reiseeinschränkung', 'Einreisende aus internationalen Risikogebieten müssen sich bei der Rückkehr nach Deutschland testen lassen',
+		new Date(2020, 7, 8), new Date(2020, 12, 31), null, 100, null],
+	['maßnahme 7', 'Beherbergungsverbot', 'Die Bundesländer beschließen ein Beherbergungsverbot für Urlauber aus inländischen Risikogebieten. Die Zahl der Neuinfektionen ist auf mehr als 4000 binnen eines Tages gestiegen',
+		new Date(2020, 9, 7), new Date(2020, 12, 31), null, 100, null],
+	['maßnahme 8', 'Beherbergungsverbot', 'Beherbergungsverbot bei Inzididenz > 50',
+		new Date(2020, 9, 14), new Date(2020, 12, 31), null, 100, null],
+	['maßnahme 9', 'Lockdown light', 'Lockdown light, Gastronomie schließt',
+		new Date(2020, 10, 2), new Date(2020, 12, 31), null, 100, null],
+	['2020', '2020', '2020',
+		new Date(2020, 0, 0), new Date(2020, 12, 31), null, 100, null],
 
+]
 /*
 scrollmagic:
  - makes headline disappear on scroll
@@ -77,13 +99,8 @@ $(document).ready(function($)  { // wait for document ready
  */
 function main(data){
     chart(data);
-
-    let massnahmen = [
-		{startDate : "01/01/2020", enddate: "06/05/2020", massnahme:"blablablablab"},
-		{startDate : "01/01/2020", enddate: "04/11/2020", massnahme:"blablablablab"},
-		{startDate : "11/01/2020", enddate: "11/11/2020", massnahme:"blablablablab"}
-	];
-    ganttChart(massnahmen);
+	google.charts.load('current', {'packages':['gantt']});
+	google.charts.setOnLoadCallback(drawChart);
 
 }
 
@@ -308,9 +325,64 @@ function positionFromDate(date){
 	let position = 0;
 	position = (1177/365) * (date.getDate() + ((date.getMonth())*30));
 	console.log("getday " + date.getDate()+"getMonth:"+ date.getMonth() + "position " + position);
-	return position
+	return position;
 }
 
+function fillGanttChart(massnahmen){
+	const data = new google.visualization.DataTable();
+	data.addColumn('string', 'Task ID');
+	data.addColumn('string', 'Task Name');
+	data.addColumn('string', 'Resource');
+	data.addColumn('date', 'Start Date');
+	data.addColumn('date', 'End Date');
+	data.addColumn('number', 'Duration');
+	data.addColumn('number', 'Percent Complete');
+	data.addColumn('string', 'Dependencies');
+	// data.addColumn({type: 'string', role: 'tooltip'});
+
+
+	data.addRows(massnahmen);
+	return data;
+}
+
+function drawChart() {
+
+
+    var options = {
+        height: 275,
+        width:1177,
+		backgroundColor: {fill: '#121212'},
+		labelStyle: {
+			fontName: "Roboto",
+			fontSize: 14,
+			color: '#757575'
+		},
+        gantt: {
+            criticalPathEnabled: false,
+            sortTasks: false,
+			trackHeight: 19,
+			barHeight: 17,
+			percentEnabled: false,
+			labelMaxWidth: 1,
+			defaultStartDate: (new Date(2020, 0, 0))
+			// backgroundColor: "black",
+            /*innerGridHorizLine: {
+                stroke: '#ffe0b2',
+                strokeWidth: 2
+            }, */
+            //innerGridTrack: {fill: '#fff3e0'},
+            //innerGridDarkTrack: {fill: '#ffcc80'},
+            // backgroundColor: {fill: 'black'}
+
+        },
+		tooltip: {isHtml: true}
+    };
+
+    let chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+
+    console.log("draw chart")
+    chart.draw(fillGanttChart(massnahmen), options);
+}
 
 
 new jBox('Tooltip', {
@@ -332,214 +404,74 @@ function position(posNumber){
 // TODO: refactor gantt chart to include start and end month & implement method to reposition and assign color depending on month
 function reorderGanttBars(month){
 	if (month.toString().includes("Mar") ){
-		document.getElementById("bar1").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar2").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar3").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar4").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar5").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar6").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse1").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse2").style.top = position(3);
-		document.getElementById("demo-tooltip-mouse3").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(5);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
-	}  else if (month.toString().includes("Apr")){
-		document.getElementById("bar1").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar2").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar3").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar4").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar5").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar6").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse1").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse2").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse3").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(5);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
+		console.log("reorder");
+		if(
+massnahmen === [
+	['maßnahme 2', 'Reiseeinschränkung', 'Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und der Schweiz gibt es Kontrollen und Einreiseverbote. In den meisten Bundesländern sind Schulen und Kitas geschlossen',
+		new Date(2020, 2, 16), new Date(2020, 5, 16), null, 100, null],
+	['maßnahme 1', 'Stop von Konzerten und Sportveranstaltungen', 'Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein. Die Fußball-Bundesliga pausiert',
+		new Date(2020, 2, 12), new Date(2020, 5, 16), null, 100, null],
+	['maßnahme 3', '1. Lockdown', 'Verbot von Ansammlungen von mehr als zwei Menschen. Ausgenommen sind Angehörige, die im eigenen Haushalt leben. Cafés, Kneipen, Restaurants, aber auch Friseure zum Beispiel schließen',
+		new Date(2020, 2, 22), new Date(2020, 5, 11), null, 100, null],
+	['maßnahme 4', 'Schule schließt', 'Schule schließt',
+		new Date(2020, 2, 22), new Date(2020, 4, 15), null, 100, null],
+	['maßnahme 5', 'Maskenpflicht für alle Bundesländer', 'Maskenpflicht für alle Bundesländer',
+		new Date(2020, 3, 22), new Date(2020, 12, 31), null, 100, null],
+	['maßnahme 6', 'Reiseeinschränkung', 'Einreisende aus internationalen Risikogebieten müssen sich bei der Rückkehr nach Deutschland testen lassen',
+		new Date(2020, 7, 8), new Date(2020, 12, 31), null, 100, null],
+	['maßnahme 7', 'Beherbergungsverbot', 'Die Bundesländer beschließen ein Beherbergungsverbot für Urlauber aus inländischen Risikogebieten. Die Zahl der Neuinfektionen ist auf mehr als 4000 binnen eines Tages gestiegen',
+		new Date(2020, 9, 7), new Date(2020, 12, 31), null, 100, null],
+	['maßnahme 8', 'Beherbergungsverbot', 'Beherbergungsverbot bei Inzididenz > 50',
+		new Date(2020, 9, 14), new Date(2020, 12, 31), null, 100, null],
+	['maßnahme 9', 'Lockdown light', 'Lockdown light, Gastronomie schließt',
+		new Date(2020, 10, 2), new Date(2020, 12, 31), null, 100, null],
+	['2020', '2020', '2020',
+		new Date(2020, 0, 0), new Date(2020, 12, 31), null, 100, null],
+
+]){return}else {
+			massnahmen = [
+				['maßnahme 2', 'Reiseeinschränkung', 'Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und der Schweiz gibt es Kontrollen und Einreiseverbote. In den meisten Bundesländern sind Schulen und Kitas geschlossen',
+					new Date(2020, 2, 16), new Date(2020, 5, 16), null, 100, null],
+				['maßnahme 1', 'Stop von Konzerten und Sportveranstaltungen', 'Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein. Die Fußball-Bundesliga pausiert',
+					new Date(2020, 2, 12), new Date(2020, 5, 16), null, 100, null],
+				['maßnahme 3', '1. Lockdown', 'Verbot von Ansammlungen von mehr als zwei Menschen. Ausgenommen sind Angehörige, die im eigenen Haushalt leben. Cafés, Kneipen, Restaurants, aber auch Friseure zum Beispiel schließen',
+					new Date(2020, 2, 22), new Date(2020, 5, 11), null, 100, null],
+				['maßnahme 4', 'Schule schließt', 'Schule schließt',
+					new Date(2020, 2, 22), new Date(2020, 4, 15), null, 100, null],
+				['maßnahme 5', 'Maskenpflicht für alle Bundesländer', 'Maskenpflicht für alle Bundesländer',
+					new Date(2020, 3, 22), new Date(2020, 12, 31), null, 100, null],
+				['maßnahme 6', 'Reiseeinschränkung', 'Einreisende aus internationalen Risikogebieten müssen sich bei der Rückkehr nach Deutschland testen lassen',
+					new Date(2020, 7, 8), new Date(2020, 12, 31), null, 100, null],
+				['maßnahme 7', 'Beherbergungsverbot', 'Die Bundesländer beschließen ein Beherbergungsverbot für Urlauber aus inländischen Risikogebieten. Die Zahl der Neuinfektionen ist auf mehr als 4000 binnen eines Tages gestiegen',
+					new Date(2020, 9, 7), new Date(2020, 12, 31), null, 100, null],
+				['maßnahme 8', 'Beherbergungsverbot', 'Beherbergungsverbot bei Inzididenz > 50',
+					new Date(2020, 9, 14), new Date(2020, 12, 31), null, 100, null],
+				['maßnahme 9', 'Lockdown light', 'Lockdown light, Gastronomie schließt',
+					new Date(2020, 10, 2), new Date(2020, 12, 31), null, 100, null],
+				['2020', '2020', '2020',
+					new Date(2020, 0, 0), new Date(2020, 12, 31), null, 100, null],
+
+			]
+		drawChart();
+		}}  else if (month.toString().includes("Apr")){
+
 	}else if (month.toString().includes("May")){
-		document.getElementById("bar1").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar2").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar3").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar4").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar5").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar6").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse1").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse2").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse3").style.top = position(5);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
 	}else if (month.toString().includes("Jun")){
-		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar3").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar4").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar5").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar6").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse1").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse2").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse3").style.top = position(5);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
+
 	}else if (month.toString().includes("Jul")){
-		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar3").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar4").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar5").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar6").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse1").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse2").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse3").style.top = position(5);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
+
 	}else if (month.toString().includes("Aug")){
-		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar3").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar4").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar5").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar6").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse1").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse2").style.top = position(5);
-		document.getElementById("demo-tooltip-mouse3").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
+
 	}else if (month.toString().includes("Sep")){
-		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar3").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar4").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar5").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar6").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse1").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse2").style.top = position(5);
-		document.getElementById("demo-tooltip-mouse3").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
+
 	}else if (month.toString().includes("Oct")){
-		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar3").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar4").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar5").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar6").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar7").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar8").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = position(5);
-		document.getElementById("demo-tooltip-mouse1").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse2").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse3").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse7").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
+
 	}else if (month.toString().includes("Nov")){
-		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar3").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar4").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar5").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar6").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar7").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar8").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar9").style.backgroundColor = "#70F0DE";
-		document.getElementById("demo-tooltip-mouse").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse1").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse2").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse3").style.top = position(9);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse7").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(5);
+
 	}else if (month.toString().includes("Dec")){
-		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar3").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar4").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar5").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar6").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar7").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar8").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar9").style.backgroundColor = "#70F0DE";
-		document.getElementById("demo-tooltip-mouse").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse1").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse2").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse3").style.top = position(9);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse7").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(5);
+
 	}else{
-		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar3").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar4").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar5").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar6").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar8").style.backgroundColor = "#808080";
-		document.getElementById("bar9").style.backgroundColor = "#808080";
-		document.getElementById("demo-tooltip-mouse").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse1").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse2").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse3").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(5);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
+
 	}
 }
 
