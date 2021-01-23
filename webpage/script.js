@@ -4,7 +4,7 @@ var w = $(window).innerWidth();
 
 let massnahmen = [
 	{startDate : "01/01/2020", enddate: "11/31/2020", massnahme:"Massnahme 1"},
-	{startDate : "03/03/2020", enddate: "11/04/2020", massnahme:"Massnahme 2"},
+	{startDate : "03/03/2020", enddate: "10/04/2020", massnahme:"Massnahme 2"},
 	{startDate : "11/01/2020", enddate: "11/11/2020", massnahme:"Massnahme 3"}
 ];
 
@@ -399,7 +399,8 @@ function reorderGanttBars(month) {
 	if (month.toString().includes("Dec")) {
 		orderMassnahmeToMonth(12);}
 	else{
-		orderMassnahmeToMonth(0);}
+		//orderMassnahmeToMonth(0);
+		}
 }
 
 function orderMassnahmeToMonth(month){
@@ -407,10 +408,10 @@ function orderMassnahmeToMonth(month){
 	let key2 = 1;
 	massnahmen.forEach((value, key) => {
 		console.log("massnahmen for each " + key);
-	let startMonth = new Date(value.startDate).getMonth();
-	let endMonth = new Date(value.enddate).getMonth();
+	let startMonth = new Date(value.startDate).getMonth() + 1;
+	let endMonth = new Date(value.enddate).getMonth() +1;
 		console.log("in massnahme to month" + month + "start " + startMonth + "end " + endMonth);
-	if (startMonth+1 <= month && endMonth+1 >= month ){
+	if (startMonth <= month && endMonth >= month ){
 		console.log("im if order " + key + key2)
 		if(key+1!=key2){
 			swapPosition(key2,(key+1));
@@ -419,9 +420,15 @@ function orderMassnahmeToMonth(month){
 		key2++;
 
 	}
-	else if(startMonth+1 > month && endMonth+1 < month){
+	else if(startMonth >= month || endMonth <= month){
 		changeColorofBar(key+1, false);
-		swapPosition(key+1,key+1);
+		if (key2<=key){
+			swapPosition(key+1,key+1);
+		} else {
+			swapPosition(key+1, key2+1)
+			key2++;
+		}
+
 
 	}
 	else if(endMonth+1 < month){
