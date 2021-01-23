@@ -2,6 +2,12 @@
 var h = $(window).innerHeight();
 var w = $(window).innerWidth();
 
+let massnahmen = [
+	{startDate : "01/01/2020", enddate: "11/31/2020", massnahme:"Massnahme 1"},
+	{startDate : "03/03/2020", enddate: "04/11/2020", massnahme:"Massnahme 2"},
+	{startDate : "11/01/2020", enddate: "11/11/2020", massnahme:"Massnahme 3"}
+];
+
 
 /*
 scrollmagic:
@@ -78,11 +84,7 @@ $(document).ready(function($)  { // wait for document ready
 function main(data){
     chart(data);
 
-    let massnahmen = [
-		{startDate : "01/01/2020", enddate: "06/05/2020", massnahme:"blablablablab"},
-		{startDate : "01/01/2020", enddate: "04/11/2020", massnahme:"blablablablab"},
-		{startDate : "11/01/2020", enddate: "11/11/2020", massnahme:"blablablablab"}
-	];
+
     ganttChart(massnahmen);
 
 }
@@ -262,7 +264,7 @@ function chart(data) {
 				.attr("dx", 10)
 
         //reorders Gantt bars depending on the mouse position
-		reorderGanttBars(d.date);
+		reorderGanttBars(d.date, massnahmen);
     }
 }
 
@@ -278,36 +280,59 @@ function ganttChart(massnahmen){
 }
 
 function drawBar(key, value){
-	const canvas = document.querySelector('#canvas');
 
-	if (!canvas.getContext) {
-		return;
-	}
-	const ctx = canvas.getContext('2d');
+	let divLine = document.createElement("div");
+	divLine.className = "ganttLine Line"+(key+1);
+	divLine.id = "demo-tooltip-mouse" +key;
+	divLine.style.top = (18*key)+"px";
 
-	// set line stroke and line width
-	ctx.strokeStyle = 'red';
-	ctx.lineWidth = 16;
-	ctx.font = "8px Arial";
-	ctx.fillStyle = "white";
+	let titleSpan = document.createElement("span");
+	titleSpan.className = "ganttTitle gTitle"+(key+1)+" unselectable"
+	titleSpan.innerHTML = "" + value.massnahme;
 
-
-	// draw a red line
-	ctx.beginPath();
-
+	let div = document.createElement("div");
 	let startdate = new Date(value.startDate);
 	let enddate = new Date(value.enddate);
-	ctx.moveTo(positionFromDate(startdate), key*20);
-	ctx.lineTo(positionFromDate(enddate), key*20);
-	ctx.stroke();
-	ctx.fillText(value.massnahme, 0, key*20);
 
+	div.className = "barElement bar"+(key+1);
+	div.id = "bar"+(key+1);
+	div.style.width = ""+widthFromDate(startdate, enddate)+"px";
+	div.style.left = ""+widthFromDate(new Date(2020,1,1),startdate)+"px";
+	titleSpan.style.left = widthFromDate(new Date(2020,1,1),startdate) - 80 +"px"
+
+
+	document.getElementById("ganttContainer").appendChild(divLine);
+	document.getElementById("demo-tooltip-mouse"+key).appendChild(titleSpan);
+	document.getElementById("demo-tooltip-mouse"+key).appendChild(div);
+
+
+	$('#demo-tooltip-above').jBox('Tooltip', {
+		theme: 'TooltipDark'
+	});
+
+	$('#demo-tooltip-mouse'+(key)).jBox('Mouse', {
+		theme: 'TooltipDark',
+		content: '<b> Zeitraum: ' + value.startDate + '-' +  value.enddate + '<br> Massnahmen: ' + value.massnahme +'! </b>'
+	});
 }
 
-function positionFromDate(date){
+function widthFromDate(startdate, enddate){
+	let tage = enddate - startdate;
+	// time difference
+	let timeDiff = Math.abs(enddate.getTime() - startdate.getTime());
+
+	// days difference
+	let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+	let width = diffDays * (1177/365);
+	// position = (1177/365) * (date.getDate() + ((date.getMonth())*30));
+	// console.log("getday " + date.getDate()+"getMonth:"+ date.getMonth() + "position " + position);
+	console.log("tage " + diffDays);
+	return width
+}
+function positionFromDate(startdate){
 	let position = 0;
-	position = (1177/365) * (date.getDate() + ((date.getMonth())*30));
-	console.log("getday " + date.getDate()+"getMonth:"+ date.getMonth() + "position " + position);
+	position = ((1177/365) * (startdate.getTime() / (1000 * 3600 * 24)));
+	console.log("posfromdate " + (startdate.getTime() / (1000 * 3600 * 24)));
 	return position
 }
 
@@ -327,262 +352,70 @@ function position(posNumber){
 	return position;
 
 }
+function swapPosition(pos1,pos2){
+	console.log("in swap position" + pos1 + pos2)
+	document.getElementById("demo-tooltip-mouse"+(pos1-1)).style.top = position(pos2);
+	document.getElementById("demo-tooltip-mouse"+(pos2-1)).style.top = position(pos1);
+	changeColorofBar(pos2, true);
 
-// function to reorder gantt bars according to which month in the line chart is highlighted
-// TODO: refactor gantt chart to include start and end month & implement method to reposition and assign color depending on month
-function reorderGanttBars(month){
-	if (month.toString().includes("Mar") ){
-		document.getElementById("bar1").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar2").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar3").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar4").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar5").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar6").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse1").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse2").style.top = position(3);
-		document.getElementById("demo-tooltip-mouse3").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(5);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
-	}  else if (month.toString().includes("Apr")){
-		document.getElementById("bar1").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar2").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar3").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar4").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar5").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar6").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse1").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse2").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse3").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(5);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
-	}else if (month.toString().includes("May")){
-		document.getElementById("bar1").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar2").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar3").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar4").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar5").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar6").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse1").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse2").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse3").style.top = position(5);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
-	}else if (month.toString().includes("Jun")){
-		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar3").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar4").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar5").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar6").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse1").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse2").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse3").style.top = position(5);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
-	}else if (month.toString().includes("Jul")){
-		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar3").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar4").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar5").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar6").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse1").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse2").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse3").style.top = position(5);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
-	}else if (month.toString().includes("Aug")){
-		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar3").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar4").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar5").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar6").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse1").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse2").style.top = position(5);
-		document.getElementById("demo-tooltip-mouse3").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
-	}else if (month.toString().includes("Sep")){
-		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar3").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar4").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar5").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar6").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar8").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse1").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse2").style.top = position(5);
-		document.getElementById("demo-tooltip-mouse3").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
-	}else if (month.toString().includes("Oct")){
-		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar3").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar4").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar5").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar6").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar7").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar8").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar9").style.backgroundColor = "#7E7E7E";
-		document.getElementById("demo-tooltip-mouse").style.top = position(5);
-		document.getElementById("demo-tooltip-mouse1").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse2").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse3").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse7").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
-	}else if (month.toString().includes("Nov")){
-		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar3").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar4").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar5").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar6").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar7").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar8").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar9").style.backgroundColor = "#70F0DE";
-		document.getElementById("demo-tooltip-mouse").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse1").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse2").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse3").style.top = position(9);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse7").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(5);
-	}else if (month.toString().includes("Dec")){
-		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar3").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar4").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar5").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar6").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar7").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar8").style.backgroundColor = "#70F0DE";
-		document.getElementById("bar9").style.backgroundColor = "#70F0DE";
-		document.getElementById("demo-tooltip-mouse").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse1").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse2").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse3").style.top = position(9);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse7").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(5);
-	}else{
-		document.getElementById("bar1").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar2").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar3").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar4").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar5").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar6").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar7").style.backgroundColor = "#7E7E7E";
-		document.getElementById("bar8").style.backgroundColor = "#808080";
-		document.getElementById("bar9").style.backgroundColor = "#808080";
-		document.getElementById("demo-tooltip-mouse").style.top = position(1);
-		document.getElementById("demo-tooltip-mouse1").style.top = position(2);
-		document.getElementById("demo-tooltip-mouse2").style.top = position(3)
-		document.getElementById("demo-tooltip-mouse3").style.top = position(4);
-		document.getElementById("demo-tooltip-mouse4").style.top = position(5);
-		document.getElementById("demo-tooltip-mouse5").style.top = position(6);
-		document.getElementById("demo-tooltip-mouse6").style.top = position(7);
-		document.getElementById("demo-tooltip-mouse7").style.top = position(8);
-		document.getElementById("demo-tooltip-mouse8").style.top = position(9);
-	}
 }
 
-$(document).ready(function() {
-$('#demo-tooltip-above').jBox('Tooltip', {
-	theme: 'TooltipDark'
-});
+function changeColorofBar(bar, active) {
+	console.log("in bAR " + bar);
 
-	$('#demo-tooltip-mouse').jBox('Mouse', {
-		theme: 'TooltipDark',
-		content: '<b> Zeitraum: 12.03.2020 - 16.05.2020 <br> Massnahmen: Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein. Die Fußball-Bundesliga pausiert! </b>'
-	});
+	if (active) {
+		document.getElementById("bar" + bar).style.backgroundColor = "#70F0DE";
+	} else{
+		console.log("not active");
+		document.getElementById("bar" + bar).style.backgroundColor = "#7E7E7E";
+	}
+}
+// function to reorder gantt bars according to which month in the line chart is highlighted
+// TODO: refactor gantt chart to include start and end month & implement method to reposition and assign color depending on month
+function reorderGanttBars(month, massnahmen) {
+	console.log("month " + (month));
+	if (month.toString().includes("Mar")) {
+		orderMassnahmeToMonth(3);}
+	if (month.toString().includes("Apr")) {
+		orderMassnahmeToMonth(4);}
+	if (month.toString().includes("Mar")) {
+		orderMassnahmeToMonth(5);}
+	if (month.toString().includes("Jun")) {
+		orderMassnahmeToMonth(6);}
+	if (month.toString().includes("Jul")) {
+		orderMassnahmeToMonth(7);}
+	if (month.toString().includes("Aug")) {
+		orderMassnahmeToMonth(8);}
+	if (month.toString().includes("Sep")) {
+		orderMassnahmeToMonth(9);}
+	if (month.toString().includes("Okt")) {
+		orderMassnahmeToMonth(10);}
+	if (month.toString().includes("Nov")) {
+		orderMassnahmeToMonth(11);}
+	if (month.toString().includes("Dec")) {
+		orderMassnahmeToMonth(12);}
+	else{
+		orderMassnahmeToMonth(0);}
+}
 
-	$('#demo-tooltip-mouse1').jBox('Mouse', {
-		theme: 'TooltipDark',
-		content: '<b> Zeitraum: 16.03.2020 - 16.05.2020 <br> Massnahmen: Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und der Schweiz gibt es Kontrollen und Einreiseverbote. In den meisten Bundesländern sind Schulen und Kitas geschlossen! </b>'
-	});
-	$('#demo-tooltip-mouse2').jBox('Mouse', {
-		theme: 'TooltipDark',
-		content: '<b> Zeitraum: 22.03.2020 - 11.05.2020 <br> Massnahmen: Verbot von Ansammlungen von mehr als zwei Menschen. Ausgenommen sind Angehörige, die im eigenen Haushalt leben. Cafés, Kneipen, Restaurants, aber auch Friseure zum Beispiel schließen! </b>'
-	});
-	$('#demo-tooltip-mouse3').jBox('Mouse', {
-		theme: 'TooltipDark',
-		content: '<b> Zeitraum: 22.03.2020 - 15.04.2020 <br> Massnahmen: Schulen müssen geschlossen werden! </b>'
-	});
-	$('#demo-tooltip-mouse4').jBox('Mouse', {
-		theme: 'TooltipDark',
-		content: '<b> Zeitraum: 22.04.2020 - 31.12.2020 <br> Massnahmen: Maskenpflicht für alle Bundesländer! </b>'
-	});
-	$('#demo-tooltip-mouse5').jBox('Mouse', {
-		theme: 'TooltipDark',
-		content: '<b> Zeitraum: 08.08.2020 - 31.12.2020 <br> Massnahmen: Einreisende aus internationalen Risikogebieten müssen sich bei der Rückkehr nach Deutschland testen lassen! </b>'
-	});
-	$('#demo-tooltip-mouse6').jBox('Mouse', {
-		theme: 'TooltipDark',
-		content: '<b> Zeitraum: 10.07.2020 - 31.12.2020 <br> Massnahmen: Die Bundesländer beschließen ein Beherbergungsverbot für Urlauber aus inländischen Risikogebieten. Die Zahl der Neuinfektionen ist auf mehr als 4000 binnen eines Tages gestiegen! </b>'
-	});
-	$('#demo-tooltip-mouse7').jBox('Mouse', {
-		theme: 'TooltipDark',
-		content: '<b> Zeitraum: 14.10.2020 - 31.12.2020 <br> Massnahmen: Beherbergungsverbot bei Inzididenz > 50! </b>'
-	});
-	$('#demo-tooltip-mouse8').jBox('Mouse', {
-		theme: 'TooltipDark',
-		content: '<b> Zeitraum: 02.11.2020 - 31.12.2020 <br> Massnahmen: Lockdown light, Gastronomie schließt! </b>'
-	});
-});
+function orderMassnahmeToMonth(month){
+	console.log("in massnahme to month" + month)
+	let key2 = 1;
+	massnahmen.forEach((value, key) => {
+		console.log("massnahmen for each " + key);
+	let startMonth = new Date(value.startDate).getMonth();
+	let endMonth = new Date(value.enddate).getMonth();
+	if (startMonth <= month-1 && endMonth >= month-1){
+		console.log("im if order " + key + key2)
+		swapPosition(key2,(key+1));
+		key2++;
+		}
+	else{
+		changeColorofBar(key);
+	}
+
+	})
+}
+
+
+
