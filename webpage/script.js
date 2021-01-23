@@ -4,7 +4,7 @@ var w = $(window).innerWidth();
 
 let massnahmen = [
 	{startDate : "01/01/2020", enddate: "11/31/2020", massnahme:"Massnahme 1"},
-	{startDate : "03/03/2020", enddate: "04/11/2020", massnahme:"Massnahme 2"},
+	{startDate : "03/03/2020", enddate: "11/04/2020", massnahme:"Massnahme 2"},
 	{startDate : "11/01/2020", enddate: "11/11/2020", massnahme:"Massnahme 3"}
 ];
 
@@ -264,7 +264,7 @@ function chart(data) {
 				.attr("dx", 10)
 
         //reorders Gantt bars depending on the mouse position
-		reorderGanttBars(d.date, massnahmen);
+		reorderGanttBars(d.date);
     }
 }
 
@@ -293,12 +293,13 @@ function drawBar(key, value){
 	let div = document.createElement("div");
 	let startdate = new Date(value.startDate);
 	let enddate = new Date(value.enddate);
+	let startofyear = new Date(2020,0,0);
 
 	div.className = "barElement bar"+(key+1);
 	div.id = "bar"+(key+1);
 	div.style.width = ""+widthFromDate(startdate, enddate)+"px";
-	div.style.left = ""+widthFromDate(new Date(2020,1,1),startdate)+"px";
-	titleSpan.style.left = widthFromDate(new Date(2020,1,1),startdate) - 80 +"px"
+	div.style.left = ""+widthFromDate(startofyear,startdate)+"px";
+	titleSpan.style.left = widthFromDate(startofyear,startdate) - 80 +"px"
 
 
 	document.getElementById("ganttContainer").appendChild(divLine);
@@ -317,7 +318,6 @@ function drawBar(key, value){
 }
 
 function widthFromDate(startdate, enddate){
-	let tage = enddate - startdate;
 	// time difference
 	let timeDiff = Math.abs(enddate.getTime() - startdate.getTime());
 
@@ -326,7 +326,7 @@ function widthFromDate(startdate, enddate){
 	let width = diffDays * (1177/365);
 	// position = (1177/365) * (date.getDate() + ((date.getMonth())*30));
 	// console.log("getday " + date.getDate()+"getMonth:"+ date.getMonth() + "position " + position);
-	console.log("tage " + diffDays);
+	console.log("startdate " + startdate + "enddate "  + enddate + "tage " + diffDays +" " +  timeDiff);
 	return width
 }
 function positionFromDate(startdate){
@@ -356,7 +356,7 @@ function swapPosition(pos1,pos2){
 	console.log("in swap position" + pos1 + pos2)
 	document.getElementById("demo-tooltip-mouse"+(pos1-1)).style.top = position(pos2);
 	document.getElementById("demo-tooltip-mouse"+(pos2-1)).style.top = position(pos1);
-	changeColorofBar(pos2, true);
+	// changeColorofBar(pos2, true);
 
 }
 
@@ -372,8 +372,12 @@ function changeColorofBar(bar, active) {
 }
 // function to reorder gantt bars according to which month in the line chart is highlighted
 // TODO: refactor gantt chart to include start and end month & implement method to reposition and assign color depending on month
-function reorderGanttBars(month, massnahmen) {
+function reorderGanttBars(month) {
 	console.log("month " + (month));
+	if (month.toString().includes("Jan")) {
+		orderMassnahmeToMonth(1);}
+	if (month.toString().includes("Feb")) {
+		orderMassnahmeToMonth(2);}
 	if (month.toString().includes("Mar")) {
 		orderMassnahmeToMonth(3);}
 	if (month.toString().includes("Apr")) {
@@ -399,19 +403,31 @@ function reorderGanttBars(month, massnahmen) {
 }
 
 function orderMassnahmeToMonth(month){
-	console.log("in massnahme to month" + month)
+	// console.log("in massnahme to month" + month)
 	let key2 = 1;
 	massnahmen.forEach((value, key) => {
 		console.log("massnahmen for each " + key);
 	let startMonth = new Date(value.startDate).getMonth();
 	let endMonth = new Date(value.enddate).getMonth();
-	if (startMonth <= month-1 && endMonth >= month-1){
+		console.log("in massnahme to month" + month + "start " + startMonth + "end " + endMonth);
+	if (startMonth+1 <= month && endMonth+1 >= month ){
 		console.log("im if order " + key + key2)
-		swapPosition(key2,(key+1));
-		key2++;
+		if(key+1!=key2){
+			swapPosition(key2,(key+1));
 		}
-	else{
-		changeColorofBar(key);
+		changeColorofBar(key+1, true);
+		key2++;
+
+	}
+	else if(startMonth+1 > month && endMonth+1 < month){
+		changeColorofBar(key+1, false);
+		swapPosition(key+1,key+1);
+
+	}
+	else if(endMonth+1 < month){
+		// changeColorofBar(key+1, false);
+		// swapPosition(key+1,key+1);
+
 	}
 
 	})
