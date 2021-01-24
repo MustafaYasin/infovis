@@ -82,7 +82,8 @@ $(document).ready(function($)  { // wait for document ready
  * Runs all functions related to the D3 Line Chart
  */
 function main(data){
-    chart(data);
+	chart(data);
+	
 
 
     ganttChart(massnahmen);
@@ -370,6 +371,19 @@ function changeColorofBar(bar, active) {
 		document.getElementById("bar" + bar).style.backgroundColor = "#7E7E7E";
 	}
 }
+
+function readingFromFile(massnahmen){
+	
+	//show all stored data in json file
+	$.getJSON("massnahmen.json", function(json) {
+		console.log(json);
+	});
+}
+
+
+
+
+
 // function to reorder gantt bars according to which month in the line chart is highlighted
 // TODO: refactor gantt chart to include start and end month & implement method to reposition and assign color depending on month
 function reorderGanttBars(month) {
