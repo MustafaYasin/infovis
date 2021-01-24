@@ -1,4 +1,16 @@
-var json =[
+{ "json":[
+  {
+    "Startdatum": "3/12/2020",
+    "Enddatum": "5/16/2020",
+    "Maßnahmen": "Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein. Die Fußball-Bundesliga pausiert",
+    "Titel": "Die Fußball-Bundesliga pausiert."
+  },
+  {
+    "Startdatum": "3/16/2020",
+    "Enddatum": "5/16/2020",
+    "Maßnahmen": "Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und der Schweiz gibt es Kontrollen und Einreiseverbote. In den meisten Bundesländern sind Schulen und Kitas geschlossen",
+    "Titel": "Reiseeinschränkung"
+  },
   {
     "Startdatum": "3/12/2020",
     "Enddatum": "5/16/2020",
@@ -109,4 +121,4 @@ var json =[
     "name": "Lockdown \"light"
   }
   
-  ]
+  ]}
