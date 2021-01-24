@@ -403,7 +403,7 @@ function changeColorofBar(bar, active) {
 }
 
 function readJson() {
-  var json = require("massnahmen.json");
+  let json = require("massnahmen.json");
 //   //show all stored data in json file
 //   $.getJSON("massnahmen.json", function (json) {
 //     console.log(json);
