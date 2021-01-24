@@ -70,7 +70,7 @@
     "actualStart": "Date.UTC(2020,3,12)",
     "actualEnd": "Date.UTC(2020,5,16)",
     "massnahmen": "Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein. Die Fußball-Bundesliga pausiert",
-    "name": "Stop von Konzerten und Sportveranstaltungen",
+    "name": "Stop von Konzerten und Sportveranstaltungen"
   },
   {
     "actualStart": "Date.UTC(2020, 3, 16)",

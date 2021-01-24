@@ -2,12 +2,18 @@
 var h = $(window).innerHeight();
 var w = $(window).innerWidth();
 
-let massnahmen = [
-  { startDate: "01/01/2020", enddate: "11/31/2020", massnahme: "Massnahme 1" },
-  { startDate: "03/03/2020", enddate: "10/04/2020", massnahme: "Massnahme 2" },
-  { startDate: "11/01/2020", enddate: "11/11/2020", massnahme: "Massnahme 3" },
-];
 
+const data = json.map((item) => {
+  let dataMap = new Map();
+  dataMap["Startdatum"] = item.Startdatum;
+  dataMap["Enddatum"] = item.Startdatum;
+  dataMap["Maßnahmen"] = item.Startdatum;
+  dataMap["Titel"] = item.Startdatum;
+
+  return dataMap;
+});
+
+console.log(data);
 /*
 scrollmagic:
  - makes headline disappear on scroll
@@ -88,7 +94,7 @@ $(document).ready(function ($) {
  */
 function main(data) {
   chart(data);
-  readJson();
+
   ganttChart(massnahmen);
 }
 
@@ -401,20 +407,6 @@ function changeColorofBar(bar, active) {
     document.getElementById("bar" + bar).style.backgroundColor = "#7E7E7E";
   }
 }
-
-function readJson() {
-  let json = require("massnahmen.json");
-//   //show all stored data in json file
-//   $.getJSON("massnahmen.json", function (json) {
-//     console.log(json);
-//   });
-  for (var i = 0; i < json.length; i++) {
-    var obj = json[i];
-
-    console.log(obj.id);
-  }
-}
-
 // function to reorder gantt bars according to which month in the line chart is highlighted
 // TODO: refactor gantt chart to include start and end month & implement method to reposition and assign color depending on month
 function reorderGanttBars(month) {
