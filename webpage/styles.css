@@ -1,6 +1,6 @@
 /* JL: Variables used */
 :root{
-    --ganttChart-width: 75vw;
+    --ganttChart-width: 1160px;
     --offsetLeft: 9vw;
 }
 /* JL: Use full window size without any margin */
@@ -151,17 +151,7 @@ display: inline-block;
 }
 
 /* JL: Container of the gantt chart */
-.ganttContainer{
-    position: relative;
-    height: 20vh;
-    width: var(--ganttChart-width);
-    background-color: transparent;
-    margin-left:auto;
-    margin-right:auto;
-    display:block;
-    align-self: center;
 
-}
 
 /* JL: Single Line in Gantt Chart
 Positioning from Top: 1 Position = 18px*/
@@ -208,7 +198,7 @@ Positioning from Top: 1 Position = 18px*/
 }
 
 #ganttContainer {
-    padding: 30px 15px;
+    padding: 30px 50px;
     position: relative;
     height: 20vh;
     width: 1160px;

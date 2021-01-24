@@ -3,7 +3,7 @@ var h = $(window).innerHeight();
 var w = $(window).innerWidth();
 
 let massnahmen = [
-	{startDate : "01/01/2020", enddate: "11/31/2020", massnahme:"Massnahme 1"},
+	{startDate : "01/01/2020", enddate: "12/31/2020", massnahme:"Massnahme 1"},
 	{startDate : "03/03/2020", enddate: "10/04/2020", massnahme:"Massnahme 2"},
 	{startDate : "11/01/2020", enddate: "11/11/2020", massnahme:"Massnahme 3"}
 ];
@@ -323,7 +323,7 @@ function widthFromDate(startdate, enddate){
 
 	// days difference
 	let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-	let width = diffDays * (1177/365);
+	let width = diffDays * (1160/365);
 	// position = (1177/365) * (date.getDate() + ((date.getMonth())*30));
 	// console.log("getday " + date.getDate()+"getMonth:"+ date.getMonth() + "position " + position);
 	console.log("startdate " + startdate + "enddate "  + enddate + "tage " + diffDays +" " +  timeDiff);
@@ -331,7 +331,7 @@ function widthFromDate(startdate, enddate){
 }
 function positionFromDate(startdate){
 	let position = 0;
-	position = ((1177/365) * (startdate.getTime() / (1000 * 3600 * 24)));
+	position = ((1160/365) * (startdate.getTime() / (1000 * 3600 * 24)));
 	console.log("posfromdate " + (startdate.getTime() / (1000 * 3600 * 24)));
 	return position
 }
