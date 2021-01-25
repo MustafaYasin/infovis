@@ -2,19 +2,41 @@
 var h = $(window).innerHeight();
 var w = $(window).innerWidth();
 
-const json = require(/home/mustafa/Documents/uni/master/infovis/webpage/massnahmen.json); 
-	
+// const json = "massnahmen.json"
+// const data = require('./massnahmen.json');
+// console.log(data);
+var json = [
+  {
+    startdate: "3/12/2020",
+    enddate: "5/16/2020",
+    sanctions:
+      "Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein. Die Fußball-Bundesliga pausiert",
+    titel: "Die Fußball-Bundesliga pausiert.",
+  },
+  {
+    startdate: "3/16/2020",
+    enddate: "5/16/2020",
+    sanctions:
+      "Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und der Schweiz gibt es Kontrollen und Einreiseverbote. In den meisten Bundesländern sind Schulen und Kitas geschlossen",
+    titel: "Reiseeinschränkung",
+  },
+];
+//read json objects and stores them in a map
 const jsondata = json.map((item) => {
-	let dataMap = new Map();
-	dataMap["startdate"] = item.startdate;
-	dataMap["enddate"] = item.enddate;
-	dataMap["sanctions"] = item.sanctions;
-	dataMap["titel"] = item.titel;
-  
-	return dataMap;
-  });
-  
-  console.log(jsondata);
+  let dataMap = new Map();
+  dataMap["startdate"] = item.startdate;
+  dataMap["enddate"] = item.enddate;
+  dataMap["sanctions"] = item.sanctions;
+  dataMap["titel"] = item.titel;
+
+  return dataMap;
+});
+
+console.log(jsondata);
+
+//more abstract version how to store data in maps
+// const jsondata = Object.assign({}, {startdate:json.startdate, enddate:json.enddate, sanctions:json.sanctions, title:json.title})
+
 /*
 scrollmagic:
  - makes headline disappear on scroll
