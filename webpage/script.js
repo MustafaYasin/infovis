@@ -36,7 +36,7 @@ $(document).ready(function($)  { // wait for document ready
       if(!event.target.checked) {
         $('.line.lineObjects.Beherbergung.Umsatz').css({'display': 'none'});
         $('.lineHoverText.Beherbergung.Umsatz').css({'display': 'none'});
-        $('.hoverCircle.Beherbergung.Umsatz').css({'display': 'none'});
+        $('.lineHoverText.Beherbergung.Umsatz').css({'display': 'none'});
       } else {
         $('.line.lineObjects.Beherbergung.Umsatz').css({'display': 'block'});
         $('.lineHoverText.Beherbergung.Umsatz').css({'display': 'block'});
@@ -86,6 +86,8 @@ $(document).ready(function($)  { // wait for document ready
       main(d)
     })
 
+
+
 });
 
 /**
@@ -93,6 +95,7 @@ $(document).ready(function($)  { // wait for document ready
  */
 function main(data){
     chart(data);
+    adjustLineChartColors();
 }
 
 
@@ -162,7 +165,7 @@ function chart(data) {
 
     //focus line
 	focus.append("line").attr("class", "lineHover")
-		.style("stroke", "#999")
+		.style("stroke", "#70F0DE")
 		.attr("stroke-width", 1)
 		.style("shape-rendering", "crispEdges")
 		.style("opalineObject", 0.5)
@@ -224,7 +227,7 @@ function chart(data) {
 	circles.enter().append("circle")
 		.attr("class", d => "hoverCircle " + d)
 		.style("fill", d => z(d))
-		.attr("r", 2.5)
+		.attr("r", 4)
 		.merge(circles);
 
     //draws the overlay
@@ -232,6 +235,7 @@ function chart(data) {
 		.on("mouseover", function() { focus.style("display", null); })
 		.on("mouseout", function() { focus.style("display", "none"); })
 		.on("mousemove", mousemove);
+
 
     /**
      * Draws the tooltip depending on the mouse position
@@ -272,6 +276,26 @@ function chart(data) {
         //reorders Gantt bars depending on the mouse position
 		reorderGanttBars(d.date);
     }
+
+
+}
+
+function adjustLineChartColors(){
+    $('.line.lineObjects.Beherbergung.Umsatz').css({'stroke': '#9E55FC'});
+    $('.lineHoverText.Beherbergung.Umsatz').css({'fill': '#9E55FC'});
+    $('.hoverCircle.Beherbergung.Umsatz').css({'fill': '#9E55FC'});
+
+    $('.line.lineObjects.Beherbergung.Beschäftigte').css({'stroke': '#D7B7FD'});
+    $('.lineHoverText.Beherbergung.Beschäftigte').css({'fill': '#D7B7FD'});
+    $('.hoverCircle.Beherbergung.Beschäftigte').css({'fill': '#D7B7FD'});
+
+    $('.line.lineObjects.Gastronomie.Umsatz').css({'stroke': '#3949AC'});
+    $('.lineHoverText.Gastronomie.Umsatz').css({'fill': '#3949AC'});
+    $('.hoverCircle.Gastronomie.Umsatz').css({'fill': '#3949AC'});
+
+    $('.line.lineObjects.Gastronomie.Beschäftigte').css({'stroke': '#7986CB'});
+    $('.lineHoverText.Gastronomie.Beschäftigte').css({'fill': '#7986CB'});
+    $('.hoverCircle.Gastronomie.Beschäftigte').css({'fill': '#7986CB'});
 }
 
 new jBox('Tooltip', {

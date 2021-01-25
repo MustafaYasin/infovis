@@ -54,20 +54,7 @@ display: inline-block;
   border: 1px solid rgba(0, 0, 0, .2);
 }
 
-.blue {
-  background: #13b4ff;
-}
 
-.green {
-  background: #008000;
-}
-
-.orange {
-  background: #FFA500;
-}
-.red {
-  background: #FF0000;
-}
 /* JL: styling for multiline chart */
 .y-axis line {
 	opacity:.2;
