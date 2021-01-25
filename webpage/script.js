@@ -35,32 +35,48 @@ $(document).ready(function($)  { // wait for document ready
     $('#BeherbergungUmsatz').on('change', (event) => {
       if(!event.target.checked) {
         $('.line.lineObjects.Beherbergung.Umsatz').css({'display': 'none'});
+        $('.lineHoverText.Beherbergung.Umsatz').css({'display': 'none'});
+        $('.hoverCircle.Beherbergung.Umsatz').css({'display': 'none'});
       } else {
         $('.line.lineObjects.Beherbergung.Umsatz').css({'display': 'block'});
+        $('.lineHoverText.Beherbergung.Umsatz').css({'display': 'block'});
+        $('.hoverCircle.Beherbergung.Umsatz').css({'display': 'block'});
       }
     });
 
     $('#Beherbergungbeschäftigte').on('change', (event) => {
       if(!event.target.checked) {
         $('.line.lineObjects.Beherbergung.Beschäftigte').css({'display': 'none'});
+        $('.lineHoverText.Beherbergung.Beschäftigte').css({'display': 'none'});
+        $('.hoverCircle.Beherbergung.Beschäftigte').css({'display': 'none'});
       } else {
         $('.line.lineObjects.Beherbergung.Beschäftigte').css({'display': 'block'});
+        $('.lineHoverText.Beherbergung.Beschäftigte').css({'display': 'block'});
+        $('.hoverCircle.Beherbergung.Beschäftigte').css({'display': 'block'});
       }
     });
 
     $('#GastronomieUmsatz').on('change', (event) => {
       if(!event.target.checked) {
         $('.line.lineObjects.Gastronomie.Umsatz').css({'display': 'none'});
+        $('.lineHoverText.Gastronomie.Umsatz').css({'display': 'none'});
+        $('.hoverCircle.Gastronomie.Umsatz').css({'display': 'none'});
       } else {
         $('.line.lineObjects.Gastronomie.Umsatz').css({'display': 'block'});
+        $('.lineHoverText.Gastronomie.Umsatz').css({'display': 'block'});
+        $('.hoverCircle.Gastronomie.Umsatz').css({'display': 'block'});
       }
     });
 
     $('#Gastronomiebeschäftigte').on('change', (event) => {
       if(!event.target.checked) {
         $('.line.lineObjects.Gastronomie.Beschäftigte').css({'display': 'none'});
+        $('.lineHoverText.Gastronomie.Beschäftigte').css({'display': 'none'});
+        $('.hoverCircle.Gastronomie.Beschäftigte').css({'display': 'none'});
       } else {
         $('.line.lineObjects.Gastronomie.Beschäftigte').css({'display': 'block'});
+        $('.lineHoverText.Gastronomie.Beschäftigte').css({'display': 'block'});
+        $('.hoverCircle.Gastronomie.Beschäftigte').css({'display': 'block'});
       }
     });
 
@@ -188,14 +204,14 @@ function chart(data) {
 		.attr("class", d => "line lineObjects " + d.id)
 		.style("stroke", d => z(d.id))
 		.merge(lineObject)
-	.transition().duration(1,0)
+	    .transition().duration(1,0)
 		.attr("d", d => line(d.values))
 
 	var labels = focus.selectAll(".lineHoverText")
 		.data(keys)
 
 	labels.enter().append("text")
-		.attr("class", "lineHoverText")
+		.attr("class", d => "lineHoverText " + d)
 		.style("fill", d => z(d))
 		.attr("text-anchor", "start")
 		.attr("font-size",12)
@@ -206,7 +222,7 @@ function chart(data) {
 		.data(keys)
 
 	circles.enter().append("circle")
-		.attr("class", "hoverCircle")
+		.attr("class", d => "hoverCircle " + d)
 		.style("fill", d => z(d))
 		.attr("r", 2.5)
 		.merge(circles);
