@@ -2,18 +2,19 @@
 var h = $(window).innerHeight();
 var w = $(window).innerWidth();
 
-
-const data = json.map((item) => {
-  let dataMap = new Map();
-  dataMap["Startdatum"] = item.Startdatum;
-  dataMap["Enddatum"] = item.Startdatum;
-  dataMap["Maßnahmen"] = item.Startdatum;
-  dataMap["Titel"] = item.Startdatum;
-
-  return dataMap;
-});
-
-console.log(data);
+const json = require(/home/mustafa/Documents/uni/master/infovis/webpage/massnahmen.json); 
+	
+const jsondata = json.map((item) => {
+	let dataMap = new Map();
+	dataMap["startdate"] = item.startdate;
+	dataMap["enddate"] = item.enddate;
+	dataMap["sanctions"] = item.sanctions;
+	dataMap["titel"] = item.titel;
+  
+	return dataMap;
+  });
+  
+  console.log(jsondata);
 /*
 scrollmagic:
  - makes headline disappear on scroll
