@@ -28,17 +28,27 @@ body{
     font: 10px sans-serif; /*for multiline chart*/
     padding: 25px;
 }
-.mycheckbox {
+.mycheckbox1 {
   color: white;
   position: absolute;
   left: 30vw;
   top:4vw;
 }
+.mycheckbox2 {
+  color: white;
+  position: absolute;
+  left: 41vw;
+  top:4vw;
+}
 .titleofchartline {
+  position: absolute;
   color: white;
   padding-left: 21px;
   font-size: 21px;
   font-weight: bold;
+  top:0.5vw;
+  left: 4vw;
+
 }
 .spanspace{
   display: inline-block;
@@ -48,6 +58,7 @@ body{
 .fixwidth{
 width: 125px;
 display: inline-block;
+text-align: left;
 }
 .box {
   display: inline-block;
@@ -132,8 +143,8 @@ display: inline-block;
     background-color: #121212;
     text-align:center;
 }
-.chart{
-    margin-top: 10px;
+#chart{
+    margin-top: 15px;
     margin-left:auto;
     margin-right:auto;
     display:block;
