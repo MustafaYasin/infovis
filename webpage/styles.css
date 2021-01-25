@@ -30,8 +30,9 @@ body{
 }
 .mycheckbox {
   color: white;
-  padding-left: 391px;
   position: absolute;
+  left: 30vw;
+  top:4vw;
 }
 .titleofchartline {
   color: white;
@@ -41,10 +42,11 @@ body{
 }
 .spanspace{
   display: inline-block;
-  padding-right: 21px;
+  padding-right: 32px;
+
 }
 .fixwidth{
-width: 194px;
+width: 125px;
 display: inline-block;
 }
 .box {

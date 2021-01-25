@@ -166,7 +166,7 @@ function chart(data) {
     //focus line
 	focus.append("line").attr("class", "lineHover")
 		.style("stroke", "#70F0DE")
-		.attr("stroke-width", 1)
+		.attr("stroke-width", 2)
 		.style("shape-rendering", "crispEdges")
 		.style("opalineObject", 0.5)
 		.attr("y1", -height)
