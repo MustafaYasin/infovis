@@ -36,7 +36,7 @@ $(document).ready(function($)  { // wait for document ready
       if(!event.target.checked) {
         $('.line.lineObjects.Beherbergung.Umsatz').css({'display': 'none'});
         $('.lineHoverText.Beherbergung.Umsatz').css({'display': 'none'});
-        $('.lineHoverText.Beherbergung.Umsatz').css({'display': 'none'});
+        $('.hoverCircle.Beherbergung.Umsatz').css({'display': 'none'});
       } else {
         $('.line.lineObjects.Beherbergung.Umsatz').css({'display': 'block'});
         $('.lineHoverText.Beherbergung.Umsatz').css({'display': 'block'});
