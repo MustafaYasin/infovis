@@ -281,21 +281,21 @@ function chart(data) {
 }
 
 function adjustLineChartColors(){
-    $('.line.lineObjects.Beherbergung.Umsatz').css({'stroke': '#9E55FC'});
-    $('.lineHoverText.Beherbergung.Umsatz').css({'fill': '#9E55FC'});
-    $('.hoverCircle.Beherbergung.Umsatz').css({'fill': '#9E55FC'});
+    $('.line.lineObjects.Beherbergung.Umsatz').css({'stroke': '#8525FD'});
+    $('.lineHoverText.Beherbergung.Umsatz').css({'fill': '#8525FD'});
+    $('.hoverCircle.Beherbergung.Umsatz').css({'fill': '#8525FD'});
 
-    $('.line.lineObjects.Beherbergung.Beschäftigte').css({'stroke': '#D7B7FD'});
-    $('.lineHoverText.Beherbergung.Beschäftigte').css({'fill': '#D7B7FD'});
-    $('.hoverCircle.Beherbergung.Beschäftigte').css({'fill': '#D7B7FD'});
+    $('.line.lineObjects.Beherbergung.Beschäftigte').css({'stroke': '#866FA2'});
+    $('.lineHoverText.Beherbergung.Beschäftigte').css({'fill': '#866FA2'});
+    $('.hoverCircle.Beherbergung.Beschäftigte').css({'fill': '#866FA2'});
 
-    $('.line.lineObjects.Gastronomie.Umsatz').css({'stroke': '#3949AC'});
-    $('.lineHoverText.Gastronomie.Umsatz').css({'fill': '#3949AC'});
-    $('.hoverCircle.Gastronomie.Umsatz').css({'fill': '#3949AC'});
+    $('.line.lineObjects.Gastronomie.Umsatz').css({'stroke': '#007DFA'});
+    $('.lineHoverText.Gastronomie.Umsatz').css({'fill': '#007DFA'});
+    $('.hoverCircle.Gastronomie.Umsatz').css({'fill': '#007DFA'});
 
-    $('.line.lineObjects.Gastronomie.Beschäftigte').css({'stroke': '#7986CB'});
-    $('.lineHoverText.Gastronomie.Beschäftigte').css({'fill': '#7986CB'});
-    $('.hoverCircle.Gastronomie.Beschäftigte').css({'fill': '#7986CB'});
+    $('.line.lineObjects.Gastronomie.Beschäftigte').css({'stroke': '#4E7C91'});
+    $('.lineHoverText.Gastronomie.Beschäftigte').css({'fill': '#4E7C91'});
+    $('.hoverCircle.Gastronomie.Beschäftigte').css({'fill': '#4E7C91'});
 }
 
 new jBox('Tooltip', {
