@@ -520,7 +520,7 @@ function reorderGanttBars(month) {
 function orderMassnahmeToMonth(month){
 	// console.log("in massnahme to month" + month)
 	let key2 = 1;
-	massnahmen.forEach((value, key) => {
+	data2.forEach((value, key) => {
 		console.log("massnahmen for each " + key);
 	let startMonth = new Date(value.Startdatum).getMonth() + 1;
 	let endMonth = new Date(value.Enddatum).getMonth() +1;
