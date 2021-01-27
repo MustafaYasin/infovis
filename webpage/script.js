@@ -471,7 +471,7 @@ function drawBar(key, value) {
   // use widthFromDate function to calculate the with and the starting point of bar & text
   div.style.width = "" + widthFromDate(startdate, enddate) + "px";
   div.style.left = "" + widthFromDate(startofyear, startdate) + "px";
-  titleSpan.style.left = widthFromDate(startofyear, startdate) - 95 + "px";
+  titleSpan.style.left = widthFromDate(startofyear, startdate) - (85 + value.title.length)  + "px";
 
   document.getElementById("ganttContainer").appendChild(divLine);
   document.getElementById("demo-tooltip-mouse" + key).appendChild(titleSpan);
