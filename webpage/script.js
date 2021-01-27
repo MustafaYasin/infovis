@@ -539,6 +539,10 @@ function swapPosition(pos1, pos2) {
   // changeColorofBar(pos2, true);
 }
 
+function putAtPosition(element, pos) {
+  console.log("put at Position " + element +" " + pos);
+  document.getElementById("demo-tooltip-mouse" + (element)).style.top = position(pos);
+}
 function changeColorofBar(bar, active) {
   console.log("in bAR " + bar);
 
@@ -554,46 +558,85 @@ function changeColorofBar(bar, active) {
 function reorderGanttBars(month) {
   console.log("month " + month);
   if (month.toString().includes("Jan")) {
-    orderMassnahmeToMonth(1);
+    if (currentMonth != 1){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(1);
+    }
   }
   if (month.toString().includes("Feb")) {
-    orderMassnahmeToMonth(2);
+    if (currentMonth != 2){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(2);
+    }
   }
   if (month.toString().includes("Mar")) {
-    orderMassnahmeToMonth(3);
+    if (currentMonth != 3){console.log("in month " + month);
+
+      orderMassnahmeToMonth(3);
+    }
   }
   if (month.toString().includes("Apr")) {
-    orderMassnahmeToMonth(4);
+    if (currentMonth != 4){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(4);
+    }
   }
-  if (month.toString().includes("Mar")) {
-    orderMassnahmeToMonth(5);
+  if (month.toString().includes("May")) {
+    if (currentMonth != 5){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(5);
+    }
   }
   if (month.toString().includes("Jun")) {
-    orderMassnahmeToMonth(6);
+    if (currentMonth != 6){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(6);
+    }
   }
   if (month.toString().includes("Jul")) {
-    orderMassnahmeToMonth(7);
+    if (currentMonth != 7){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(7);
+    }
   }
   if (month.toString().includes("Aug")) {
-    orderMassnahmeToMonth(8);
+    if (currentMonth != 8){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(8);
+    }
   }
   if (month.toString().includes("Sep")) {
-    orderMassnahmeToMonth(9);
+    if (currentMonth != 9){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(9);
+    }
   }
-  if (month.toString().includes("Okt")) {
-    orderMassnahmeToMonth(10);
+  if (month.toString().includes("Oct")) {
+    if (currentMonth != 10){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(10);
+    }
   }
   if (month.toString().includes("Nov")) {
-    orderMassnahmeToMonth(11);
+    if (currentMonth != 11){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(11);
+    }
   }
   if (month.toString().includes("Dec")) {
-    orderMassnahmeToMonth(12);
+    if (currentMonth != 12){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(12);
+    }
   } else {
     //orderMassnahmeToMonth(0);
   }
 }
 
+let currentMonth = 0;
 function orderMassnahmeToMonth(month) {
+  currentMonth = month;
+  resetPosition();
   // console.log("in massnahme to month" + month)
   let key2 = 1;
   data2.forEach((value, key) => {
