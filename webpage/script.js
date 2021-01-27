@@ -437,24 +437,30 @@ function adjustLineChartColors() {
   $(".hoverCircle.Gastronomie.Beschäftigte").css({ fill: "#4E7C91" });
 }
 
+
+// function to iterate over massnahmen map and draw gantt bars for each
 function ganttChart(massnahmen) {
   massnahmen.forEach((value, key, map) => {
-    console.log(value.Startdatum);
-
+    // console.log(value.Startdatum);
     drawBar(key, value);
   });
 }
 
+// this function gets massnahmen objects and creates the bars accoring to the start and end date
 function drawBar(key, value) {
+
+  // outer div "lane" of the bar
   let divLine = document.createElement("div");
   divLine.className = "ganttLine Line" + (key + 1);
   divLine.id = "demo-tooltip-mouse" + key;
   divLine.style.top = 18 * key + "px";
 
+  // Title of the Massnahme
   let titleSpan = document.createElement("span");
   titleSpan.className = "ganttTitle gTitle" + (key + 1) + " unselectable";
   titleSpan.innerHTML = "" + value.title;
 
+// the actual bar
   let div = document.createElement("div");
   let startdate = new Date(value.Startdatum);
   let enddate = new Date(value.Enddatum);
@@ -462,6 +468,7 @@ function drawBar(key, value) {
 
   div.className = "barElement bar" + (key + 1);
   div.id = "bar" + (key + 1);
+  // use widthFromDate function to calculate the with and the starting point of bar & text
   div.style.width = "" + widthFromDate(startdate, enddate) + "px";
   div.style.left = "" + widthFromDate(startofyear, startdate) + "px";
   titleSpan.style.left = widthFromDate(startofyear, startdate) - 95 + "px";
@@ -470,6 +477,8 @@ function drawBar(key, value) {
   document.getElementById("demo-tooltip-mouse" + key).appendChild(titleSpan);
   document.getElementById("demo-tooltip-mouse" + key).appendChild(div);
 
+
+  // Tooltipp divs
   $("#demo-tooltip-above").jBox("Tooltip", {
     theme: "TooltipDark",
   });
@@ -487,32 +496,18 @@ function drawBar(key, value) {
   });
 }
 
+// function to calculate the width in px with a given start and end date
+// time difference in days gets calculated
+// and then divided by (width of gantt chart / duration of gantt chart in days)
 function widthFromDate(startdate, enddate) {
   // time difference
   let timeDiff = Math.abs(enddate.getTime() - startdate.getTime());
-
   // days difference
   let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-  let width = diffDays * (1160 / 365);
-  // position = (1177/365) * (date.getDate() + ((date.getMonth())*30));
-  // console.log("getday " + date.getDate()+"getMonth:"+ date.getMonth() + "position " + position);
-  console.log(
-    "startdate " +
-      startdate +
-      "enddate " +
-      enddate +
-      "tage " +
-      diffDays +
-      " " +
-      timeDiff
-  );
+  // width of gantt chart / duration of gantt chart in days
+  let widthperday = (1160 / 365)
+  let width = diffDays * widthperday;
   return width;
-}
-function positionFromDate(startdate) {
-  let position = 0;
-  position = (1160 / 365) * (startdate.getTime() / (1000 * 3600 * 24));
-  console.log("posfromdate " + startdate.getTime() / (1000 * 3600 * 24));
-  return position;
 }
 
 new jBox("Tooltip", {
@@ -521,7 +516,7 @@ new jBox("Tooltip", {
   getContent: "data-jbox-content",
 });
 
-// function to calculate the position in px with given position number
+// function to calculate the position on the y axis in px with given position number
 function position(posNumber) {
   let position = "";
   position = (posNumber - 1) * 18 + "px";
@@ -539,10 +534,13 @@ function swapPosition(pos1, pos2) {
   // changeColorofBar(pos2, true);
 }
 
+// Puts a bar at a certain position
 function putAtPosition(element, pos) {
   console.log("put at Position " + element +" " + pos);
   document.getElementById("demo-tooltip-mouse" + (element)).style.top = position(pos);
 }
+
+// changes the color of a bar (active or not)
 function changeColorofBar(bar, active) {
   console.log("in bAR " + bar);
 
@@ -553,8 +551,11 @@ function changeColorofBar(bar, active) {
     document.getElementById("bar" + bar).style.backgroundColor = "#7E7E7E";
   }
 }
+
+
 // function to reorder gantt bars according to which month in the line chart is highlighted
-// TODO: refactor gantt chart to include start and end month & implement method to reposition and assign color depending on month
+// because the chart hoover function would call this function all the time while hovering over a month
+// we check if the month has changed
 function reorderGanttBars(month) {
   console.log("month " + month);
   if (month.toString().includes("Jan")) {
@@ -629,12 +630,13 @@ function reorderGanttBars(month) {
       orderMassnahmeToMonth(12);
     }
   } else {
-    //orderMassnahmeToMonth(0);
   }
 }
 
+// function to sort massnahmen with a given month
 let currentMonth = 0;
 function orderMassnahmeToMonth(month) {
+  // first reset all positions
   currentMonth = month;
   resetPosition();
   // console.log("in massnahme to month" + month)
