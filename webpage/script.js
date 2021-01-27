@@ -7,7 +7,7 @@ let massnahmen = [
     startdate: "3/12/2020",
     enddate: "5/16/2020",
     sanctions:"Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein. Die Fußball-Bundesliga pausiert.",
-    titel: "Bundesliga pausiert.",
+    titel: "Bundesliga pausiert",
   },
   {
     startdate: "3/16/2020",
