@@ -53,12 +53,12 @@ These tools are needed so far. They will updated obviously, since the project is
 
 To get a local copy up and running follow these simple steps.
 
-<!-- ### Prerequisites
+### Prerequisites
 
 * Python 3
   ```sh
-  sudo apt install python on Linux & 
-  ``` -->
+  sudo apt install python3
+  ```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
