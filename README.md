@@ -54,25 +54,27 @@ These tools are needed so far. They will updated obviously, since the project is
 
 To get a local copy up and running follow these simple steps.
 
-### Prerequisites
+<!-- ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* JavaScript
+* Python 3
   ```sh
-  npm install npm@latest -g
-  ```
+  sudo apt install python on Linux & 
+  ``` -->
 
-### Installation
+### Run the App
 
 1. Clone the repo
    ```sh
    git clone https://github.com/MustafaYasin/infovis.git
    ```
-2. Install NPM packages
+2. Cd into directory
    ```sh
-   npm install
+   cd infovis/webpages
    ```
-
+2. Run the python server on localhost port 8000
+   ```sh
+   python3 -m http.server
+   ```
 
 
 <!-- USAGE EXAMPLES -->
@@ -82,6 +84,38 @@ A more detailed usage of this project will be updated soon.
 <!-- Time Plan -->
 ## Milestones
 ![Time Plan](images/projectplan.png)
+
+| Milestone                                                                           | Start Date | End Date   | Publisher    |
+|-------------------------------------------------------------------------------------|------------|------------|--------------|
+| Forschungsfrage 1: Auswirkungen von Corona auf die Kriminalität                     | 12.11.2020 | 14.11.2020 | Ganze Gruppe |
+| Datenrecherche: Auswirkungen von Corona auf die Kriminalität                        | 14.11.2020 | 16.11.2020 | Ganze Gruppe |
+| Mockup der ersten Visualisierungsidee erstellen                                     | 16.11.2020 | 17.11.2020 | JL & JP      |
+| Hello World: Forschungsfrage und erste Ansichten                                    | 10.11.2020 | 18.11.2020 | Ganze Gruppe |
+| Neue Forschungsfrage: Auswirkung von Corona auf Gastgewerbe                         | 23.11.2020 | 24.11.2020 | Ganze Gruppe |
+| Datenrecherche: Auswirkungen von Corona auf Gastgewerbe                             | 23.11.2020 | 24.11.2020 | RM, BA, MY   |
+| Clickdummy der neuen Visualisierungsidee erstellen                                  | 26.11.2020 | 28.11.2020 | JL & JP      |
+| Detaillierte Fragestellung, Mockups und Projektplanung                              | 24.11.2020 | 02.12.2020 | Ganze Gruppe |
+| Zusammentragen von Bundesweiten Covid-19 Beschränkungen im Jahr 2020 im JSON Format | 07.12.2020 | 09.12.2020 | RM, BA, MY   |
+| Aufsetzen des Projektes (Github etc.)                                               | 07.12.2020 | 09.12.2020 | RM, BA, MY   |
+| Überarbeitung des Mockups                                                           | 07.12.2020 | 11.12.2020 | JL & JP      |
+| Daten in das Projekt integrieren (sodass D3 diese Verarbeiten kann)                 | 09.12.2020 | 11.12.2020 | Ganze Gruppe |
+| Implementierung des Navigationsgerüstes (Titeleinblendung etc.)                     | 11.12.2020 | 16.12.2020 | RM, BA, MY   |
+| Implementierungsbeginn von Line Chart (Gastgewerbe Umsatz im vgl. zum Vorjahr)      | 11.12.2020 | 16.12.2020 | RM, BA, MY   |
+| Implementierungbeginn von Gantt Chart (Covid Beschränkungen)                        | 11.12.2020 | 16.12.2020 | JL & JP      |
+| Fertiges Visualisierungskonzept, erste Implementierung                              | 08.12.2020 | 16.12.2020 | Ganze Gruppe |
+| Implementierung mit Daten von Line Chart (Gastgewerbe Umsatz im vgl. zum Vorjahr)   | 17.12.2020 | 05.01.2021 | RM, BA, MY   |
+| Implementierung mit Daten von Gantt Chart (Covid Beschränkungen)                    | 17.12.2020 | 05.01.2021 | JL & JP      |
+| Designanpassungen am Line Chart                                                     | 05.01.2021 | 13.01.2021 | JL & JP      |
+| Designanpassungen am Gantt Chart                                                    | 05.01.2021 | 13.01.2021 | JL & JP      |
+| Hover Logik & Animation implementieren für Line Chart                               | 08.01.2021 | 13.01.2021 | RM, BA, MY   |
+| Hover Logik & Animation implementieren für Gantt Chart                              | 08.01.2021 | 13.01.2021 | RM, BA, MY   |
+| Minimal Viable Product                                                              | 05.01.2021 | 13.01.2021 | Ganze Gruppe |
+| Scroll Magic Animationen Hinzufügen (z.B. Onboarding)                               | 18.01.2021 | 22.01.2021 | JL & JP      |
+| Button zum An- und Abstellen von spezifischen Lines im Line Plot                    | 18.01.2021 | 22.01.2021 | M, A, R      |
+| Responsiveness Optimierungen                                                        | 18.01.2021 | 22.01.2021 | Ganze Gruppe |
+| Erstellung der Endpräsentation                                                      | 22.01.2021 | 25.01.2021 | Ganze Gruppe |
+| Release Candidate 1                                                                 | 19.01.2021 | 27.01.2021 | Ganze Gruppe |
+
 
 <!-- ROADMAP -->
 ## Roadmap
