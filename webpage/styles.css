@@ -169,6 +169,8 @@ Positioning from Top: 1 Position = 18px*/
     font-family: 'Open Sans', sans-serif;
     color: #7D7D7D;
     font-size: 9px;
+    text-align: right;
+    -webkit-transform: translate(-100%, 0); 
 }
 
 /* JL: Change Text Color on Hover */
