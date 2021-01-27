@@ -39,7 +39,7 @@ let massnahmen = [
   {
     startdate: "4/22/2020",
     enddate: "12/31/2020",
-    sanctions: "Das bayerische Kabinett beschloss, dass 250.000 Pflegekräfte in bayerischen Krankenhäusern, Altenheimen und in der ambulanten Pflege und auch Rettungsassistenten und Notfallsanitäter eine steuerfreie Einmalzahlung erhalte.",
+    sanctions: "Das bayerische Kabinett beschloss, dass 250.000 Pflegekräfte in bayerischen Krankenhäusern, Altenheimen und in der ambulanten Pflege und auch Rettungsassistenten und Notfallsanitäter eine steuerfreie Einmalzahlung erhalten.",
     titel: "Boni für Pflegekräfte",
   },
   {
@@ -492,7 +492,7 @@ function drawBar(key, value) {
       value.Enddatum +
       "<br> Massnahmen: " +
       value.massnahme +
-      "! </b>",
+      "</b>",
   });
 }
 
