@@ -120,7 +120,7 @@ const data2 = massnahmen.map((item) => {
 
   return dataMap;
 });
-console.log(data2);
+// console.log(data2);
 /*
 scrollmagic:
  - makes headline disappear on scroll
@@ -523,15 +523,20 @@ function position(posNumber) {
   // console.log("position " + position);
   return position;
 }
+
+// reset positions (is used to make the ordering of gantt bars work)
+function resetPosition() {
+  data2.forEach((value, key) => {
+    putAtPosition(key,key);
+  });
+}
+
+// unused function that gets two positions and swaps them
+// first approach with this did not work and was replaced by putAtPosition
 function swapPosition(pos1, pos2) {
-  console.log("in swap position" + pos1 + pos2);
-  document.getElementById(
-    "demo-tooltip-mouse" + (pos1 - 1)
-  ).style.top = position(pos2);
-  document.getElementById(
-    "demo-tooltip-mouse" + (pos2 - 1)
-  ).style.top = position(pos1);
-  // changeColorofBar(pos2, true);
+  // console.log("in swap position" + pos1 + pos2);
+  document.getElementById("demo-tooltip-mouse" + (pos1 - 1)).style.top = position(pos2);
+  document.getElementById("demo-tooltip-mouse" + (pos2 - 1)).style.top = position(pos1);
 }
 
 // Puts a bar at a certain position
@@ -542,12 +547,9 @@ function putAtPosition(element, pos) {
 
 // changes the color of a bar (active or not)
 function changeColorofBar(bar, active) {
-  console.log("in bAR " + bar);
-
   if (active) {
     document.getElementById("bar" + bar).style.backgroundColor = "#70F0DE";
   } else {
-    console.log("not active");
     document.getElementById("bar" + bar).style.backgroundColor = "#7E7E7E";
   }
 }
@@ -557,7 +559,6 @@ function changeColorofBar(bar, active) {
 // because the chart hoover function would call this function all the time while hovering over a month
 // we check if the month has changed
 function reorderGanttBars(month) {
-  console.log("month " + month);
   if (month.toString().includes("Jan")) {
     if (currentMonth != 1){
       console.log("in month " + month);
@@ -639,38 +640,57 @@ function orderMassnahmeToMonth(month) {
   // first reset all positions
   currentMonth = month;
   resetPosition();
-  // console.log("in massnahme to month" + month)
-  let key2 = 1;
+
+  // arrays to hold the active and inactive bar indices
+  let active = [];
+  let inactive = [];
+
+  // var to check when forEach is finished
+  let itemsProcessed = 0;
   data2.forEach((value, key) => {
-    console.log("massnahmen for each " + key);
+
+    // get a int value for start and end month
     let startMonth = new Date(value.Startdatum).getMonth() + 1;
     let endMonth = new Date(value.Enddatum).getMonth() + 1;
-    console.log(
-      "in massnahme to month" +
-        month +
-        "start " +
-        startMonth +
-        "end " +
-        endMonth
-    );
+
+
+    // if startMonth <= month && endMonth >= month it means a massnahme should be active
+    // else if startMonth >= month || endMonth <= month it means it should be inactive
     if (startMonth <= month && endMonth >= month) {
-      console.log("im if order " + key + key2);
-      if (key + 1 != key2) {
-        swapPosition(key2, key + 1);
-      }
-      changeColorofBar(key + 1, true);
-      key2++;
+      // console.log("im active push " + startMonth + " " + endMonth + " aktueller Monat " + month);
+      // add the key of active massnahme to the array
+      active.push(key);
     } else if (startMonth >= month || endMonth <= month) {
-      changeColorofBar(key + 1, false);
-      if (key2 <= key) {
-        swapPosition(key + 1, key + 1);
-      } else {
-        swapPosition(key + 1, key2 + 1);
-        key2++;
-      }
-    } else if (endMonth + 1 < month) {
-      // changeColorofBar(key+1, false);
-      // swapPosition(key+1,key+1);
+      inactive.push(key);
     }
+    itemsProcessed++;
   });
+  // check if all items have been iterated
+  if (itemsProcessed === data2.length) {
+    // first sort all active massnahmen to the top
+    active.forEach(sortActive);
+    // offset to know where to place the first inactive massnahme
+    let offset = active.length;
+    inactive.forEach(function (item, index) {
+      sortInactive(item, index, offset);
+    });
+
+
+  }
 }
+
+
+let key2 = 0;
+// put all massnahmen from array on top and highlight them
+function sortActive(item,index) {
+  //console.log("im sort" + item);
+  putAtPosition(item, index);
+  changeColorofBar(item + 1, true);
+  key2++;
+};
+
+// put all massnahmen from array behind active ones and change the color to inactive
+function sortInactive(item, index, offset) {
+  changeColorofBar(item + 1, false);
+  putAtPosition(item, index+offset);
+};
