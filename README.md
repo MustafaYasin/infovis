@@ -19,7 +19,6 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -61,8 +60,8 @@ To get a local copy up and running follow these simple steps.
   sudo apt install python on Linux & 
   ``` -->
 
-### Run the App
-
+<!-- USAGE EXAMPLES -->
+## Usage
 1. Clone the repo
    ```sh
    git clone https://github.com/MustafaYasin/infovis.git
@@ -76,14 +75,8 @@ To get a local copy up and running follow these simple steps.
    python3 -m http.server
    ```
 
-
-<!-- USAGE EXAMPLES -->
-## Usage
-A more detailed usage of this project will be updated soon.
-
 <!-- Time Plan -->
 ## Milestones
-![Time Plan](images/projectplan.png)
 
 | Milestone                                                                           | Start Date | End Date   | Publisher    |
 |-------------------------------------------------------------------------------------|------------|------------|--------------|
