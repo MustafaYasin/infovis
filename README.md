@@ -139,8 +139,8 @@ The following requirements are already implemented.
 - [x] Scroll Magic Animationen Hinzufügen (z.B. Onboarding)
 - [x] Button zum An- und Abstellen von spezifischen Lines im Line Plot
 - [x] Responsiveness Optimierungen
-- [] Erstellung der Endpräsentation
-- [] Release Candidate 1
+<!-- - [] Erstellung der Endpräsentation
+- [] Release Candidate 1 -->
 
 This Gantt Chart (below) gives a great overview the next steps we are planning to take, to accomplish the final MVP.
   
