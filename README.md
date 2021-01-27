@@ -129,6 +129,18 @@ The following requirements are already implemented.
 - [x] Implementierung des Navigationsgerüstes
 - [x] Implementierungbeginn von Line Chart
 - [x] Fertiges Visualisierungskonzept, erste Implementierung
+- [x] Implementierung mit Daten von Line Chart (Gastgewerbe Umsatz im vgl. zum Vorjahr)
+- [x] Implementierung mit Daten von Gantt Chart (Covid Beschränkungen)
+- [x] Designanpassungen am Line Chart
+- [x] Designanpassungen am Gantt Chart
+- [x] Hover Logik & Animation implementieren für Line Chart
+- [x] Hover Logik & Animation implementieren für Gantt Chart
+- [x] Minimal Viable Product
+- [x] Scroll Magic Animationen Hinzufügen (z.B. Onboarding)
+- [x] Button zum An- und Abstellen von spezifischen Lines im Line Plot
+- [x] Responsiveness Optimierungen
+- [] Erstellung der Endpräsentation
+- [] Release Candidate 1
 
 This Gantt Chart (below) gives a great overview the next steps we are planning to take, to accomplish the final MVP.
   
