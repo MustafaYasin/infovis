@@ -2,22 +2,87 @@
 var h = $(window).innerHeight();
 var w = $(window).innerWidth();
 
+let massnahmen = [
+	  {
+    startdate: "3/12/2020",
+    enddate: "5/16/2020",
+    sanctions: "Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein. Die Fußball-Bundesliga pausiert",
+    titel: "Bundesliga pausiert."
+  },
+  {
+    startdate: "3/16/2020",
+    enddate: "5/16/2020",
+    sanctions: "Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und der Schweiz gibt es Kontrollen und Einreiseverbote. In den meisten Bundesländern sind Schulen und Kitas geschlossen",
+    titel: "Reiseeinschränkung"
+  },
+  {
+    startdate: "3/12/2020",
+    enddate: "5/16/2020",
+    sanctions: "Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein. Die Fußball-Bundesliga pausiert",
+    titel: "Bundesliga pausiert."
+  },
+  {
+    startdate: "3/16/2020",
+    enddate: "5/16/2020",
+    sanctions: "Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und der Schweiz gibt es Kontrollen und Einreiseverbote. In den meisten Bundesländern sind Schulen und Kitas geschlossen",
+    titel: "Reiseeinschränkung"
+  },
+  {
+    startdate: "3/22/2020",
+    enddate: "5/11/2020",
+    sanctions: "Verbot von Ansammlungen von mehr als zwei Menschen. Ausgenommen sind Angehörige, die im eigenen Haushalt leben. Cafés, Kneipen, Restaurants, aber auch Friseure zum Beispiel schließen",
+    titel: "1. Lockdown"
+  },
+  {
+    startdate: "3/22/2020",
+    enddate: "4/15/2020",
+    sanctions: "Schule schließt",
+    titel: "Schule schließt"
+  },
+  {
+    startdate: "4/22/2020",
+    enddate: "12/31/2020",
+    sanctions: "Maskenpflicht für alle Bundesländer",
+    titel: "Maskenpflicht"
+  },
+  {
+    startdate: "8/8/2020",
+    enddate: "12/31/2020",
+    sanctions: "Inreisende aus internationalen Risikogebieten müssen sich bei der Rückkehr nach Deutschland testen lassen",
+    titel: "Reiseeinschränkung"
+  },
+  {
+    startdate: "7/10/2020",
+    enddate: "12/31/2020",
+    sanctions: "Die Bundesländer beschließen ein Beherbergungsverbot für Urlauber aus inländischen Risikogebieten. Die Zahl der Neuinfektionen ist auf mehr als 4000 binnen eines Tages gestiegen",
+    titel: "Beherbergungsverbot"
+  },
+  {
+    startdate: "10/14/2020",
+    enddate: "12/31/2020",
+    sanctions: "Beherbergungsverbot bei Inzididenz > 50",
+    titel: "Beherbergungsverbot"
+  },
+  {
+    startdate: "11/2/2020",
+    enddate: "12/31/2020",
+    sanctions: "Lockdown light, Gastronomie schließt",
+    titel: "Lockdown \"light"
+  }
+];
 
 
 
-
-const data = json.map(item => {
+const data2= massnahmen.map(item => {
   let dataMap = new Map()
-      dataMap["Startdatum"] = item.Startdatum;
-      dataMap["Enddatum"] = item.Startdatum;
-      dataMap["Maßnahmen"] = item.Startdatum;
-      dataMap["Titel"] = item.Startdatum;
-      
+      dataMap["Startdatum"] = item.startdate;
+      dataMap["Enddatum"] = item.enddate;
+      dataMap["massnahme"] = item.sanctions;
+      dataMap["title"] = item.titel;
+
       return dataMap;
   })
-  
-  console.log(data);
-
+console.log(data2);
 /*
 scrollmagic:
  - makes headline disappear on scroll
@@ -25,94 +90,98 @@ scrollmagic:
  */
 
 /**
- * Runs the whole Javascript  code "on document ready"
- *scrollmagic:
- * - makes headline disappear on scroll
- *- makes content appear on scroll
- */
+* Runs the whole Javascript  code "on document ready"
+*scrollmagic:
+    * - makes headline disappear on scroll
+    *- makes content appear on scroll
+*/
 
-$(document).ready(function ($) {
-  var mydata = fetch("massnahmen.json").then((response) => {
-    const jsondata = JSON.parse(response.json()).map((item) => {
-      let dataMap = new Map();
-      dataMap["startdate"] = item.startdate;
-      dataMap["enddate"] = item.enddate;
-      dataMap["sanctions"] = item.sanctions;
-      dataMap["titel"] = item.titel;
+$(document).ready(function($)  { // wait for document ready
+    // init ScrollMagic
+    var controller = new ScrollMagic.Controller();
 
-      return dataMap;
+    // header1Container disapears
+    var h1Disappears = TweenLite.to("#h1Container", 1, {
+        opalineObject: 0
     });
-    console.log(jsondata);
-  });
-  // wait for document ready
-  // init ScrollMagic
-  var controller = new ScrollMagic.Controller();
+    // build scene for header1Container disappers
+    var scene = new ScrollMagic.Scene({ duration: h, triggerHook: 0, reverse:true})
+        .setTween(h1Disappears)
+        //.addIndicators() // add indicators (requires plugin)
+        .addTo(controller);
 
-  // header1Container disapears
-  var h1Disappears = TweenLite.to("#h1Container", 1, {
-    opalineObject: 0,
-  });
-  // build scene for header1Container disappers
-  var scene = new ScrollMagic.Scene({
-    duration: h,
-    triggerHook: 0,
-    reverse: true,
-  })
-    .setTween(h1Disappears)
-    //.addIndicators() // add indicators (requires plugin)
-    .addTo(controller);
 
-  // checkbox events
-  $("#BeherbergungUmsatz").on("change", (event) => {
-    if (!event.target.checked) {
-      $(".line.lineObjects.Beherbergung.Umsatz").css({ display: "none" });
-    } else {
-      $(".line.lineObjects.Beherbergung.Umsatz").css({ display: "block" });
-    }
-  });
+    // checkbox events
+    $('#BeherbergungUmsatz').on('change', (event) => {
+      if(!event.target.checked) {
+        $('.line.lineObjects.Beherbergung.Umsatz').css({'display': 'none'});
+        $('.lineHoverText.Beherbergung.Umsatz').css({'display': 'none'});
+        $('.hoverCircle.Beherbergung.Umsatz').css({'display': 'none'});
+      } else {
+        $('.line.lineObjects.Beherbergung.Umsatz').css({'display': 'block'});
+        $('.lineHoverText.Beherbergung.Umsatz').css({'display': 'block'});
+        $('.hoverCircle.Beherbergung.Umsatz').css({'display': 'block'});
+      }
+    });
 
-  $("#Beherbergungbeschäftigte").on("change", (event) => {
-    if (!event.target.checked) {
-      $(".line.lineObjects.Beherbergung.Beschäftigte").css({ display: "none" });
-    } else {
-      $(".line.lineObjects.Beherbergung.Beschäftigte").css({
-        display: "block",
-      });
-    }
-  });
+    $('#Beherbergungbeschäftigte').on('change', (event) => {
+      if(!event.target.checked) {
+        $('.line.lineObjects.Beherbergung.Beschäftigte').css({'display': 'none'});
+        $('.lineHoverText.Beherbergung.Beschäftigte').css({'display': 'none'});
+        $('.hoverCircle.Beherbergung.Beschäftigte').css({'display': 'none'});
+      } else {
+        $('.line.lineObjects.Beherbergung.Beschäftigte').css({'display': 'block'});
+        $('.lineHoverText.Beherbergung.Beschäftigte').css({'display': 'block'});
+        $('.hoverCircle.Beherbergung.Beschäftigte').css({'display': 'block'});
+      }
+    });
 
-  $("#GastronomieUmsatz").on("change", (event) => {
-    if (!event.target.checked) {
-      $(".line.lineObjects.Gastronomie.Umsatz").css({ display: "none" });
-    } else {
-      $(".line.lineObjects.Gastronomie.Umsatz").css({ display: "block" });
-    }
-  });
+    $('#GastronomieUmsatz').on('change', (event) => {
+      if(!event.target.checked) {
+        $('.line.lineObjects.Gastronomie.Umsatz').css({'display': 'none'});
+        $('.lineHoverText.Gastronomie.Umsatz').css({'display': 'none'});
+        $('.hoverCircle.Gastronomie.Umsatz').css({'display': 'none'});
+      } else {
+        $('.line.lineObjects.Gastronomie.Umsatz').css({'display': 'block'});
+        $('.lineHoverText.Gastronomie.Umsatz').css({'display': 'block'});
+        $('.hoverCircle.Gastronomie.Umsatz').css({'display': 'block'});
+      }
+    });
 
-  $("#Gastronomiebeschäftigte").on("change", (event) => {
-    if (!event.target.checked) {
-      $(".line.lineObjects.Gastronomie.Beschäftigte").css({ display: "none" });
-    } else {
-      $(".line.lineObjects.Gastronomie.Beschäftigte").css({ display: "block" });
-    }
-  });
+    $('#Gastronomiebeschäftigte').on('change', (event) => {
+      if(!event.target.checked) {
+        $('.line.lineObjects.Gastronomie.Beschäftigte').css({'display': 'none'});
+        $('.lineHoverText.Gastronomie.Beschäftigte').css({'display': 'none'});
+        $('.hoverCircle.Gastronomie.Beschäftigte').css({'display': 'none'});
+      } else {
+        $('.line.lineObjects.Gastronomie.Beschäftigte').css({'display': 'block'});
+        $('.lineHoverText.Gastronomie.Beschäftigte').css({'display': 'block'});
+        $('.hoverCircle.Gastronomie.Beschäftigte').css({'display': 'block'});
+      }
+    });
 
-  //get's the csv data and runs the main function with it
-  d3.csv(
-    "https://gist.githubusercontent.com/BilelAyech/aa74eaba3d8f09b49e4c0bac08572858/raw/fa8d8c9bd598000bb1051dea72592078fd171ffb/data2.csv"
-  ).then((d) => {
-    main(d);
-  });
+    //get's the csv data and runs the main function with it
+    d3.csv("https://gist.githubusercontent.com/BilelAyech/aa74eaba3d8f09b49e4c0bac08572858/raw/fa8d8c9bd598000bb1051dea72592078fd171ffb/data2.csv")
+    .then(d => {
+      main(d)
+    })
+
+
+
 });
 
 /**
  * Runs all functions related to the D3 Line Chart
  */
-function main(data) {
-  chart(data);
+function main(data){
+    chart(data);
+    adjustLineChartColors();
 
-  ganttChart(massnahmen);
+
+    ganttChart(data2);
+
 }
+
 
 /**
  * Draws the D3 Line Chart, updates the D3 Line Chart and generates a tooltip for the D3 Line Chart
@@ -130,376 +199,360 @@ function main(data) {
  * @param {HTMLElement} circle - holds the tooltip circles
  */
 function chart(data) {
-  var keys = data.columns.slice(1);
 
-  var parseTime = d3.timeParse("%Y%m%d"),
-    formatDate = d3.timeFormat("%Y-%m-%d"),
-    bisectDate = d3.bisector((d) => d.date).left,
-    formatValue = d3.format(".1f");
+    var keys = data.columns.slice(1);
 
-  data.forEach(function (d) {
-    d.date = parseTime(d.date);
-    return d;
-  });
+	var parseTime = d3.timeParse("%Y%m%d"),
+		formatDate = d3.timeFormat("%Y-%m-%d"),
+		bisectDate = d3.bisector(d => d.date).left,
+		formatValue = d3.format(".1f");
 
-  let svg = d3.select("#chart"),
-    margin = { top: 15, right: 35, bottom: 15, left: 35 },
-    width = svg.attr("width") - margin.left - margin.right,
-    height = +svg.attr("height") - margin.top - margin.bottom;
+	data.forEach(function(d) {
+		d.date = parseTime(d.date);
+		return d;
+	})
 
-  var x = d3
-    .scaleTime()
-    .rangeRound([margin.left, width - margin.right])
-    .domain(d3.extent(data, (d) => d.date));
+	let svg = d3.select("#chart"),
+		margin = {top: 15, right: 35, bottom: 15, left: 35},
+		width= svg.attr("width") - margin.left - margin.right,
+		height = +svg.attr("height") - margin.top - margin.bottom;
 
-  var y = d3.scaleLinear().rangeRound([height - margin.bottom, margin.top]);
+	var x = d3.scaleTime()
+		.rangeRound([margin.left, width - margin.right])
+		.domain(d3.extent(data, d => d.date))
 
-  var z = d3.scaleOrdinal(d3.schemeCategory10);
+	var y = d3.scaleLinear()
+		.rangeRound([height - margin.bottom, margin.top]);
 
-  var line = d3
-    .line()
-    .curve(d3.curveCardinal)
-    .x((d) => x(d.date))
-    .y((d) => y(d.degrees));
+	var z = d3.scaleOrdinal(d3.schemeCategory10);
 
-  //draw x axis
-  svg
-    .append("g")
-    .attr("class", "x-axis")
-    .attr("transform", "translate(0," + (height - margin.bottom) + ")")
-    .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%b")));
+	var line = d3.line()
+		.curve(d3.curveCardinal)
+		.x(d => x(d.date))
+		.y(d => y(d.degrees));
 
-  //draw y axis
-  svg
-    .append("g")
-    .attr("class", "y-axis")
-    .attr("transform", "translate(" + margin.left + ",0)");
+    //draw x axis
+	svg.append("g")
+		.attr("class","x-axis")
+		.attr("transform", "translate(0," + (height - margin.bottom) + ")")
+		.call(d3.axisBottom(x).tickFormat(d3.timeFormat("%b")));
 
-  //defining the focus to enable hover text & animation in line chart
-  var focus = svg.append("g").attr("class", "focus").style("display", "none");
+    //draw y axis
+	svg.append("g")
+		.attr("class", "y-axis")
+		.attr("transform", "translate(" + margin.left + ",0)");
 
-  //focus line to generate
-  focus
-    .append("line")
-    .attr("class", "lineHover")
-    .style("stroke", "#999")
-    .attr("stroke-width", 1)
-    .style("shape-rendering", "crispEdges")
-    .style("opalineObject", 0.5)
-    .attr("y1", -height)
-    .attr("y2", 0);
+    //defining the focus to enable hover text & animation in line chart
+	var focus = svg.append("g")
+		.attr("class", "focus")
+		.style("display", "none");
 
-  //defining the overlay
-  var overlay = svg
-    .append("rect")
-    .attr("class", "overlay")
-    .attr("x", margin.left)
-    .attr("width", width - margin.right - margin.left)
-    .attr("height", height);
+    //focus line to generate
+	focus.append("line").attr("class", "lineHover")
+		.style("stroke", "#70F0DE")
+		.attr("stroke-width", 2)
+		.style("shape-rendering", "crispEdges")
+		.style("opalineObject", 0.5)
+		.attr("y1", -height)
+		.attr("y2",0);
 
-  var lineObjects = keys.map(function (id) {
-    return {
-      id: id,
-      values: data.map((d) => {
-        return { date: d.date, degrees: +d[id] };
-      }),
-    };
-  });
+    //defining the overlay
+	var overlay = svg.append("rect")
+		.attr("class", "overlay")
+		.attr("x", margin.left)
+		.attr("width", width - margin.right - margin.left)
+		.attr("height", height)
 
-  //assigns the y values to the csv data
-  y.domain([
-    d3.min(lineObjects, (d) => d3.min(d.values, (c) => c.degrees)),
-    d3.max(lineObjects, (d) => d3.max(d.values, (c) => c.degrees)),
-  ]).nice();
+	var lineObjects = keys.map(function(id) {
+		return {
+			id: id,
+			values: data.map(d => {return {date: d.date, degrees: +d[id]}})
+		};
+	});
 
-  //draw y axis + horizontal guidelines
-  svg.selectAll(".y-axis").transition().duration(1, 0).call(d3.axisLeft(y));
+    //assigns the y values to the csv data
+	y.domain([
+		d3.min(lineObjects, d => d3.min(d.values, c => c.degrees)),
+		d3.max(lineObjects, d => d3.max(d.values, c => c.degrees))
+	]).nice();
 
-  var lineObject = svg.selectAll(".lineObjects").data(lineObjects);
+    //draw y axis + horizontal guidelines
+	svg.selectAll(".y-axis").transition()
+		.duration(1,0)
+		.call(d3.axisLeft(y))
 
-  lineObject.exit().remove();
+	var lineObject = svg.selectAll(".lineObjects")
+		.data(lineObjects);
 
-  //assign each line to it's lineObject
-  lineObject
-    .enter()
-    .insert("g", ".focus")
-    .append("path")
-    .attr("class", (d) => "line lineObjects " + d.id)
-    .style("stroke", (d) => z(d.id))
-    .merge(lineObject)
-    .transition()
-    .duration(1, 0)
-    .attr("d", (d) => line(d.values));
+	lineObject.exit().remove();
 
-  var labels = focus.selectAll(".lineHoverText").data(keys);
+    //assign each line to it's lineObject
+	lineObject.enter().insert("g", ".focus").append("path")
+		.attr("class", d => "line lineObjects " + d.id)
+		.style("stroke", d => z(d.id))
+		.merge(lineObject)
+	    .transition().duration(1,0)
+		.attr("d", d => line(d.values))
 
-  labels
-    .enter()
-    .append("text")
-    .attr("class", "lineHoverText")
-    .style("fill", (d) => z(d))
-    .attr("text-anchor", "start")
-    .attr("font-size", 12)
-    .attr("dy", (_, i) => 1 + i * 2 + "em")
-    .merge(labels);
+	var labels = focus.selectAll(".lineHoverText")
+		.data(keys)
 
-  var circles = focus.selectAll(".hoverCircle").data(keys);
+	labels.enter().append("text")
+		.attr("class", d => "lineHoverText " + d)
+		.style("fill", d => z(d))
+		.attr("text-anchor", "start")
+		.attr("font-size",12)
+		.attr("dy", (_, i) => 1 + i * 2 + "em")
+		.merge(labels);
 
-  circles
-    .enter()
-    .append("circle")
-    .attr("class", "hoverCircle")
-    .style("fill", (d) => z(d))
-    .attr("r", 2.5)
-    .merge(circles);
+	var circles = focus.selectAll(".hoverCircle")
+		.data(keys)
 
-  //draws the overlay
-  svg
-    .selectAll(".overlay")
-    .on("mouseover", function () {
-      focus.style("display", null);
-    })
-    .on("mouseout", function () {
-      focus.style("display", "none");
-    })
-    .on("mousemove", mousemove);
+	circles.enter().append("circle")
+		.attr("class", d => "hoverCircle " + d)
+		.style("fill", d => z(d))
+		.attr("r", 4)
+		.merge(circles);
 
-  /**
-   * Draws the tooltip depending on the mouse position
-   */
-  function mousemove() {
-    var x0 = x.invert(d3.mouse(this)[0]),
-      i = bisectDate(data, x0, 1),
-      d0 = data[i - 1],
-      d1 = data[i],
-      d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+    //draws the overlay
+	svg.selectAll(".overlay")
+		.on("mouseover", function() { focus.style("display", null); })
+		.on("mouseout", function() { focus.style("display", "none"); })
+		.on("mousemove", mousemove);
 
-    focus
-      .select(".lineHover")
-      .attr("transform", "translate(" + x(d.date) + "," + height + ")");
 
-    focus
-      .select(".lineHoverDate")
-      .attr(
-        "transform",
-        "translate(" + x(d.date) + "," + (height + margin.bottom) + ")"
-      )
-      .text(formatDate(d.date));
+    /**
+     * Draws the tooltip depending on the mouse position
+     */
+	function mousemove() {
 
-    focus
-      .selectAll(".hoverCircle")
-      .attr("cy", (e) => y(d[e]))
-      .attr("cx", x(d.date));
+		var x0 = x.invert(d3.mouse(this)[0]),
+			i = bisectDate(data, x0, 1),
+			d0 = data[i - 1],
+			d1 = data[i],
+			d = x0 - d0.date > d1.date - x0 ? d1 : d0;
 
-    focus
-      .selectAll(".lineHoverText")
-      .attr("transform", "translate(" + x(d.date) + "," + height / 2.5 + ")")
-      .text((e) => e + " " + formatValue(d[e]) + "%");
+		focus.select(".lineHover")
+			.attr("transform", "translate(" + x(d.date) + "," + height + ")");
 
-    x(d.date) > width - width / 4
-      ? focus
-          .selectAll("text.lineHoverText")
-          .attr("text-anchor", "end")
-          .attr("dx", -10)
-      : focus
-          .selectAll("text.lineHoverText")
-          .attr("text-anchor", "start")
-          .attr("dx", 10);
+		focus.select(".lineHoverDate")
+			.attr("transform",
+				"translate(" + x(d.date) + "," + (height + margin.bottom) + ")")
+			.text(formatDate(d.date));
 
-    //reorders Gantt bars depending on the mouse position
-    reorderGanttBars(d.date);
-  }
+		focus.selectAll(".hoverCircle")
+			.attr("cy", e => y(d[e]))
+			.attr("cx", x(d.date));
+
+		focus.selectAll(".lineHoverText")
+			.attr("transform",
+				"translate(" + (x(d.date)) + "," + height / 2.5 + ")")
+			.text(e => e + " " + formatValue(d[e]) + "%");
+
+		x(d.date) > (width - width / 4)
+			? focus.selectAll("text.lineHoverText")
+				.attr("text-anchor", "end")
+				.attr("dx", -10)
+			: focus.selectAll("text.lineHoverText")
+				.attr("text-anchor", "start")
+				.attr("dx", 10)
+
+        //reorders Gantt bars depending on the mouse position
+		reorderGanttBars(d.date);
+    }
+
+
 }
 
-function ganttChart(massnahmen) {
-  massnahmen.forEach((value, key, map) => {
-    console.log(value.startDate);
+function adjustLineChartColors(){
+    $('.line.lineObjects.Beherbergung.Umsatz').css({'stroke': '#8525FD'});
+    $('.lineHoverText.Beherbergung.Umsatz').css({'fill': '#8525FD'});
+    $('.hoverCircle.Beherbergung.Umsatz').css({'fill': '#8525FD'});
 
-    drawBar(key, value);
-  });
+    $('.line.lineObjects.Beherbergung.Beschäftigte').css({'stroke': '#866FA2'});
+    $('.lineHoverText.Beherbergung.Beschäftigte').css({'fill': '#866FA2'});
+    $('.hoverCircle.Beherbergung.Beschäftigte').css({'fill': '#866FA2'});
+
+    $('.line.lineObjects.Gastronomie.Umsatz').css({'stroke': '#007DFA'});
+    $('.lineHoverText.Gastronomie.Umsatz').css({'fill': '#007DFA'});
+    $('.hoverCircle.Gastronomie.Umsatz').css({'fill': '#007DFA'});
+
+    $('.line.lineObjects.Gastronomie.Beschäftigte').css({'stroke': '#4E7C91'});
+    $('.lineHoverText.Gastronomie.Beschäftigte').css({'fill': '#4E7C91'});
+    $('.hoverCircle.Gastronomie.Beschäftigte').css({'fill': '#4E7C91'});
 }
 
-function drawBar(key, value) {
-  let divLine = document.createElement("div");
-  divLine.className = "ganttLine Line" + (key + 1);
-  divLine.id = "demo-tooltip-mouse" + key;
-  divLine.style.top = 18 * key + "px";
+function ganttChart(massnahmen){
+	massnahmen.forEach((value, key, map) =>{
+		console.log(value.Startdatum);
 
-  let titleSpan = document.createElement("span");
-  titleSpan.className = "ganttTitle gTitle" + (key + 1) + " unselectable";
-  titleSpan.innerHTML = "" + value.massnahme;
+		drawBar(key, value);
+	})
 
-  let div = document.createElement("div");
-  let startdate = new Date(value.startDate);
-  let enddate = new Date(value.enddate);
-  let startofyear = new Date(2020, 0, 0);
 
-  div.className = "barElement bar" + (key + 1);
-  div.id = "bar" + (key + 1);
-  div.style.width = "" + widthFromDate(startdate, enddate) + "px";
-  div.style.left = "" + widthFromDate(startofyear, startdate) + "px";
-  titleSpan.style.left = widthFromDate(startofyear, startdate) - 80 + "px";
 
-  document.getElementById("ganttContainer").appendChild(divLine);
-  document.getElementById("demo-tooltip-mouse" + key).appendChild(titleSpan);
-  document.getElementById("demo-tooltip-mouse" + key).appendChild(div);
-
-  $("#demo-tooltip-above").jBox("Tooltip", {
-    theme: "TooltipDark",
-  });
-
-  $("#demo-tooltip-mouse" + key).jBox("Mouse", {
-    theme: "TooltipDark",
-    content:
-      "<b> Zeitraum: " +
-      value.startDate +
-      "-" +
-      value.enddate +
-      "<br> Massnahmen: " +
-      value.massnahme +
-      "! </b>",
-  });
 }
 
-function widthFromDate(startdate, enddate) {
-  // time difference
-  let timeDiff = Math.abs(enddate.getTime() - startdate.getTime());
+function drawBar(key, value){
 
-  // days difference
-  let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-  let width = diffDays * (1177 / 365);
-  // position = (1177/365) * (date.getDate() + ((date.getMonth())*30));
-  // console.log("getday " + date.getDate()+"getMonth:"+ date.getMonth() + "position " + position);
-  console.log(
-    "startdate " +
-      startdate +
-      "enddate " +
-      enddate +
-      "tage " +
-      diffDays +
-      " " +
-      timeDiff
-  );
-  return width;
-}
-function positionFromDate(startdate) {
-  let position = 0;
-  position = (1177 / 365) * (startdate.getTime() / (1000 * 3600 * 24));
-  console.log("posfromdate " + startdate.getTime() / (1000 * 3600 * 24));
-  return position;
+	let divLine = document.createElement("div");
+	divLine.className = "ganttLine Line"+(key+1);
+	divLine.id = "demo-tooltip-mouse" +key;
+	divLine.style.top = (18*key)+"px";
+
+	let titleSpan = document.createElement("span");
+	titleSpan.className = "ganttTitle gTitle"+(key+1)+" unselectable"
+	titleSpan.innerHTML = "" + value.title;
+
+	let div = document.createElement("div");
+	let startdate = new Date(value.Startdatum);
+	let enddate = new Date(value.Enddatum);
+	let startofyear = new Date(2020,0,0);
+
+	div.className = "barElement bar"+(key+1);
+	div.id = "bar"+(key+1);
+	div.style.width = ""+widthFromDate(startdate, enddate)+"px";
+	div.style.left = ""+widthFromDate(startofyear,startdate)+"px";
+	titleSpan.style.left = widthFromDate(startofyear,startdate) - 95 +"px"
+
+
+	document.getElementById("ganttContainer").appendChild(divLine);
+	document.getElementById("demo-tooltip-mouse"+key).appendChild(titleSpan);
+	document.getElementById("demo-tooltip-mouse"+key).appendChild(div);
+
+
+	$('#demo-tooltip-above').jBox('Tooltip', {
+		theme: 'TooltipDark'
+	});
+
+	$('#demo-tooltip-mouse'+(key)).jBox('Mouse', {
+		theme: 'TooltipDark',
+		content: '<b> Zeitraum: ' + value.Startdatum + '-' +  value.Enddatum + '<br> Massnahmen: ' + value.massnahme +'! </b>'
+	});
 }
 
-new jBox("Tooltip", {
-  attach: ".tooltip",
-  getTitle: "data-jbox-title",
-  getContent: "data-jbox-content",
+function widthFromDate(startdate, enddate){
+	// time difference
+	let timeDiff = Math.abs(enddate.getTime() - startdate.getTime());
+
+	// days difference
+	let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+	let width = diffDays * (1160/365);
+	// position = (1177/365) * (date.getDate() + ((date.getMonth())*30));
+	// console.log("getday " + date.getDate()+"getMonth:"+ date.getMonth() + "position " + position);
+	console.log("startdate " + startdate + "enddate "  + enddate + "tage " + diffDays +" " +  timeDiff);
+	return width
+}
+function positionFromDate(startdate){
+	let position = 0;
+	position = ((1160/365) * (startdate.getTime() / (1000 * 3600 * 24)));
+	console.log("posfromdate " + (startdate.getTime() / (1000 * 3600 * 24)));
+	return position
+}
+
+
+
+new jBox('Tooltip', {
+	attach: '.tooltip',
+	getTitle: 'data-jbox-title',
+	getContent: 'data-jbox-content'
 });
 
 // function to calculate the position in px with given position number
-function position(posNumber) {
-  let position = "";
-  position = (posNumber - 1) * 18 + "px";
-  // console.log("position " + position);
-  return position;
+function position(posNumber){
+	let position = "";
+	position = (posNumber-1)*18 +"px";
+	// console.log("position " + position);
+	return position;
+
 }
-function swapPosition(pos1, pos2) {
-  console.log("in swap position" + pos1 + pos2);
-  document.getElementById(
-    "demo-tooltip-mouse" + (pos1 - 1)
-  ).style.top = position(pos2);
-  document.getElementById(
-    "demo-tooltip-mouse" + (pos2 - 1)
-  ).style.top = position(pos1);
-  // changeColorofBar(pos2, true);
+function swapPosition(pos1,pos2){
+	console.log("in swap position" + pos1 + pos2)
+	document.getElementById("demo-tooltip-mouse"+(pos1-1)).style.top = position(pos2);
+	document.getElementById("demo-tooltip-mouse"+(pos2-1)).style.top = position(pos1);
+	// changeColorofBar(pos2, true);
+
 }
 
 function changeColorofBar(bar, active) {
-  console.log("in bAR " + bar);
+	console.log("in bAR " + bar);
 
-  if (active) {
-    document.getElementById("bar" + bar).style.backgroundColor = "#70F0DE";
-  } else {
-    console.log("not active");
-    document.getElementById("bar" + bar).style.backgroundColor = "#7E7E7E";
-  }
+	if (active) {
+		document.getElementById("bar" + bar).style.backgroundColor = "#70F0DE";
+	} else{
+		console.log("not active");
+		document.getElementById("bar" + bar).style.backgroundColor = "#7E7E7E";
+	}
 }
 // function to reorder gantt bars according to which month in the line chart is highlighted
 // TODO: refactor gantt chart to include start and end month & implement method to reposition and assign color depending on month
 function reorderGanttBars(month) {
-  console.log("month " + month);
-  if (month.toString().includes("Jan")) {
-    orderMassnahmeToMonth(1);
-  }
-  if (month.toString().includes("Feb")) {
-    orderMassnahmeToMonth(2);
-  }
-  if (month.toString().includes("Mar")) {
-    orderMassnahmeToMonth(3);
-  }
-  if (month.toString().includes("Apr")) {
-    orderMassnahmeToMonth(4);
-  }
-  if (month.toString().includes("Mar")) {
-    orderMassnahmeToMonth(5);
-  }
-  if (month.toString().includes("Jun")) {
-    orderMassnahmeToMonth(6);
-  }
-  if (month.toString().includes("Jul")) {
-    orderMassnahmeToMonth(7);
-  }
-  if (month.toString().includes("Aug")) {
-    orderMassnahmeToMonth(8);
-  }
-  if (month.toString().includes("Sep")) {
-    orderMassnahmeToMonth(9);
-  }
-  if (month.toString().includes("Okt")) {
-    orderMassnahmeToMonth(10);
-  }
-  if (month.toString().includes("Nov")) {
-    orderMassnahmeToMonth(11);
-  }
-  if (month.toString().includes("Dec")) {
-    orderMassnahmeToMonth(12);
-  } else {
-    //orderMassnahmeToMonth(0);
-  }
+	console.log("month " + (month));
+	if (month.toString().includes("Jan")) {
+		orderMassnahmeToMonth(1);}
+	if (month.toString().includes("Feb")) {
+		orderMassnahmeToMonth(2);}
+	if (month.toString().includes("Mar")) {
+		orderMassnahmeToMonth(3);}
+	if (month.toString().includes("Apr")) {
+		orderMassnahmeToMonth(4);}
+	if (month.toString().includes("Mar")) {
+		orderMassnahmeToMonth(5);}
+	if (month.toString().includes("Jun")) {
+		orderMassnahmeToMonth(6);}
+	if (month.toString().includes("Jul")) {
+		orderMassnahmeToMonth(7);}
+	if (month.toString().includes("Aug")) {
+		orderMassnahmeToMonth(8);}
+	if (month.toString().includes("Sep")) {
+		orderMassnahmeToMonth(9);}
+	if (month.toString().includes("Okt")) {
+		orderMassnahmeToMonth(10);}
+	if (month.toString().includes("Nov")) {
+		orderMassnahmeToMonth(11);}
+	if (month.toString().includes("Dec")) {
+		orderMassnahmeToMonth(12);}
+	else{
+		//orderMassnahmeToMonth(0);
+		}
 }
 
-function orderMassnahmeToMonth(month) {
-  // console.log("in massnahme to month" + month)
-  let key2 = 1;
-  massnahmen.forEach((value, key) => {
-    console.log("massnahmen for each " + key);
-    let startMonth = new Date(value.startDate).getMonth() + 1;
-    let endMonth = new Date(value.enddate).getMonth() + 1;
-    console.log(
-      "in massnahme to month" +
-        month +
-        "start " +
-        startMonth +
-        "end " +
-        endMonth
-    );
-    if (startMonth <= month && endMonth >= month) {
-      console.log("im if order " + key + key2);
-      if (key + 1 != key2) {
-        swapPosition(key2, key + 1);
-      }
-      changeColorofBar(key + 1, true);
-      key2++;
-    } else if (startMonth >= month || endMonth <= month) {
-      changeColorofBar(key + 1, false);
-      if (key2 <= key) {
-        swapPosition(key + 1, key + 1);
-      } else {
-        swapPosition(key + 1, key2 + 1);
-        key2++;
-      }
-    } else if (endMonth + 1 < month) {
-      // changeColorofBar(key+1, false);
-      // swapPosition(key+1,key+1);
-    }
-  });
+function orderMassnahmeToMonth(month){
+	// console.log("in massnahme to month" + month)
+	let key2 = 1;
+	massnahmen.forEach((value, key) => {
+		console.log("massnahmen for each " + key);
+	let startMonth = new Date(value.Startdatum).getMonth() + 1;
+	let endMonth = new Date(value.Enddatum).getMonth() +1;
+		console.log("in massnahme to month" + month + "start " + startMonth + "end " + endMonth);
+	if (startMonth <= month && endMonth >= month ){
+		console.log("im if order " + key + key2)
+		if(key+1!=key2){
+			swapPosition(key2,(key+1));
+		}
+		changeColorofBar(key+1, true);
+		key2++;
+
+	}
+	else if(startMonth >= month || endMonth <= month){
+		changeColorofBar(key+1, false);
+		if (key2<=key){
+			swapPosition(key+1,key+1);
+		} else {
+			swapPosition(key+1, key2+1)
+			key2++;
+		}
+
+
+	}
+	else if(endMonth+1 < month){
+		// changeColorofBar(key+1, false);
+		// swapPosition(key+1,key+1);
+
+	}
+
+	})
 }
+
+
+
