@@ -2,222 +2,94 @@
 var h = $(window).innerHeight();
 var w = $(window).innerWidth();
 
-let massnahmen = [
-    {
-        startdate: "3/12/2020",
-        enddate: "5/16/2020",
-        sanctions: "Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein. Die Fußball-Bundesliga pausiert.",
-        titel: "Bundesliga pausiert",
-    },
-    {
-        startdate: "3/16/2020",
-        enddate: "5/16/2020",
-        sanctions:
-            "Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und der Schweiz gibt es Kontrollen und Einreiseverbote. In den meisten Bundesländern sind Schulen und Kitas geschlossen.",
-        titel: "Reiseeinschränkung",
-    },
-    {
-        startdate: "3/16/2020",
-        enddate: "5/16/2020",
-        sanctions:
-            "Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und der Schweiz gibt es Kontrollen und Einreiseverbote. In den meisten Bundesländern sind Schulen und Kitas geschlossen.",
-        titel: "Reiseeinschränkung",
-    },
-    {
-        startdate: "3/22/2020",
-        enddate: "5/11/2020",
-        sanctions:
-            "Verbot von Ansammlungen von mehr als zwei Menschen. Ausgenommen sind Angehörige, die im eigenen Haushalt leben. Cafés, Kneipen, Restaurants, aber auch Friseure zum Beispiel schließen.",
-        titel: "1. Lockdown",
-    },
-    {
-        startdate: "3/22/2020",
-        enddate: "4/15/2020",
-        sanctions: "Schule schließt",
-        titel: "Schule schließt",
-    },
-    {
-        startdate: "4/22/2020",
-        enddate: "12/31/2020",
-        sanctions: "Das bayerische Kabinett beschloss, dass 250.000 Pflegekräfte in bayerischen Krankenhäusern, Altenheimen und in der ambulanten Pflege und auch Rettungsassistenten und Notfallsanitäter eine steuerfreie Einmalzahlung erhalten.",
-        titel: "Boni für Pflegekräfte",
-    },
-    {
-        startdate: "4/22/2020",
-        enddate: "12/31/2020",
-        sanctions: "Maskenpflicht für alle Bundesländer.",
-        titel: "Maskenpflicht",
-    },
-    {
-        startdate: "7/10/2020",
-        enddate: "12/31/2020",
-        sanctions:
-            "Ministerpräsident Söder gibt bekannt, dass kostenlose, freiwillige Corona-Tests „schneller, kostenlos und für jedermann“ ermöglicht werden.",
-        titel: "Testmöglichkeit",
-    },
-    {
-        startdate: "7/10/2020",
-        enddate: "12/31/2020",
-        sanctions:
-            "Die Bundesländer beschließen ein Beherbergungsverbot für Urlauber aus inländischen Risikogebieten. Die Zahl der Neuinfektionen ist auf mehr als 4000 binnen eines Tages gestiegen.",
-        titel: "Beherbergungsverbot",
-    },
-    {
-        startdate: "8/8/2020",
-        enddate: "12/31/2020",
-        sanctions:
-            "Inreisende aus internationalen Risikogebieten müssen sich bei der Rückkehr nach Deutschland testen lassen.",
-        titel: "Reiseeinschränkung",
-    },
-    {
-        startdate: "10/14/2020",
-        enddate: "12/31/2020",
-        sanctions: "Beherbergungsverbot bei Inzididenz > 50.",
-        titel: "Beherbergungsverbot",
-    },
-    {
-        startdate: "10/17/2020",
-        enddate: "12/31/2020",
-        sanctions:
-            "In der Sitzung vom 15. Oktober 2020 beschloss das bayerische Kabinett die Einführung eines „Ampelsystems“ auf Ebene der Landkreise bzw. kreisfreien Städte für vorerst vier Wochen.",
-        titel: "Ampelsystem",
-    },
-    {
-        startdate: "11/2/2020",
-        enddate: "12/31/2020",
-        sanctions: "Lockdown light, Gastronomie schließt.",
-        titel: 'Lockdown "light',
-    },
-    {
-        startdate: "11/3/2020",
-        enddate: "12/31/2020",
-        sanctions:
-            "Der Notfallplan Corona-Pandemie: Allgemeinverfügung zur Bewältigung erheblicher Patientenzahlen in Krankenhäusern wurde bekannt gegeben.",
-        titel: "Allgemeinverfügung ",
-    },
-    {
-        startdate: "11/9/2020",
-        enddate: "11/30/2020",
-        sanctions:
-            "Die Verordnung über Quarantänemaßnahmen für Einreisende zur Bekämpfung des Coronavirus vom bayerischen Staatsministerium für Gesundheit und Pflege bekannt gegeben.",
-        titel: "Quarantäneverordnung",
-    },
-    {
-        startdate: "12/9/2020",
-        enddate: "12/31/2020",
-        sanctions:
-            "Die Ausrufung des Katastrophenfalls sowie weitere einschränkende Maßnahmen beschlossen.",
-        titel: "Katastrophenfall",
-    },
-];
-
-const data2 = massnahmen.map((item) => {
-    let dataMap = new Map();
-    dataMap["Startdatum"] = item.startdate;
-    dataMap["Enddatum"] = item.enddate;
-    dataMap["massnahme"] = item.sanctions;
-    dataMap["title"] = item.titel;
-
-    return dataMap;
-});
-/*
-scrollmagic:
- - makes headline disappear on scroll
- - makes content appear on scroll
- */
-
 /**
- * Runs the whole Javascript  code "on document ready"
- *scrollmagic:
- * - makes headline disappear on scroll
- *- makes content appear on scroll
+ * Runs code "on document ready"
  */
 
 $(document).ready(function ($) {
-    // wait for document ready
+    /**
+     * scrollmagic:
+     * - makes headline disappear on scroll
+     * - makes content appear on scroll
+     */
+
     // init ScrollMagic
     var controller = new ScrollMagic.Controller();
 
     // header1Container disapears
     var h1Disappears = TweenLite.to("#h1Container", 1, {
-        opalineObject: 0,
+    opalineObject: 0,
     });
+
     // build scene for header1Container disappers
     var scene = new ScrollMagic.Scene({
-        duration: h,
-        triggerHook: 0,
-        reverse: true,
+    duration: h,
+    triggerHook: 0,
+    reverse: true,
     })
-        .setTween(h1Disappears)
-        //.addIndicators() // add indicators (requires plugin)
-        .addTo(controller);
+    .setTween(h1Disappears)
+    .addTo(controller);
 
     // checkbox events
     $("#BeherbergungUmsatz").on("change", (event) => {
         if (!event.target.checked) {
-            $(".line.lineObjects.Beherbergung.Umsatz").css({display: "none"});
-            $(".lineHoverText.Beherbergung.Umsatz").css({display: "none"});
-            $(".hoverCircle.Beherbergung.Umsatz").css({display: "none"});
+            $(".line.lineObjects.Beherbergung.Umsatz").css({ display: "none" });
+            $(".lineHoverText.Beherbergung.Umsatz").css({ display: "none" });
+            $(".hoverCircle.Beherbergung.Umsatz").css({ display: "none" });
         } else {
-            $(".line.lineObjects.Beherbergung.Umsatz").css({display: "block"});
-            $(".lineHoverText.Beherbergung.Umsatz").css({display: "block"});
-            $(".hoverCircle.Beherbergung.Umsatz").css({display: "block"});
+            $(".line.lineObjects.Beherbergung.Umsatz").css({ display: "block" });
+            $(".lineHoverText.Beherbergung.Umsatz").css({ display: "block" });
+            $(".hoverCircle.Beherbergung.Umsatz").css({ display: "block" });
         }
     });
-
     $("#Beherbergungbeschäftigte").on("change", (event) => {
         if (!event.target.checked) {
-            $(".line.lineObjects.Beherbergung.Beschäftigte").css({display: "none"});
-            $(".lineHoverText.Beherbergung.Beschäftigte").css({display: "none"});
-            $(".hoverCircle.Beherbergung.Beschäftigte").css({display: "none"});
+            $(".line.lineObjects.Beherbergung.Beschäftigte").css({ display: "none" });
+            $(".lineHoverText.Beherbergung.Beschäftigte").css({ display: "none" });
+            $(".hoverCircle.Beherbergung.Beschäftigte").css({ display: "none" });
         } else {
-            $(".line.lineObjects.Beherbergung.Beschäftigte").css({
-                display: "block",
-            });
-            $(".lineHoverText.Beherbergung.Beschäftigte").css({display: "block"});
-            $(".hoverCircle.Beherbergung.Beschäftigte").css({display: "block"});
+            $(".line.lineObjects.Beherbergung.Beschäftigte").css({display: "block",});
+            $(".lineHoverText.Beherbergung.Beschäftigte").css({ display: "block" });
+            $(".hoverCircle.Beherbergung.Beschäftigte").css({ display: "block" });
         }
     });
-
     $("#GastronomieUmsatz").on("change", (event) => {
         if (!event.target.checked) {
-            $(".line.lineObjects.Gastronomie.Umsatz").css({display: "none"});
-            $(".lineHoverText.Gastronomie.Umsatz").css({display: "none"});
-            $(".hoverCircle.Gastronomie.Umsatz").css({display: "none"});
+            $(".line.lineObjects.Gastronomie.Umsatz").css({ display: "none" });
+            $(".lineHoverText.Gastronomie.Umsatz").css({ display: "none" });
+            $(".hoverCircle.Gastronomie.Umsatz").css({ display: "none" });
         } else {
-            $(".line.lineObjects.Gastronomie.Umsatz").css({display: "block"});
-            $(".lineHoverText.Gastronomie.Umsatz").css({display: "block"});
-            $(".hoverCircle.Gastronomie.Umsatz").css({display: "block"});
+            $(".line.lineObjects.Gastronomie.Umsatz").css({ display: "block" });
+            $(".lineHoverText.Gastronomie.Umsatz").css({ display: "block" });
+            $(".hoverCircle.Gastronomie.Umsatz").css({ display: "block" });
         }
     });
-
     $("#Gastronomiebeschäftigte").on("change", (event) => {
         if (!event.target.checked) {
-            $(".line.lineObjects.Gastronomie.Beschäftigte").css({display: "none"});
-            $(".lineHoverText.Gastronomie.Beschäftigte").css({display: "none"});
-            $(".hoverCircle.Gastronomie.Beschäftigte").css({display: "none"});
+            $(".line.lineObjects.Gastronomie.Beschäftigte").css({ display: "none" });
+            $(".lineHoverText.Gastronomie.Beschäftigte").css({ display: "none" });
+            $(".hoverCircle.Gastronomie.Beschäftigte").css({ display: "none" });
         } else {
-            $(".line.lineObjects.Gastronomie.Beschäftigte").css({display: "block"});
-            $(".lineHoverText.Gastronomie.Beschäftigte").css({display: "block"});
-            $(".hoverCircle.Gastronomie.Beschäftigte").css({display: "block"});
+            $(".line.lineObjects.Gastronomie.Beschäftigte").css({ display: "block" });
+            $(".lineHoverText.Gastronomie.Beschäftigte").css({ display: "block" });
+            $(".hoverCircle.Gastronomie.Beschäftigte").css({ display: "block" });
         }
     });
 
     //get's the csv data and runs the main function with it
-    d3.csv(
-        "https://gist.githubusercontent.com/BilelAyech/aa74eaba3d8f09b49e4c0bac08572858/raw/40b14df4979e7a131bfe16092f005e25c79c317e/data2.csv"
-    ).then((d) => {
+    d3.csv("https://gist.githubusercontent.com/BilelAyech/aa74eaba3d8f09b49e4c0bac08572858/raw/40b14df4979e7a131bfe16092f005e25c79c317e/data2.csv")
+    .then((d) => {
         main(d);
     });
+
 });
 
 /**
- * Runs all functions related to the D3 Line Chart
- */
+* Runs all functions related to the D3 Line Chart
+*/
 function main(data) {
     chart(data);
     adjustLineChartColors();
-
     ganttChart(data2);
 }
 
@@ -240,9 +112,9 @@ function chart(data) {
     var keys = data.columns.slice(1);
 
     var parseTime = d3.timeParse("%Y%m%d"),
-        formatDate = d3.timeFormat("%Y-%m-%d"),
-        bisectDate = d3.bisector((d) => d.date).left,
-        formatValue = d3.format(".1f");
+    formatDate = d3.timeFormat("%Y-%m-%d"),
+    bisectDate = d3.bisector((d) => d.date).left,
+    formatValue = d3.format(".1f");
 
     data.forEach(function (d) {
         d.date = parseTime(d.date);
@@ -250,9 +122,9 @@ function chart(data) {
     });
 
     let svg = d3.select("#chart"),
-        margin = {top: 15, right: 35, bottom: 15, left: 35},
-        width = svg.attr("width") - margin.left - margin.right,
-        height = +svg.attr("height") - margin.top - margin.bottom;
+    margin = { top: 15, right: 35, bottom: 15, left: 35 },
+    width = svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom;
 
     var x = d3
         .scaleTime()
@@ -308,7 +180,7 @@ function chart(data) {
         return {
             id: id,
             values: data.map((d) => {
-                return {date: d.date, degrees: +d[id]};
+            return { date: d.date, degrees: +d[id] };
             }),
         };
     });
@@ -364,54 +236,54 @@ function chart(data) {
     svg
         .selectAll(".overlay")
         .on("mouseover", function () {
-            focus.style("display", null);
+          focus.style("display", null);
         })
         .on("mouseout", function () {
-            focus.style("display", "none");
+          focus.style("display", "none");
         })
         .on("mousemove", mousemove);
 
     /**
-     * Draws the tooltip depending on the mouse position
-     */
+    * Draws the tooltip depending on the mouse position
+    */
     function mousemove() {
         var x0 = x.invert(d3.mouse(this)[0]),
-            i = bisectDate(data, x0, 1),
-            d0 = data[i - 1],
-            d1 = data[i],
-            d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+        i = bisectDate(data, x0, 1),
+        d0 = data[i - 1],
+        d1 = data[i],
+        d = x0 - d0.date > d1.date - x0 ? d1 : d0;
 
         focus
-            .select(".lineHover")
-            .attr("transform", "translate(" + x(d.date) + "," + height + ")");
+          .select(".lineHover")
+          .attr("transform", "translate(" + x(d.date) + "," + height + ")");
 
         focus
-            .select(".lineHoverDate")
-            .attr(
-                "transform",
-                "translate(" + x(d.date) + "," + (height + margin.bottom) + ")"
-            )
-            .text(formatDate(d.date));
+          .select(".lineHoverDate")
+          .attr(
+            "transform",
+            "translate(" + x(d.date) + "," + (height + margin.bottom) + ")"
+          )
+          .text(formatDate(d.date));
 
         focus
-            .selectAll(".hoverCircle")
-            .attr("cy", (e) => y(d[e]))
-            .attr("cx", x(d.date));
+          .selectAll(".hoverCircle")
+          .attr("cy", (e) => y(d[e]))
+          .attr("cx", x(d.date));
 
         focus
-            .selectAll(".lineHoverText")
-            .attr("transform", "translate(" + x(d.date) + "," + height / 2.5 + ")")
-            .text((e) => e + " " + formatValue(d[e]) + "%");
+          .selectAll(".lineHoverText")
+          .attr("transform", "translate(" + x(d.date) + "," + height / 2.5 + ")")
+          .text((e) => e + " " + formatValue(d[e]) + "%");
 
         x(d.date) > width - width / 4
-            ? focus
-                .selectAll("text.lineHoverText")
-                .attr("text-anchor", "end")
-                .attr("dx", -10)
-            : focus
-                .selectAll("text.lineHoverText")
-                .attr("text-anchor", "start")
-                .attr("dx", 10);
+          ? focus
+              .selectAll("text.lineHoverText")
+              .attr("text-anchor", "end")
+              .attr("dx", -10)
+          : focus
+              .selectAll("text.lineHoverText")
+              .attr("text-anchor", "start")
+              .attr("dx", 10);
 
         //reorders Gantt bars depending on the mouse position
         reorderGanttBars(d.date);
@@ -419,23 +291,125 @@ function chart(data) {
 }
 
 function adjustLineChartColors() {
-    $(".line.lineObjects.Beherbergung.Umsatz").css({stroke: "#8525FD"});
-    $(".lineHoverText.Beherbergung.Umsatz").css({fill: "#8525FD"});
-    $(".hoverCircle.Beherbergung.Umsatz").css({fill: "#8525FD"});
+    $(".line.lineObjects.Beherbergung.Umsatz").css({ stroke: "#8525FD" });
+    $(".lineHoverText.Beherbergung.Umsatz").css({ fill: "#8525FD" });
+    $(".hoverCircle.Beherbergung.Umsatz").css({ fill: "#8525FD" });
 
-    $(".line.lineObjects.Beherbergung.Beschäftigte").css({stroke: "#866FA2"});
-    $(".lineHoverText.Beherbergung.Beschäftigte").css({fill: "#866FA2"});
-    $(".hoverCircle.Beherbergung.Beschäftigte").css({fill: "#866FA2"});
+    $(".line.lineObjects.Beherbergung.Beschäftigte").css({ stroke: "#866FA2" });
+    $(".lineHoverText.Beherbergung.Beschäftigte").css({ fill: "#866FA2" });
+    $(".hoverCircle.Beherbergung.Beschäftigte").css({ fill: "#866FA2" });
 
-    $(".line.lineObjects.Gastronomie.Umsatz").css({stroke: "#007DFA"});
-    $(".lineHoverText.Gastronomie.Umsatz").css({fill: "#007DFA"});
-    $(".hoverCircle.Gastronomie.Umsatz").css({fill: "#007DFA"});
+    $(".line.lineObjects.Gastronomie.Umsatz").css({ stroke: "#007DFA" });
+    $(".lineHoverText.Gastronomie.Umsatz").css({ fill: "#007DFA" });
+    $(".hoverCircle.Gastronomie.Umsatz").css({ fill: "#007DFA" });
 
-    $(".line.lineObjects.Gastronomie.Beschäftigte").css({stroke: "#4E7C91"});
-    $(".lineHoverText.Gastronomie.Beschäftigte").css({fill: "#4E7C91"});
-    $(".hoverCircle.Gastronomie.Beschäftigte").css({fill: "#4E7C91"});
+    $(".line.lineObjects.Gastronomie.Beschäftigte").css({ stroke: "#4E7C91" });
+    $(".lineHoverText.Gastronomie.Beschäftigte").css({ fill: "#4E7C91" });
+    $(".hoverCircle.Gastronomie.Beschäftigte").css({ fill: "#4E7C91" });
 }
 
+let massnahmen = [
+    {
+    startdate: "3/12/2020",
+    enddate: "5/16/2020",
+    sanctions:"Immer mehr Theater und Konzerthäuser stellen den Spielbetrieb ein. Die Fußball-Bundesliga pausiert.",
+    titel: "Bundesliga pausiert",
+    },
+    {
+    startdate: "3/16/2020",
+    enddate: "5/16/2020",
+    sanctions:"Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und der Schweiz gibt es Kontrollen und Einreiseverbote. In den meisten Bundesländern sind Schulen und Kitas geschlossen.",
+    titel: "Reiseeinschränkung",
+    },
+    {
+    startdate: "3/22/2020",
+    enddate: "5/11/2020",
+    sanctions:"Verbot von Ansammlungen von mehr als zwei Menschen. Ausgenommen sind Angehörige, die im eigenen Haushalt leben. Cafés, Kneipen, Restaurants, aber auch Friseure zum Beispiel schließen.",
+    titel: "1. Lockdown",
+    },
+    {
+    startdate: "3/22/2020",
+    enddate: "4/15/2020",
+    sanctions: "Schule schließt",
+    titel: "Schule schließt",
+    },
+    {
+    startdate: "4/22/2020",
+    enddate: "12/31/2020",
+    sanctions: "Das bayerische Kabinett beschloss, dass 250.000 Pflegekräfte in bayerischen Krankenhäusern, Altenheimen und in der ambulanten Pflege und auch Rettungsassistenten und Notfallsanitäter eine steuerfreie Einmalzahlung erhalten.",
+    titel: "Boni für Pflegekräfte",
+    },
+    {
+    startdate: "4/22/2020",
+    enddate: "12/31/2020",
+    sanctions: "Maskenpflicht für alle Bundesländer.",
+    titel: "Maskenpflicht",
+    },
+    {
+    startdate: "7/10/2020",
+    enddate: "12/31/2020",
+    sanctions:"Ministerpräsident Söder gibt bekannt, dass kostenlose, freiwillige Corona-Tests „schneller, kostenlos und für jedermann“ ermöglicht werden.",
+    titel: "Testmöglichkeit",
+    },
+    {
+    startdate: "7/10/2020",
+    enddate: "12/31/2020",
+    sanctions:"Die Bundesländer beschließen ein Beherbergungsverbot für Urlauber aus inländischen Risikogebieten. Die Zahl der Neuinfektionen ist auf mehr als 4000 binnen eines Tages gestiegen.",
+    titel: "Beherbergungsverbot",
+    },
+    {
+    startdate: "8/8/2020",
+    enddate: "12/31/2020",
+    sanctions:"Einreisende aus internationalen Risikogebieten müssen sich bei der Rückkehr nach Deutschland testen lassen.",
+    titel: "Reiseeinschränkung",
+    },
+    {
+    startdate: "10/14/2020",
+    enddate: "12/31/2020",
+    sanctions: "Beherbergungsverbot bei Inzididenz > 50.",
+    titel: "Beherbergungsverbot",
+    },
+    {
+    startdate: "10/17/2020",
+    enddate: "12/31/2020",
+    sanctions:"In der Sitzung vom 15. Oktober 2020 beschloss das bayerische Kabinett die Einführung eines „Ampelsystems“ auf Ebene der Landkreise bzw. kreisfreien Städte für vorerst vier Wochen.",
+    titel: "Ampelsystem",
+    },
+    {
+    startdate: "11/2/2020",
+    enddate: "12/31/2020",
+    sanctions: "Lockdown light, Gastronomie schließt.",
+    titel: 'Lockdown "light',
+    },
+    {
+    startdate: "11/3/2020",
+    enddate: "12/31/2020",
+    sanctions:"Der Notfallplan Corona-Pandemie: Allgemeinverfügung zur Bewältigung erheblicher Patientenzahlen in Krankenhäusern wurde bekannt gegeben.",
+    titel: "Allgemeinverfügung ",
+    },
+    {
+    startdate: "11/9/2020",
+    enddate: "11/30/2020",
+    sanctions:"Die Verordnung über Quarantänemaßnahmen für Einreisende zur Bekämpfung des Coronavirus vom bayerischen Staatsministerium für Gesundheit und Pflege bekannt gegeben.",
+    titel: "Quarantäneverordnung",
+    },
+    {
+    startdate: "12/9/2020",
+    enddate: "12/31/2020",
+    sanctions:"Die Ausrufung des Katastrophenfalls sowie weitere einschränkende Maßnahmen beschlossen.",
+    titel: "Katastrophenfall",
+    },
+];
+
+const data2 = massnahmen.map((item) => {
+    let dataMap = new Map();
+    dataMap["Startdatum"] = item.startdate;
+    dataMap["Enddatum"] = item.enddate;
+    dataMap["massnahme"] = item.sanctions;
+    dataMap["title"] = item.titel;
+
+    return dataMap;
+});
 
 // function to iterate over massnahmen map and draw gantt bars for each
 function ganttChart(massnahmen) {
@@ -459,7 +433,7 @@ function drawBar(key, value) {
     titleSpan.className = "ganttTitle gTitle" + (key + 1) + " unselectable";
     titleSpan.innerHTML = "" + value.title;
 
-// the actual bar
+    // the actual bar
     let div = document.createElement("div");
     let startdate = new Date(value.Startdatum);
     let enddate = new Date(value.Enddatum);
@@ -467,15 +441,15 @@ function drawBar(key, value) {
 
     div.className = "barElement bar" + (key + 1);
     div.id = "bar" + (key + 1);
+
     // use widthFromDate function to calculate the with and the starting point of bar & text
     div.style.width = "" + widthFromDate(startdate, enddate) + "px";
     div.style.left = "" + widthFromDate(startofyear, startdate) + "px";
-    titleSpan.style.left = widthFromDate(startofyear, startdate) - (12) + "px";
+    titleSpan.style.left = widthFromDate(startofyear, startdate) - (12)  + "px";
 
     document.getElementById("ganttContainer").appendChild(divLine);
     document.getElementById("demo-tooltip-mouse" + key).appendChild(titleSpan);
     document.getElementById("demo-tooltip-mouse" + key).appendChild(div);
-
 
     // Tooltipp divs
     $("#demo-tooltip-above").jBox("Tooltip", {
@@ -504,8 +478,8 @@ function widthFromDate(startdate, enddate) {
     // days difference
     let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
     // width of gantt chart / duration of gantt chart in days
-    let widthPerDay = (1160 / 365)
-    let width = diffDays * widthPerDay;
+    let widthperday = (1160 / 365)
+    let width = diffDays * widthperday;
     return width;
 }
 
@@ -526,21 +500,20 @@ function position(posNumber) {
 // reset positions (is used to make the ordering of gantt bars work)
 function resetPosition() {
     data2.forEach((value, key) => {
-        putAtPosition(key, key);
+        putAtPosition(key,key);
     });
 }
 
 // unused function that gets two positions and swaps them
 // first approach with this did not work and was replaced by putAtPosition
 function swapPosition(pos1, pos2) {
-    // console.log("in swap position" + pos1 + pos2);
     document.getElementById("demo-tooltip-mouse" + (pos1 - 1)).style.top = position(pos2);
     document.getElementById("demo-tooltip-mouse" + (pos2 - 1)).style.top = position(pos1);
 }
 
 // Puts a bar at a certain position
 function putAtPosition(element, pos) {
-    // console.log("put at Position " + element +" " + pos);
+    console.log("put at Position " + element +" " + pos);
     document.getElementById("demo-tooltip-mouse" + (element)).style.top = position(pos);
 }
 
@@ -558,67 +531,79 @@ function changeColorofBar(bar, active) {
 // because the chart hoover function would call this function all the time while hovering over a month
 // we check if the month has changed
 function reorderGanttBars(month) {
-    if (month.toString().includes("Jan")) {
-        if (currentMonth != 1) {
-            orderMassnahmeToMonth(1);
-        }
+  if (month.toString().includes("Jan")) {
+    if (currentMonth != 1){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(1);
     }
-    if (month.toString().includes("Feb")) {
-        if (currentMonth != 2) {
-            orderMassnahmeToMonth(2);
-        }
+  }
+  if (month.toString().includes("Feb")) {
+    if (currentMonth != 2){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(2);
     }
-    if (month.toString().includes("Mar")) {
-        if (currentMonth != 3) {
-            orderMassnahmeToMonth(3);
-        }
+  }
+  if (month.toString().includes("Mar")) {
+    if (currentMonth != 3){console.log("in month " + month);
+
+      orderMassnahmeToMonth(3);
     }
-    if (month.toString().includes("Apr")) {
-        if (currentMonth != 4) {
-            orderMassnahmeToMonth(4);
-        }
+  }
+  if (month.toString().includes("Apr")) {
+    if (currentMonth != 4){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(4);
     }
-    if (month.toString().includes("May")) {
-        if (currentMonth != 5) {
-            orderMassnahmeToMonth(5);
-        }
+  }
+  if (month.toString().includes("May")) {
+    if (currentMonth != 5){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(5);
     }
-    if (month.toString().includes("Jun")) {
-        if (currentMonth != 6) {
-            orderMassnahmeToMonth(6);
-        }
+  }
+  if (month.toString().includes("Jun")) {
+    if (currentMonth != 6){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(6);
     }
-    if (month.toString().includes("Jul")) {
-        if (currentMonth != 7) {
-            orderMassnahmeToMonth(7);
-        }
+  }
+  if (month.toString().includes("Jul")) {
+    if (currentMonth != 7){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(7);
     }
-    if (month.toString().includes("Aug")) {
-        if (currentMonth != 8) {
-            orderMassnahmeToMonth(8);
-        }
+  }
+  if (month.toString().includes("Aug")) {
+    if (currentMonth != 8){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(8);
     }
-    if (month.toString().includes("Sep")) {
-        if (currentMonth != 9) {
-            orderMassnahmeToMonth(9);
-        }
+  }
+  if (month.toString().includes("Sep")) {
+    if (currentMonth != 9){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(9);
     }
-    if (month.toString().includes("Oct")) {
-        if (currentMonth != 10) {
-            orderMassnahmeToMonth(10);
-        }
+  }
+  if (month.toString().includes("Oct")) {
+    if (currentMonth != 10){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(10);
     }
-    if (month.toString().includes("Nov")) {
-        if (currentMonth != 11) {
-            orderMassnahmeToMonth(11);
-        }
+  }
+  if (month.toString().includes("Nov")) {
+    if (currentMonth != 11){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(11);
     }
-    if (month.toString().includes("Dec")) {
-        if (currentMonth != 12) {
-            orderMassnahmeToMonth(12);
-        }
-    } else {
+  }
+  if (month.toString().includes("Dec")) {
+    if (currentMonth != 12){
+      console.log("in month " + month);
+      orderMassnahmeToMonth(12);
     }
+  } else {
+  }
 }
 
 // function to sort massnahmen with a given month
@@ -636,11 +621,9 @@ function orderMassnahmeToMonth(month) {
     // var to check when forEach is finished
     let itemsProcessed = 0;
     data2.forEach((value, key) => {
-
         // get a int value for start and end month
         let startMonth = new Date(value.Startdatum).getMonth() + 1;
         let endMonth = new Date(value.Enddatum).getMonth() + 1;
-
 
         // if startMonth <= month && endMonth >= month it means a massnahme should be active
         // else if startMonth >= month || endMonth <= month it means it should be inactive
@@ -653,6 +636,7 @@ function orderMassnahmeToMonth(month) {
         }
         itemsProcessed++;
     });
+    
     // check if all items have been iterated
     if (itemsProcessed === data2.length) {
         // first sort all active massnahmen to the top
@@ -662,16 +646,13 @@ function orderMassnahmeToMonth(month) {
         inactive.forEach(function (item, index) {
             sortInactive(item, index, offset);
         });
-
-
     }
 }
 
 
 let key2 = 0;
-
 // put all massnahmen from array on top and highlight them
-function sortActive(item, index) {
+function sortActive(item,index) {
     //console.log("im sort" + item);
     putAtPosition(item, index);
     changeColorofBar(item + 1, true);
@@ -681,5 +662,5 @@ function sortActive(item, index) {
 // put all massnahmen from array behind active ones and change the color to inactive
 function sortInactive(item, index, offset) {
     changeColorofBar(item + 1, false);
-    putAtPosition(item, index + offset);
+    putAtPosition(item, index+offset);
 };

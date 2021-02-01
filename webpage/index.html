@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
 
-
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,900;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
@@ -21,8 +20,6 @@
     <script src="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.2.1/dist/jBox.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.2.1/dist/jBox.all.min.css" rel="stylesheet">
 
-
-
     <!-- Extensions for google charts -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
@@ -32,22 +29,25 @@
 
 <body>
 
-    <!-- JL: Container for the headline -->
+    <!-- Headline Container (this format is required for scrollmagic) -->
     <div id="h1Container">
         <h1 class="unselectable h1" id="h1">COVID-19:<br>AUSWIRKUNGEN<br>AUF DAS<br>GASTGEWERBE<br>IM JAHR 2020</h1>
     </div>
 
-
-
-        <!--<svg id="chart" position="absolute" width="90vw" height="50vw" top="0"></svg>-->
-
-         <div class="contentContainer" id=contentContainer>
-        <!-- div to add gant chart into!-->
-        <!--<div id="gantt_chart"></div>-->
+    <!--contentContainer holds all the content page elements (needed for scrollmagic)-->
+    <div class="contentContainer" id=contentContainer>
+        <!--Title of the content page-->
         <p class="titleofchartline">Gastronomie und Beherbergung in Deutschland: Umsatz und Anzahl der Beschäftigten im Vergleich zum Vorjahr gemessen in Prozent</p><br>
-        <div class="mycheckbox1">
-        <div class= "beschäftigte">
-            <div >
+
+        <!--SVG that draws the Multiline-Chart-->
+        <svg id="chart"  width="1300" height="370"></svg>
+
+        <!--Gantt-Chart Container-->
+        <div id="ganttContainer"></div>
+
+        <!--mycheckboxes1: The Checkboxes + Text + Colour indicator for BeherberungUmsatz & BeherbergungBeschäftigte-->
+        <div class="mycheckboxes1">
+            <div>
                 <div class="box" style="background: #8525FD"></div>
                 <label for="BeherbergungUmsatz" class="fixwidth"> Beherbergung Umsatz</label>
                 <input type="checkbox" id="BeherbergungUmsatz" name="BeherbergungUmsatz" checked=true>
@@ -58,9 +58,9 @@
                 <input type="checkbox" id="Beherbergungbeschäftigte" name="Beherbergungbeschäftigte" checked=true>
             </div>
         </div>
-        </div>
-        <div class="mycheckbox2">
-        <div class= "gastronomie">
+
+        <!--mycheckboxes1: The Checkboxes + Text + Colour indicator for GastronomieUmsatz & GastronomieBeschäftigte-->
+        <div class="mycheckboxes2">
             <div>
                 <div class="box" style="background: #007DFA"></div>
                 <label for="GastronomieUmsatz" class="fixwidth"> Gastronomie Umsatz</label>
@@ -72,25 +72,10 @@
                 <input type="checkbox" id="Gastronomiebeschäftigte" name="Gastronomiebeschäftigte" checked=true>
             </div>
         </div>
-        </div>
-
-
-
-             <svg id="chart"  width="1300" height="370"></svg>
-        <!-- div to add timeline -->
-        <div class="timeline"></div>
-
-
-
-
-        <!--Gantt Container-->
-        <div id="ganttContainer">
-
-
-
-
-
+        
     </div>
+
+    <!--Link to the .js file-->
     <script src="script.js"></script>
 </body>
 </html>
