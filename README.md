@@ -31,20 +31,21 @@
   </ol>
 </details>
 
+<!-- CONTRIBUTING -->
+## Contributer
 
+This [course](https://www.medien.ifi.lmu.de/lehre/ws2021/iv/) is a group project offered by LMU. All group members participating in this project all listed below
+
+1. [Mustafa Yasin](https://github.com/MustafaYasin): MY
+2. [Julian Preissing](https://github.com/allach): JP
+3. [Bilal Ayech](https://github.com/BilelAyech): BA
+4. [Julian Lorenz](https://github.com/Julianlrn): JL
+5. [Richard Hofmann](https://github.com/richardhofmann2711): RH
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
 ![Project Name Screen Shot](images/aboutproject.jpeg)
-
-### Contributors
-* Julian Lorenz: JL
-* Julian Preissing: JP
-* Richard Hofmann: RH
-* Mustafa Yasin: MY
-* Bilel Ayech: BA
-
 
 
 ### All required tools
@@ -153,20 +154,6 @@ This Gantt Chart (below) gives a great overview the next steps we are planning t
   
 ![Gantt Chart](images/ganttchart.png)
 See the [open issues](https://github.com/MustafaYasin/infovis/issues) for a list of proposed features (and known issues).
-
-
-
-<!-- CONTRIBUTING -->
-## Contributer
-
-This [course](https://www.medien.ifi.lmu.de/lehre/ws2021/iv/) is a group project offered by LMU. All group members participating in this project all listed below
-
-1. [Mustafa Yasin](https://github.com/MustafaYasin)
-2. [Julian Preissing](https://github.com/allach)
-3. [Bilal Ayech](https://github.com/BilelAyech)
-4. [Julian Lorenz](https://github.com/Julianlrn)
-5. [Richard Hofmann](https://github.com/richardhofmann2711)
-
 
 
 <!-- LICENSE -->
