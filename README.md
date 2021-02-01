@@ -115,6 +115,7 @@ To get a local copy up and running follow these simple steps.
 | Button zum An- und Abstellen von spezifischen Lines im Line Plot                    | 18.01.2021 | 22.01.2021 | BA, JL       |
 | Responsiveness Optimierungen                                                        | 18.01.2021 | 22.01.2021 | -            |
 | Erstellung der Endpräsentation                                                      | 22.01.2021 | 25.01.2021 | RH, MY, BA   |
+| Verschiedene Optimierungen (Sources, Scroll Indikator, Refactoring, Comments)       | 01.02.2021 | 01.02.2021 | JL           |
 | Release Candidate 1                                                                 | 19.01.2021 | 27.01.2021 | Ganze Gruppe |
 
 
