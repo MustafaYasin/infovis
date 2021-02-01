@@ -82,7 +82,10 @@ To get a local copy up and running follow these simple steps.
    ```sh
    python3 -m http.server
    ```
-
+2. If you want access the Application from the browser
+   ```sh
+   https://allach.github.io/webpage/
+   ```
 <!-- Time Plan -->
 ## Milestones
 
