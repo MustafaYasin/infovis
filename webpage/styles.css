@@ -17,6 +17,8 @@ html, body{
     display: none;
 }
 
+
+
 /*Any used text in the project should be unselectable*/
 .unselectable {
     -webkit-touch-callout: none;
@@ -47,11 +49,11 @@ body{
   top:4vw;
 }
 .titleofchartline {
-  color: white;
+  color: #E0E0E0;
   text-align: middle;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
-  padding-top: 4px;
+  padding-top: 16px;
 }
 .spanspace{
   display: inline-block;
@@ -132,6 +134,23 @@ text-align: left;
     letter-spacing: 0.2em;
 }
 
+.scrollTip{
+    position: fixed;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: black;
+    color: #E0E0E0;
+    font-size: 1vw;
+    width: 50vw;
+    text-align: center;
+    left: calc(50vw - 25vw);
+    line-height: 5vh;
+    line-height: calc(var(--vh, 1vh) * 5);
+    letter-spacing: 0.2em;
+    top: 95vh;
+    top: calc(var(--vh, 1vh) * 95);
+    animation: 2s ease-out 0s 1 slideInFromButton;
+}
+
 #contentContainer{
     position:absolute;
     top:100vh;
@@ -194,4 +213,15 @@ text-align: left;
     margin-right:auto;
     display:block;
     align-self: center;
+}
+
+.sources {
+    color: #E0E0E0;
+    position: absolute;
+    left: 28px;
+    bottom: 24px;
+    font-size: 7px;
+}
+.link{
+    color: #E0E0E0;
 }

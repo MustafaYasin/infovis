@@ -30,6 +30,14 @@ $(document).ready(function ($) {
         .setTween(h1Disappears)
         .addTo(controller);
 
+    // scrollTip disappears
+    var opacity = TweenLite.to("#scrollTip", 1, {
+        opacity: 0
+    });
+    // build scene
+    var scene1 = new ScrollMagic.Scene({ duration: 100, triggerHook: 0, reverse:true})
+        .setTween(opacity)
+        .addTo(controller);
     // checkbox events
     $("#BeherbergungUmsatz").on("change", (event) => {
         if (!event.target.checked) {
@@ -318,13 +326,13 @@ let massnahmen = [
     {
         startdate: "3/16/2020",
         enddate: "5/16/2020",
-        sanctions: "Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und der Schweiz gibt es Kontrollen und Einreiseverbote. In den meisten Bundesländern sind Schulen und Kitas geschlossen.",
+        sanctions: "Die Grenzen zu Frankreich, Österreich, Luxemburg, Dänemark und der Schweiz gibt es Kontrollen und Einreiseverbote. <br>In den meisten Bundesländern sind Schulen und Kitas geschlossen.",
         titel: "Reiseeinschränkung",
     },
     {
         startdate: "3/22/2020",
         enddate: "5/11/2020",
-        sanctions: "Verbot von Ansammlungen von mehr als zwei Menschen. Ausgenommen sind Angehörige, die im eigenen Haushalt leben. Cafés, Kneipen, Restaurants, aber auch Friseure zum Beispiel schließen.",
+        sanctions: "Verbot von Ansammlungen von mehr als zwei Menschen. Ausgenommen sind Angehörige, die im eigenen Haushalt leben.<br> Cafés, Kneipen, Restaurants, aber auch Friseure zum Beispiel schließen.",
         titel: "1. Lockdown",
     },
     {
@@ -336,7 +344,7 @@ let massnahmen = [
     {
         startdate: "4/22/2020",
         enddate: "12/31/2020",
-        sanctions: "Das bayerische Kabinett beschloss, dass 250.000 Pflegekräfte in bayerischen Krankenhäusern, Altenheimen und in der ambulanten Pflege und auch Rettungsassistenten und Notfallsanitäter eine steuerfreie Einmalzahlung erhalten.",
+        sanctions: "Das bayerische Kabinett beschloss, dass 250.000 Pflegekräfte in bayerischen Krankenhäusern,<br> Altenheimen und in der ambulanten Pflege und auch Rettungsassistenten und Notfallsanitäter eine steuerfreie Einmalzahlung erhalten.",
         titel: "Boni für Pflegekräfte",
     },
     {
@@ -348,19 +356,19 @@ let massnahmen = [
     {
         startdate: "7/10/2020",
         enddate: "12/31/2020",
-        sanctions: "Ministerpräsident Söder gibt bekannt, dass kostenlose, freiwillige Corona-Tests „schneller, kostenlos und für jedermann“ ermöglicht werden.",
+        sanctions: "Ministerpräsident Söder gibt bekannt, dass kostenlose, freiwillige <br>Corona-Tests „schneller, kostenlos und für jedermann“ ermöglicht werden.",
         titel: "Testmöglichkeit",
     },
     {
         startdate: "7/10/2020",
         enddate: "12/31/2020",
-        sanctions: "Die Bundesländer beschließen ein Beherbergungsverbot für Urlauber aus inländischen Risikogebieten. Die Zahl der Neuinfektionen ist auf mehr als 4000 binnen eines Tages gestiegen.",
+        sanctions: "Die Bundesländer beschließen ein Beherbergungsverbot für Urlauber aus inländischen Risikogebieten.<br> Die Zahl der Neuinfektionen ist auf mehr als 4000 binnen eines Tages gestiegen.",
         titel: "Beherbergungsverbot",
     },
     {
         startdate: "8/8/2020",
         enddate: "12/31/2020",
-        sanctions: "Einreisende aus internationalen Risikogebieten müssen sich bei der Rückkehr nach Deutschland testen lassen.",
+        sanctions: "Einreisende aus internationalen Risikogebieten müssen <br>sich bei der Rückkehr nach Deutschland testen lassen.",
         titel: "Reiseeinschränkung",
     },
     {
@@ -372,7 +380,7 @@ let massnahmen = [
     {
         startdate: "10/17/2020",
         enddate: "12/31/2020",
-        sanctions: "In der Sitzung vom 15. Oktober 2020 beschloss das bayerische Kabinett die Einführung eines „Ampelsystems“ auf Ebene der Landkreise bzw. kreisfreien Städte für vorerst vier Wochen.",
+        sanctions: "In der Sitzung vom 15. Oktober 2020 beschloss das bayerische Kabinett die Einführung eines<br> „Ampelsystems“ auf Ebene der Landkreise bzw. kreisfreien Städte für vorerst vier Wochen.",
         titel: "Ampelsystem",
     },
     {
@@ -384,13 +392,13 @@ let massnahmen = [
     {
         startdate: "11/3/2020",
         enddate: "12/31/2020",
-        sanctions: "Der Notfallplan Corona-Pandemie: Allgemeinverfügung zur Bewältigung erheblicher Patientenzahlen in Krankenhäusern wurde bekannt gegeben.",
+        sanctions: "Der Notfallplan Corona-Pandemie: Allgemeinverfügung zur Bewältigung<br> erheblicher Patientenzahlen in Krankenhäusern wurde bekannt gegeben.",
         titel: "Allgemeinverfügung ",
     },
     {
         startdate: "11/9/2020",
         enddate: "11/30/2020",
-        sanctions: "Die Verordnung über Quarantänemaßnahmen für Einreisende zur Bekämpfung des Coronavirus vom bayerischen Staatsministerium für Gesundheit und Pflege bekannt gegeben.",
+        sanctions: "Die Verordnung über Quarantänemaßnahmen für Einreisende zur Bekämpfung des Coronavirus<br> vom bayerischen Staatsministerium für Gesundheit und Pflege bekannt gegeben.",
         titel: "Quarantäneverordnung",
     },
     {
