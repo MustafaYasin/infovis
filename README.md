@@ -38,6 +38,14 @@
 
 ![Project Name Screen Shot](images/aboutproject.jpeg)
 
+### Contributors
+* Julian Lorenz: JL
+* Julian Preissing: JP
+* Richard Hofmann: RH
+* Mustafa Yasin: MY
+* Bilel Ayech: BA
+
+
 
 ### All required tools
 These tools are needed so far. They will updated obviously, since the project isn't done yet.
