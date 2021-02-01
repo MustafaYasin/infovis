@@ -45,7 +45,6 @@ These tools are needed so far. They will updated obviously, since the project is
 * [JavaScript](https://www.javascript.com/)
 * [D3.js](https://d3js.org/)
 * [ScrollMagic](https://github.com/janpaepke/ScrollMagic)
-* [Google Charts](https://developers.google.com/chart)
 
 
 <!-- GETTING STARTED -->
