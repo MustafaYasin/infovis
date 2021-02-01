@@ -96,14 +96,14 @@ To get a local copy up and running follow these simple steps.
 | Clickdummy der neuen Visualisierungsidee erstellen                                  | 26.11.2020 | 28.11.2020 | JL & JP      |
 | Detaillierte Fragestellung, Mockups und Projektplanung                              | 24.11.2020 | 02.12.2020 | JL & JP      |
 | Zusammentragen von Bundesweiten Covid-19 Beschränkungen im Jahr 2020 im JSON Format | 07.12.2020 | 09.12.2020 | RM, BA, MY   |
-| Aufsetzen des Projektes (Github etc.)                                               | 07.12.2020 | 09.12.2020 |RM, BA, MY, JL|
+| Aufsetzen des Projektes (Github, HTML, etc.)                                        | 07.12.2020 | 09.12.2020 |RM, BA, MY, JL|
 | Überarbeitung des Mockups                                                           | 07.12.2020 | 11.12.2020 | JL & JP      |
 | Daten in das Projekt integrieren (sodass D3 diese Verarbeiten kann)                 | 09.12.2020 | 11.12.2020 | JL           |
 | Implementierung des Navigationsgerüstes (Titeleinblendung etc.)                     | 11.12.2020 | 16.12.2020 | JL           |
 | Implementierungsbeginn von Line Chart (Gastgewerbe Umsatz im vgl. zum Vorjahr)      | 11.12.2020 | 16.12.2020 |RM, BA, MY, JL|
 | Implementierungbeginn von Gantt Chart (Covid Beschränkungen)                        | 11.12.2020 | 16.12.2020 | JL & JP      |
 | Fertiges Visualisierungskonzept, erste Implementierung                              | 08.12.2020 | 16.12.2020 | JL & JP      |
-| Implementierung mit Daten von Line Chart (Gastgewerbe Umsatz im vgl. zum Vorjahr)   | 17.12.2020 | 05.01.2021 | JL & JP      |
+| Implementierung mit Daten von Line Chart (Gastgewerbe Umsatz im vgl. zum Vorjahr)   | 17.12.2020 | 05.01.2021 | JL           |
 | Implementierung mit Daten von Gantt Chart (Covid Beschränkungen)                    | 17.12.2020 | 05.01.2021 | JL & JP      |
 | Designanpassungen am Line Chart                                                     | 05.01.2021 | 13.01.2021 | JL & JP      |
 | Designanpassungen am Gantt Chart                                                    | 05.01.2021 | 13.01.2021 | JL & JP      |
@@ -111,7 +111,7 @@ To get a local copy up and running follow these simple steps.
 | Hover Logik & Animation implementieren für Gantt Chart                              | 08.01.2021 | 13.01.2021 | JP           |
 | Minimal Viable Product                                                              | 05.01.2021 | 13.01.2021 | Ganze Gruppe |
 | Scroll Magic Animationen Hinzufügen (z.B. Onboarding)                               | 18.01.2021 | 22.01.2021 | JL & JP      |
-| Button zum An- und Abstellen von spezifischen Lines im Line Plot                    | 18.01.2021 | 22.01.2021 | JL, BA       |
+| Button zum An- und Abstellen von spezifischen Lines im Line Plot                    | 18.01.2021 | 22.01.2021 | BA, JL       |
 | Responsiveness Optimierungen                                                        | 18.01.2021 | 22.01.2021 | -            |
 | Erstellung der Endpräsentation                                                      | 22.01.2021 | 25.01.2021 | RH, MY, BA   |
 | Release Candidate 1                                                                 | 19.01.2021 | 27.01.2021 | Ganze Gruppe |
